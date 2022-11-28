@@ -1,10 +1,3 @@
-# Build image
-docker build -t ngxway .
-if [ $? -ne 0 ]; then
-  echo -e ">>>>>>>>Start failure: failed to build<<<<<<<<"
-  exit 1
-fi
-
 # Handle container
 containerCount=0
 for file in $(docker container ls -f name=ngxwayContainer -q)
@@ -13,6 +6,17 @@ do
 done
 if [ $containerCount -ne 0 ]; then
   echo -e ">>>>>>>>Start failure: please run stop.sh first<<<<<<<<"
+  exit 1
+fi
+
+# Pull without password
+git config --global credential.helper store
+git pull
+
+# Build image
+docker build -t ngxway .
+if [ $? -ne 0 ]; then
+  echo -e ">>>>>>>>Start failure: failed to build<<<<<<<<"
   exit 1
 fi
 

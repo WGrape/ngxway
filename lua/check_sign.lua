@@ -66,9 +66,9 @@ function checkParams()
     return true
 end
 
--- 如果sid未空, 则检查请求签名是否合法
-local sid = ngx.req.get_uri_args()["sid"]
-if sid == "" or sid == nil then
+-- 如果session未空, 则检查请求签名是否合法
+local session = ngx.req.get_uri_args()["session"]
+if session == "" or session == nil then
     -- 检查参数是否都正常存在
     if checkParams() == false then
         ngx.log(ngx.ERR, 'check params failed')

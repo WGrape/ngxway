@@ -28,7 +28,8 @@ if [ $? -ne 0 ]; then
 fi
 
 # Exec command
-docker exec -d ngxwayContainer bash bin/init.sh
+# docker exec -it ngxwayContainer /bin/sh
+docker exec -d ngxwayContainer bash bin/ngxway.sh
 if [ $? -ne 0 ]; then
   echo -e ">>>>>>>>Start failure: failed to exec<<<<<<<<"
   exit 1

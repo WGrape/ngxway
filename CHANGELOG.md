@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/WGrape/ngxway/compare/v0.1.0...v0.1.1) (2022-12-07)
+
+
+### Docs
+
+* make doc better ([4b98718](https://github.com/WGrape/ngxway/commit/4b987181a4168598f90aa09515f570176364749c))
+
 ## [0.1.0](https://github.com/WGrape/ngxway/compare/v0.0.1...v0.1.0) (2022-11-29)
 
 

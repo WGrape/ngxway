@@ -6,7 +6,7 @@
     <!-- oscs: https://www.oscs1024.com/cd/1543980900807675904?sign=a3d02348 -->
     <!-- https://www.murphysec.com/ -->
     <a href="https://www.oscs1024.com/project/oscs/WGrape/ngxway?ref=badge_small" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/WGrape/ngxway.svg?size=small"/></a>
-    <img src="https://github.com/wgrape/ngxway/actions/workflows/build.yml/badge.svg">
+    <!-- <img src="https://github.com/wgrape/ngxway/actions/workflows/build.yml/badge.svg"> -->
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/wgrape/ngxway">
     <img src="https://img.shields.io/badge/Document-中文/English-orange.svg">
     <img src="https://img.shields.io/badge/License-MIT-green.svg">   

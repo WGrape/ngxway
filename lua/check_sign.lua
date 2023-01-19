@@ -47,7 +47,7 @@ function checkTimestamp()
 
     -- 如果时间戳相差在1小时内，则视为正常请求，否则视为恶意请求
     now = os.time()
-    if math.abs(now - timestamp) > 3600 then
+    if math.abs(now - tonumber(timestamp)) > 3600 then
         return false
     end
 

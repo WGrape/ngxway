@@ -27,6 +27,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# Mapping to local disk storage
+mkdir -p /tmp/logs/ && chmod -R 777 /tmp/logs/
+
 # Run container
 docker run --name ngxwayContainer -d -p 127.0.0.1:8090:8090 -v /tmp/logs:/dist/logs/ ngxway
 if [ $? -ne 0 ]; then

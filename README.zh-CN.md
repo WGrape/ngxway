@@ -18,7 +18,7 @@
 </div>
 
 ## 一、介绍
-ngxway```[Nginx Way]`````是一个基于Openresty的高性能轻量级Nginx网关服务。
+ngxway```[Nginx Way]```是一个基于Openresty的高性能轻量级Nginx网关服务。
 
 ## 二、特点
 

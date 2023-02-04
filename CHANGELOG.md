@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.0](https://github.com/WGrape/ngxway/compare/v0.2.0...v0.3.0) (2023-02-04)
+
+
+### Features
+
+* add configuration support and many new features ([8f9bf91](https://github.com/WGrape/ngxway/commit/8f9bf91ab048f54611a325822476365a5f3bbaca))
+
+
+### Tests
+
+* add test ([35309bc](https://github.com/WGrape/ngxway/commit/35309bc04ae841bb0dc288bfd1db73c85269997b))
+
+
+### Docs
+
+* make doc better ([f0ecfff](https://github.com/WGrape/ngxway/commit/f0ecffff19bd200ea2c67fae5b2ef1a5f4cf96d5))
+* make doc better ([a2c1e0c](https://github.com/WGrape/ngxway/commit/a2c1e0c94e0d489e38db9ba349b9b6da0a522b12))
+
 ## [0.2.0](https://github.com/WGrape/ngxway/compare/v0.1.0...v0.2.0) (2023-01-19)
 
 

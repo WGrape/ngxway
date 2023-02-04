@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.1](https://github.com/WGrape/ngxway/compare/v0.4.0...v0.4.1) (2023-02-04)
+
+
+### Styling
+
+* change readme doc ([b8ac1db](https://github.com/WGrape/ngxway/commit/b8ac1dbe645f2dbe0f0f33c15337a22017f276a3))
+
+
+### Code Refactoring
+
+* adjust the directory of nginx ([bcad4f2](https://github.com/WGrape/ngxway/commit/bcad4f2beccb4bbf39ad0c3fffd7a7c5856481bc))
+* simplify the design of conf files ([89f58ed](https://github.com/WGrape/ngxway/commit/89f58ed835ae400d3ec3d1bb6cf4d8d4829e0b50))
+
 ## [0.4.0](https://github.com/WGrape/ngxway/compare/v0.3.0...v0.4.0) (2023-02-04)
 
 

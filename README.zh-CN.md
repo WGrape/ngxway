@@ -55,7 +55,7 @@ bash install.sh
 ## 五、使用
 
 ### 1、启动服务
-执行以下命令以启动 ngxway 服务。
+执行以下命令以启动ngxway服务。在开发模式下，成功后会自动在Chrome中打开ngxway页面。
 
 ```bash
 bash start.sh

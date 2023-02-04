@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.4.0](https://github.com/WGrape/ngxway/compare/v0.3.0...v0.4.0) (2023-02-04)
+
+
+### Features
+
+* add favicon.ico resource, restart.sh and test/benchmark.sh ([392e659](https://github.com/WGrape/ngxway/commit/392e65910a0cae20d7b8923af7e72e1023c70475))
+* add proxy_pass and location feats ([1d80efa](https://github.com/WGrape/ngxway/commit/1d80efa628294b447fce195f072350d8335a7a7b))
+* add upstream support ([1118252](https://github.com/WGrape/ngxway/commit/111825250b5bb853ddaa0c2f3de5015d02e8f4fe))
+
+
+### Bug Fixes
+
+* fix the panic of timestamp that string to number ([d56a285](https://github.com/WGrape/ngxway/commit/d56a285d8b2eee00618c7040a7b28665ffa647ce))
+
+
+### Docs
+
+* make doc better ([e132361](https://github.com/WGrape/ngxway/commit/e132361ad12681c515cb89980923da3e46a99124))
+
+
+### Styling
+
+* add test comment for lua/limit_traffic.lua ([282ca8c](https://github.com/WGrape/ngxway/commit/282ca8c4f669f755afd0c34ec1264d6784d7df14))
+
 ## [0.3.0](https://github.com/WGrape/ngxway/compare/v0.2.0...v0.3.0) (2023-02-04)
 
 

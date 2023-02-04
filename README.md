@@ -55,7 +55,7 @@ Some common functions of ngxway are defined in the [bin/common.sh](./bin/common.
 ## 5、Usage
 
 ### (1) Start the service
-Execute the following command to start the ngxway service.
+Execute the following command to start the ngxway service. In development mode, the ngxway page will be automatically opened in Chrome after success.
 
 ```bash
 bash start.sh

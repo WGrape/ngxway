@@ -18,7 +18,7 @@
 </div>
 
 ## 1. Introduction
-ngxway```[Nginx Way]````` is a high-performance lightweight Nginx gateway service based on Openresty.
+ngxway```[Nginx Way]```is a high-performance lightweight Nginx gateway service based on Openresty.
 
 ## 2. Features
 

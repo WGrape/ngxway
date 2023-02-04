@@ -5,6 +5,10 @@ ngxway_addr="127.0.0.1:8090" # the address and port of ngxway
 env="dev" # only dev/test/gray/prod four environments
 # ================================
 
+# The common variables of ngxway is here.
+# ================================
+time=$(date "+%Y-%m-%d %H:%M:%S")
+# ================================
 
 # The common functions of ngxway is here.
 # ================================

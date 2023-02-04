@@ -44,11 +44,31 @@ fi
 
 # Exec command
 # docker exec -it ngxwayContainer /bin/sh
-docker exec -d ngxwayContainer bash bin/ngxway.sh
+docker exec -d ngxwayContainer bash nginx/reload.sh
 if [ $? -ne 0 ]; then
   echo -e ">>>>>>>>Start failure: failed to exec<<<<<<<<"
   exit 1
+fi
+
+# The result of command exec in docker
+sleep 1 # wait the log of docker sync to local disk
+dockerResultMsg=$(cat $local_volume_logs_dir/nginx.reload.log)
+if [ "${dockerResultMsg}" != "" ] ; then
+  # Write failure log
+  log="[${time}] >>>>>>>>failed to reload nginx<<<<<<<<"
+  echo $log >> $local_volume_logs_dir/ngxway.start.log
+  echo $dockerResultMsg >> $local_volume_logs_dir/ngxway.start.log
+
+  # Output to console
+  echo -e $log
+  echo -e $dockerResultMsg
+  exit 1
 else
+  # Write success log
+  log="[${time}] start ngxway success"
+  echo $log >> $local_volume_logs_dir/ngxway.start.log
+
+  # Output to console
   echo -e "========Start success========"
 fi
 

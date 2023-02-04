@@ -3,7 +3,6 @@
 # Write start info to ngxway.start.log and fix this bug : https://github.com/WGrape/ngxway/issues/4
 time=$(date "+%Y-%m-%d %H:%M:%S")
 
-cp /dist/vhosts/* /etc/nginx/conf.d/
 cp /dist/conf/* /usr/local/openresty/nginx/conf/
 
 nginx -s reload > /dist/logs/nginx.reload.log.temp 2>&1

@@ -13,27 +13,72 @@
 </div>
 
 <div align="center">    
-    <p>A high-performance Nginx gateway service based on Openresty.</p>
+    <p>A high-performance and lightweight Nginx gateway service based on Openresty.</p>
     <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
 </div>
 
-## 1、Introduce
+## 1. Introduction
+ngxway```[Nginx Way]````` is a high-performance lightweight Nginx gateway service based on Openresty.
 
-## 2、Install
+## 2. Features
+
+### (1) High performance and low time consumption
+
+Based on Openresty and Lua extensions, the Nginx layer gateway service with high performance and low time consumption is realized. For performance, you can check the detailed performance test report.
+
+### (2) Containerized and easy to deploy
+
+Based on Docker, it is decoupled from the underlying configuration of Nginx, eliminating all the construction process, and can automatically build its own Nginx gateway service with one command.
+
+### (3) Lightweight and scalable
+
+The whole project is simple and lightweight, you can change various configurations of the project at will, and even modify and add various scripts to enhance the performance of ngxway in your business.
+
+## 3. Installation
+
+Execute the following command to quickly complete the installation
+
 ```bash
+git clone https://github.com/WGrape/ngxway.git
 bash install.sh
 ```
 
-## 3、Usage
+## 4. Configuration
 
-### (1) Start server
+Some common functions of ngxway are defined in the [bin/common.sh](./bin/common.sh) file, which includes these configuration options.
+
+- ```local_volume_logs_dir```: The local log directory mapped by ngxway
+- ```ngxway_addr```: ngxway startup address and port number
+- ```env```: The operating environment of ngxway, only allow dev/test/gray/prod 4 environments
+
+
+## 5、Usage
+
+### (1) Start the service
+Execute the following command to start the ngxway service.
 
 ```bash
 bash start.sh
 ```
 
-### (2) Stop server
+<img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760566-7cd85e99-5089-4055-909a-8253dd366d95.png">
+
+### (2) Stop service
+Execute the following command to safely stop the ngxway service.
 
 ```bash
 bash stop.sh
 ```
+
+<img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760481-1eb24c24-58af-4260-afb3-96ea74dcdaca.png">
+
+### (3) Service log
+
+The logs of ngxway during operation will be recorded in the ```local_volume_logs_dir``` log directory defined in the [bin/common.sh](./bin/common.sh) file, the default is ```/tmp /logs``` directory.
+
+<img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760443-6c53d04a-f09d-4cbd-ae71-c29f8f566ba2.png">
+
+## 6. Contribution
+In the process of using this project, if you encounter any problems or have better projects, welcome your [Issue](https://github.com/WGrape/ngxway/issues/new) and [Pull Request](https ://github.com/WGrape/ngxway/pulls)
+
+<img src="https://contrib.rocks/image?repo=wgrape/ngxway">

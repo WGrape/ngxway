@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Write start info to ngxway.start.log and fix this bug : https://github.com/WGrape/ngxway/issues/4
 time=$(date "+%Y-%m-%d %H:%M:%S")
 

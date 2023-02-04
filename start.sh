@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+
+# Include common.sh
+. bin/common.sh
+
 # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console
 docker images > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -28,10 +33,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # Mapping to local disk storage
-mkdir -p /tmp/logs/ && chmod -R 777 /tmp/logs/
+mkdir -p $local_volume_logs_dir && chmod -R 777 $local_volume_logs_dir
 
 # Run container
-docker run --name ngxwayContainer -d -p 127.0.0.1:8090:8090 -v /tmp/logs:/dist/logs/ ngxway
+docker run --name ngxwayContainer -d -p $ngxway_addr:8090 -v $local_volume_logs_dir:/dist/logs/ ngxway
 if [ $? -ne 0 ]; then
   echo -e ">>>>>>>>Start failure: failed to run<<<<<<<<"
   exit 1
@@ -45,4 +50,12 @@ if [ $? -ne 0 ]; then
   exit 1
 else
   echo -e "========Start success========"
+fi
+
+# Try to open it in your chrome if ngxway working in dev mode.
+computeSignedAPI
+echo -e ""
+echo -e "Now, you can visit the api to test : " $signedAPI
+if [ $env == "dev" ]; then
+  open -a "/Applications/Google Chrome.app" $signedAPI > /dev/null 2>&1
 fi

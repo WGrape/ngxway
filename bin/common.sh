@@ -12,7 +12,7 @@ time=$(date "+%Y-%m-%d %H:%M:%S")
 
 # The common functions of ngxway is here.
 # ================================
-function computeSignedAPI() {
+function computeSignedRequest() {
   timeStamp=`date +%s`
 
   (( length=timeStamp%16+10 ))
@@ -24,17 +24,19 @@ function computeSignedAPI() {
 
   result=${signMd5: 0: $length}
 
-  signedAPI="http://${ngxway_addr}/?sign=${result}&timestamp=${timeStamp}"
+  signedURL="http://${ngxway_addr}/?sign=${result}&timestamp=${timeStamp}"
+  signedAPI="http://${ngxway_addr}/api/test?sign=${result}&timestamp=${timeStamp}"
 }
 
-function printSignedAPI() {
-  computeSignedAPI
+function printSignedRequest() {
+  computeSignedRequest
   echo "timeStamp=$timeStamp"
   echo "length=$length"
   echo "sign=$sign"
   echo "signMd5=$signMd5"
   echo "result = " $result
-  echo "url = " $signedAPI
+  echo "url = " $signedURL
+  echo "api = " $signedAPI
 }
 
 function printWhichSystem(){

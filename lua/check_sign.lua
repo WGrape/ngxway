@@ -1,7 +1,7 @@
 -- Compute the signature of request url.
 function computeSign()
     -- The params passed by the user.
-    local timestamp = ngx.req.get_uri_args()["timestamp"]
+    local timestamp = ngx.var.arg_timestamp
     if timestamp == nil then
         return ""
     end
@@ -20,7 +20,7 @@ end
 -- Check the url signature is right.
 function checkSign()
     -- The params passed by the user.
-    local sign = ngx.req.get_uri_args()["sign"]
+    local sign = ngx.var.arg_sign
     if sign == nil then
         return false
     end
@@ -39,7 +39,7 @@ end
 -- Check the timestamp is valid.
 function checkTimestamp()
     -- The timestamp param passed by the user.
-    local timestamp = ngx.req.get_uri_args()["timestamp"]
+    local timestamp = ngx.var.arg_timestamp
     if timestamp == nil then
         return false
     end
@@ -56,8 +56,8 @@ end
 -- Check params
 function checkParams()
     -- The params passed by the user.
-    local timestamp = ngx.req.get_uri_args()["timestamp"]
-    local sign = ngx.req.get_uri_args()["sign"]
+    local timestamp = ngx.var.arg_timestamp
+    local sign = ngx.var.arg_sign
     if timestamp == nil or sign == nil then
         return false
     end
@@ -72,7 +72,7 @@ function checkParams()
 end
 
 -- If the session is not empty, check whether the request signature is legal.
-local session = ngx.req.get_uri_args()["session"]
+local session = ngx.var.arg_session
 if session == "" or session == nil then
     -- Check whether the parameters are normal.
     if checkParams() == false then

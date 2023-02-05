@@ -73,9 +73,9 @@ else
 fi
 
 # Try to open it in your chrome if ngxway working in dev mode.
-computeSignedAPI
+computeSignedRequest
 echo -e ""
-echo -e "Now, you can visit the api to test : " $signedAPI
+echo -e "Now, you can visit the url to test : " $signedURL
 if [ $env == "dev" ]; then
-  open -a "/Applications/Google Chrome.app" $signedAPI > /dev/null 2>&1
+  open -a "/Applications/Google Chrome.app" $signedURL > /dev/null 2>&1
 fi

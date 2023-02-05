@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.5.0](https://github.com/WGrape/ngxway/compare/v0.4.2...v0.5.0) (2023-02-05)
+
+
+### Features
+
+* remove limit_traffic module by default ([6b4244c](https://github.com/WGrape/ngxway/commit/6b4244c2e767012b4f74f6ec8f5b05a9445da607))
+
+
+### Bug Fixes
+
+* fix the signedAPI of computeSignedAPI ([69c6b14](https://github.com/WGrape/ngxway/commit/69c6b14f73a6b06dd20fb85d62019e22d023184f))
+
+
+### Tests
+
+* add test/benchmark.sh for testing of benchmark ([e4a5cff](https://github.com/WGrape/ngxway/commit/e4a5cff8e739f56bd3839e53ff1a6c81f00fd3e5))
+
+
+### Docs
+
+* add benchmark testing document ([dc0d7ed](https://github.com/WGrape/ngxway/commit/dc0d7edc16840beb4e91460de391008d0f25163e))
+* fix doc error ([e3bb4ef](https://github.com/WGrape/ngxway/commit/e3bb4ef7ced55abdce47e058db53c7ec6cbd96e5))
+
 ## [0.4.2](https://github.com/WGrape/ngxway/compare/v0.4.1...v0.4.2) (2023-02-05)
 
 

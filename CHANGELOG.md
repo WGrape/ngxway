@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.2](https://github.com/WGrape/ngxway/compare/v0.4.1...v0.4.2) (2023-02-05)
+
+
+### Bug Fixes
+
+* the repeat url param bug of check_sign.lua ([3c92761](https://github.com/WGrape/ngxway/commit/3c92761fc171d1572dc7a81c67ed75446a745cee))
+
+
+### Performance Improvements
+
+* fix disk io and improve the ngxway QPS ([5aebde4](https://github.com/WGrape/ngxway/commit/5aebde430549a81d95511ec4871e9d79202050b7))
+
 ## [0.4.1](https://github.com/WGrape/ngxway/compare/v0.4.0...v0.4.1) (2023-02-04)
 
 

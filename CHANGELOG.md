@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.6.0](https://github.com/WGrape/ngxway/compare/v0.5.0...v0.6.0) (2023-02-05)
+
+
+### Features
+
+* adjust computeSignedAPI to computeSignedRequest ([eeca00b](https://github.com/WGrape/ngxway/commit/eeca00be4cfe35b04e9d6b79ffd4e16d63c91d51))
+
+
+### Bug Fixes
+
+* fix bug(upstream timed out while connecting to upstream) ([9c658bf](https://github.com/WGrape/ngxway/commit/9c658bf344c0aa6987a69b37cd44eb47d2789e68))
+
+
+### Performance Improvements
+
+* add worker_process and worker_cpu_affinity to raise the QPS ([7fad6d1](https://github.com/WGrape/ngxway/commit/7fad6d1f505325fa221726c4700cce2e2f2c94bd))
+
+
+### Styling
+
+* change check_sign.lua code style ([6dc945a](https://github.com/WGrape/ngxway/commit/6dc945aa767432c8bd6b71e0aea36911957356d9))
+
 ## [0.5.0](https://github.com/WGrape/ngxway/compare/v0.4.2...v0.5.0) (2023-02-05)
 
 

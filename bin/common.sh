@@ -24,7 +24,7 @@ function computeSignedAPI() {
 
   result=${signMd5: 0: $length}
 
-  signedAPI="http://${ngxway_addr}?sign=${result}&timestamp=${timeStamp}"
+  signedAPI="http://${ngxway_addr}/?sign=${result}&timestamp=${timeStamp}"
 }
 
 function printSignedAPI() {

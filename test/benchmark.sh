@@ -5,7 +5,7 @@ currentDir=$(pwd)
 
 computeSignedRequest
 addrUrl=${signedURL}
-if [ $1 == "api" ]; then
+if [ -n "$1" ] && [ "$1" == "api" ]; then
   addrUrl=${signedAPI}
 fi
 
@@ -13,7 +13,7 @@ fi
 # bash test/benchmark.sh
 # bash test/benchmark.sh url
 # bash test/benchmark.sh api
-command="ab -n 50000 -c 15 -k ${addrUrl}"
+command="ab -n 80000 -c 150 -k ${addrUrl}"
 echo -e $command
 echo -e
 ${command}

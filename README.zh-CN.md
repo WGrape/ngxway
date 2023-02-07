@@ -24,7 +24,7 @@ ngxway```[Nginx Way]```是一个基于Openresty的高性能轻量级Nginx网关�
 
 ### 1、高性能低耗时
 
-基于Openresty和Lua扩展实现高性能低耗时的Nginx层网关服务，关于性能您可以查看详细的[性能测试报告](./test/benchmark.md)。
+基于Openresty和Lua扩展实现高性能低耗时的Nginx层网关服务，关于性能您可以查看详细的[性能测试报告](./doc/benchmark.md)。
 
 ### 2、容器化易部署
 

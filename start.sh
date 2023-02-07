@@ -53,7 +53,7 @@ fi
 # The result of command exec in docker
 sleep 1 # wait the log of docker sync to local disk
 dockerResultMsg=$(cat $local_volume_logs_dir/nginx.reload.log)
-if [ "${dockerResultMsg}" != "" ] ; then
+if [ "${dockerResultMsg}" != "success" ] ; then
   # Write failure log
   log="[${time}] >>>>>>>>failed to reload nginx<<<<<<<<"
   echo $log >> $local_volume_logs_dir/ngxway.start.log

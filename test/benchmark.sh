@@ -4,8 +4,16 @@ currentDir=$(pwd)
 . $currentDir/bin/common.sh
 
 computeSignedRequest
+addrUrl=${signedURL}
+if [ $1 == "api" ]; then
+  addrUrl=${signedAPI}
+fi
 
-# test the api
-echo -e ">> Benchmark command : ab -n 50000 -c 15 -k \"${signedAPI}\""
+# You can use the following commands to test the QPS of ngxway.
+# bash test/benchmark.sh
+# bash test/benchmark.sh url
+# bash test/benchmark.sh api
+command="ab -n 50000 -c 15 -k ${addrUrl}"
+echo -e $command
 echo -e
-ab -n 50000 -c 15 -k "${signedAPI}"
+${command}

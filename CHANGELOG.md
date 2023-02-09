@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.1](https://github.com/WGrape/ngxway/compare/v0.7.0...v0.7.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* fix the bug of stop.sh for docker detecting ([3ee5699](https://github.com/WGrape/ngxway/commit/3ee5699592b48075a58d4ba98e98cf68e5f31d3e))
+* miss keepalive option of upstream ([ed6246d](https://github.com/WGrape/ngxway/commit/ed6246d9e79bfe1042e20fbc15432f3a883498ad))
+
+
+### Performance Improvements
+
+* add -r option of benchmark.sh to raise QPS ([459b1da](https://github.com/WGrape/ngxway/commit/459b1da26feaba8ffba11ec22c1c859655f72749))
+
 ## [0.7.0](https://github.com/WGrape/ngxway/compare/v0.6.0...v0.7.0) (2023-02-07)
 
 

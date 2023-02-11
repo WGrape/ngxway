@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.8.0](https://github.com/WGrape/ngxway/compare/v0.7.2...v0.8.0) (2023-02-11)
+
+
+### Features
+
+* add the binary file of goserver ([b7f7874](https://github.com/WGrape/ngxway/commit/b7f787456c1ccea0779a5e669fdcec4693084122))
+* add the uninstall.sh ([2e8ed96](https://github.com/WGrape/ngxway/commit/2e8ed969accf5ccd4c8038cd262b4b2a6a768cce))
+* move the benchmark testing to the bin directory ([6a80880](https://github.com/WGrape/ngxway/commit/6a80880a59ada1c32fa7637c2f9c1f66bb9ac2c4))
+
+
+### Bug Fixes
+
+* fix adjust system params error ([6a04df7](https://github.com/WGrape/ngxway/commit/6a04df758a569748e8006b1c8b0682ee8ce071fc))
+* fix some shell synatx bug ([6a6021d](https://github.com/WGrape/ngxway/commit/6a6021d3bbdce52a0054a7f930bb07ac374a44db))
+* fix the bug of system check ([ca7b041](https://github.com/WGrape/ngxway/commit/ca7b04185762fe5e77d43061e04b93525e850a72))
+
+
+### Docs
+
+* add README of directories ([030806b](https://github.com/WGrape/ngxway/commit/030806bcf6bf7585bb1959f6383ded9a5448695b))
+* update README.md ([b727412](https://github.com/WGrape/ngxway/commit/b7274125264e82d4d17d4d22984f9cbb2d9fc444))
+* update README.md ([21ac1c5](https://github.com/WGrape/ngxway/commit/21ac1c537292c052af21f085100a7d356cf29907))
+
+
+### Code Refactoring
+
+* refactor the project design ([b05172d](https://github.com/WGrape/ngxway/commit/b05172d36447bb0db67a5920922d308f4e5d9d7b))
+* refactor the project design 2th ([f4a77fb](https://github.com/WGrape/ngxway/commit/f4a77fbe5c75e0398c29fd69408a9a774878703f))
+
 ## [0.7.2](https://github.com/WGrape/ngxway/compare/v0.7.1...v0.7.2) (2023-02-11)
 
 

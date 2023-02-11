@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-. bin/common.sh
+# Go back to the root directory of ngxway.
+ngxwayPath=$(cd `dirname $0`; pwd)
+cd $ngxwayPath
+
+# Require the common shell scripts.
+. $ngxwayPath/scripts/common.sh
 
 # Check the system, only available for Linux and Unix series.
 whichSystem=$(printWhichSystem)
@@ -18,6 +23,22 @@ if [ $? -ne 0 ]; then
 fi
 
 # Check the image
+
+# Chmod the files.
+chmod a+x $ngxwayPath/bin/ngxway
+
+# Export to the global PATH.
+if [ $whichSystem == "Linux" ];then
+  echo "# Here is the configurations of ngxway" >> ~/.bashrc
+  echo "export NGXWAY_PATH=${ngxwayPath}" >> ~/.bashrc
+  echo "export PATH=\$PATH:\$NGXWAY_PATH/bin/" >> ~/.bashrc
+  source ~/.bashrc
+else
+  echo "# Here is the configurations of ngxway" >> ~/.bash_profile
+  echo "export NGXWAY_PATH=${ngxwayPath}" >> ~/.bash_profile
+  echo "export PATH=\$PATH:\$NGXWAY_PATH/bin/" >> ~/.bash_profile
+  source ~/.bash_profile
+fi
 
 # Print message about how to launch
 # open -a "/Applications/Google Chrome.app" https://github.com/WGrape/ngxway

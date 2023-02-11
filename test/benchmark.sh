@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-currentDir=$(pwd)
-. $currentDir/bin/common.sh
+# Go back to the root directory of ngxway.
+ngxwayPath=$(cd `dirname $0`; cd ..; pwd)
+cd $ngxwayPath
+
+# Require the common shell scripts.
+. $ngxwayPath/scripts/common.sh
 
 computeSignedRequest
 addrUrl=${signedURL}

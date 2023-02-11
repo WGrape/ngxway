@@ -11,8 +11,8 @@ cd $ngxwayPath
 whichSystem=$(printWhichSystem)
 
 # Export to the global PATH.
-if [ $whichSystem == "Linux" ];then
-  sed "/${exportPathTemplate1}/,+2d" ~/.bashrc
+if [ "${whichSystem}" == "Linux" ] ; then
+  sed -i "/${exportPathTemplate1}/,+2d" ~/.bashrc
   source ~/.bashrc
 else
   sed -i "" "/${exportPathTemplate1}/,+2d" ~/.bash_profile

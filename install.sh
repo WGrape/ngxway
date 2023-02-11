@@ -29,7 +29,7 @@ chmod a+x $ngxwayPath/bin/ngxway
 chmod a+x $ngxwayPath/bin/ngxway_benchmark
 
 # Export to the global PATH.
-if [ $whichSystem == "Linux" ];then
+if [ "${whichSystem}" == "Linux" ]; then
   echo $exportPathTemplate1 >> ~/.bashrc
   echo $exportPathTemplate2 >> ~/.bashrc
   echo $exportPathTemplate3 >> ~/.bashrc

@@ -16,7 +16,7 @@ function start(){
     exit 1
   fi
 
-  # Handle container
+  # Handle container.
   containerCount=0
   for file in $(docker container ls -f name=ngxwayContainer -q)
   do
@@ -27,61 +27,68 @@ function start(){
     exit 1
   fi
 
-  # Pull without password
+  # Pull without password.
   git config --global credential.helper store
   git pull
 
-  # Build image
+  # Build image.
   docker build -t ngxway .
   if [ $? -ne 0 ]; then
     echo -e ">>>>>>>>Start failure: failed to build<<<<<<<<"
     exit 1
   fi
 
-  # Mapping to local disk storage
+  # Mapping to local disk storage.
   mkdir -p $localVolumeLogsDir && chmod -R 777 $localVolumeLogsDir
 
-  # Run container
+  # Run container.
   docker run --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
   if [ $? -ne 0 ]; then
     echo -e ">>>>>>>>Start failure: failed to run<<<<<<<<"
     exit 1
   fi
 
-  # Exec command: reload the nginx
-  # docker exec -it ngxwayContainer /bin/sh
-  docker exec -d ngxwayContainer bash /dist/scripts/nginx_reload.sh
-  if [ $? -ne 0 ]; then
-    echo -e ">>>>>>>>Start failure: failed to exec<<<<<<<<"
-    exit 1
-  fi
-
-  # Exec command: start the go server
+  # Exec command: start the go server.
   docker exec -d ngxwayContainer /dist/bin/goserver
   if [ $? -ne 0 ]; then
     echo -e ">>>>>>>>Start failure: failed to exec<<<<<<<<"
     exit 1
   fi
 
-  # The result of command exec in docker
-  sleep 1 # wait the log of docker sync to local disk
+  # Exec command: adjust the system parameters.
+  docker exec -d ngxwayContainer bash /dist/scripts/adjust_system_param.sh
+  if [ $? -ne 0 ]; then
+    echo -e ">>>>>>>>Start failure: failed to exec<<<<<<<<"
+    exit 1
+  fi
+
+  # Exec command: reload the nginx.
+  docker exec -d ngxwayContainer bash /dist/scripts/nginx_reload.sh
+  if [ $? -ne 0 ]; then
+    echo -e ">>>>>>>>Start failure: failed to exec<<<<<<<<"
+    exit 1
+  fi
+
+  # The result of command exec in docker.
+  # wait the log of docker sync to local disk.
+  sleep 1
   dockerResultMsg=$(cat $localVolumeLogsDir/nginx.reload.log)
   if [ "${dockerResultMsg}" != "success" ] ; then
-    # Write failure log
+    # Write failure log.
     log="[${time}] >>>>>>>>failed to reload nginx<<<<<<<<"
     echo $log >> $localVolumeLogsDir/ngxway.start.log
     echo $dockerResultMsg >> $localVolumeLogsDir/ngxway.start.log
 
-    # Output to console
+    # Output to console.
     echo -e $log
     echo -e $dockerResultMsg
     exit 1
   else
-    # Write success log
+    # Write success log.
     log="[${time}] start ngxway success"
     echo $log >> $localVolumeLogsDir/ngxway.start.log
 
-    # Output to console
+    # Output to console.
     echo -e "========Start success========"
   fi
 
@@ -96,21 +103,21 @@ function start(){
 
 # Stop the server.
 function stop(){
-  # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console
+  # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console.
   docker images > /dev/null 2>&1
   if [ $? -ne 0 ]; then
     echo ">>>>>>>>Stop failure: please start docker first<<<<<<<<"
     exit 1
   fi
 
-  # Stop and remove container
+  # Stop and remove container.
   docker stop ngxwayContainer
   docker container rm ngxwayContainer
 
-  # Remove image
+  # Remove image.
   docker rmi ngxway
 
-  # Remove local volume logs
+  # Remove local volume logs.
   rm -rf $localVolumeLogsDir
 
   echo -e "========Stop success========"
@@ -122,11 +129,11 @@ function restart(){
 }
 
 # Parse the arguments.
-if [ "$1" == "start" ]; then
+if [ "$1" == "start" ] ; then
   start
-elif [ "$1" == "stop" ]; then
+elif [ "$1" == "stop" ] ; then
   stop
-elif [ "$1" == "restart" ]; then
+elif [ "$1" == "restart" ] ; then
   restart
 else
   echo "not support argument"

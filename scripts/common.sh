@@ -9,9 +9,13 @@ localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile
 # The common variables s here.
 # ================================
 time=$(date "+%Y-%m-%d %H:%M:%S")
+
 exportPathTemplate1="# Here is the configurations of ngxway"
 exportPathTemplate2="export NGXWAY_PATH=${ngxwayPath}"
 exportPathTemplate3="export PATH=\$PATH:\$NGXWAY_PATH/bin/"
+
+systemParamTemplate1="ulimit -n 1024000"
+systemParamTemplate2="sysctl -w net.ipv4.ip_local_port_range=32768 65535"
 # ================================
 
 # The common functions is here.
@@ -46,11 +50,11 @@ function printSignedRequest() {
 function printWhichSystem(){
   uNames=`uname -s`
   osName=${uNames: 0: 4}
-  if [ "$osName" == "Darw" ] ; then # Darwin
+  if [ "$osName" == "Darwin" ] ; then # Darwin
     echo "MacOS"
-  elif [ "$osName" == "Linu" ] ; then # Linux
+  elif [ "$osName" == "Linux" ] ; then # Linux
     echo "Linux"
-  elif [ "$osName" == "MING" ] ; then # MINGW, windows, git-bash
+  elif [ "$osName" == "MINGW" ] ; then # MINGW
     echo "Windows"
   else
     echo "Unknown"

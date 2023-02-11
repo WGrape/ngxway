@@ -5,6 +5,9 @@ cd $ngxwayPath
 # Require the common shell scripts.
 . $ngxwayPath/scripts/common.sh
 
+# Check the system, only available for Linux and Unix series.
+whichSystem=$(printWhichSystem)
+
 # Adjust system parameters to improve the performance of ngxway.
 if [ "${whichSystem}" == "Linux" ] ; then
   echo $systemParamTemplate1 >> ~/.bashrc

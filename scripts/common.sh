@@ -50,14 +50,15 @@ function printSignedRequest() {
 function printWhichSystem(){
   uNames=`uname -s`
   osName=${uNames: 0: 4}
-  if [ "$osName" == "Darwin" ] ; then # Darwin
-    echo "MacOS"
-  elif [ "$osName" == "Linux" ] ; then # Linux
-    echo "Linux"
-  elif [ "$osName" == "MINGW" ] ; then # MINGW
-    echo "Windows"
+  if [ "$osName" == "Darw" ] ; then # Darwin
+    whichSystem="MacOS"
+  elif [ "$osName" == "Linu" ] ; then # Linux
+    whichSystem="Linux"
+  elif [ "$osName" == "MING" ] ; then # MINGW
+    whichSystem="Windows"
   else
-    echo "Unknown"
+    whichSystem="Unknown"
   fi
+  echo $whichSystem
 }
 # ================================

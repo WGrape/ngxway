@@ -76,7 +76,7 @@ Execute the following command to safely stop the ngxway service.
 ngxway stop
 ```
 
-### (3) Stop service
+### (3) Restart service
 Execute the following command to safely stop the ngxway service.
 
 ```bash

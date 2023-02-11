@@ -1,16 +1,17 @@
-# The configuration of ngxway is here.
-# ================================
-local_volume_logs_dir="/tmp/logs" # the log dir mapping to your local volume
-ngxway_addr="127.0.0.1:8090" # the address and port of ngxway
-env="dev" # only dev/test/gray/prod four environments
-# ================================
+#!/usr/bin/env bash
 
-# The common variables of ngxway is here.
+# Parse the config files.
+ngxwayConfigFile="${ngxwayPath}/conf/ngxway.conf"
+env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
+ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
+localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
+
+# The common variables s here.
 # ================================
 time=$(date "+%Y-%m-%d %H:%M:%S")
 # ================================
 
-# The common functions of ngxway is here.
+# The common functions is here.
 # ================================
 function computeSignedRequest() {
   timeStamp=`date +%s`
@@ -24,8 +25,8 @@ function computeSignedRequest() {
 
   result=${signMd5: 0: $length}
 
-  signedURL="http://${ngxway_addr}/?sign=${result}&timestamp=${timeStamp}"
-  signedAPI="http://${ngxway_addr}/api/test?sign=${result}&timestamp=${timeStamp}"
+  signedURL="http://${ngxwayAddr}/?sign=${result}&timestamp=${timeStamp}"
+  signedAPI="http://${ngxwayAddr}/api/test?sign=${result}&timestamp=${timeStamp}"
 }
 
 function printSignedRequest() {
@@ -45,7 +46,7 @@ function printWhichSystem(){
   if [ "$osName" == "Darw" ] ; then # Darwin
     echo "MacOS"
   elif [ "$osName" == "Linu" ] ; then # Linux
-    echo "GNU/Linux"
+    echo "Linux"
   elif [ "$osName" == "MING" ] ; then # MINGW, windows, git-bash
     echo "Windows"
   else

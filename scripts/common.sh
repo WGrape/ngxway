@@ -9,6 +9,9 @@ localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile
 # The common variables s here.
 # ================================
 time=$(date "+%Y-%m-%d %H:%M:%S")
+exportPathTemplate1="# Here is the configurations of ngxway"
+exportPathTemplate2="export NGXWAY_PATH=${ngxwayPath}"
+exportPathTemplate3="export PATH=\$PATH:\$NGXWAY_PATH/bin/"
 # ================================
 
 # The common functions is here.
@@ -25,7 +28,7 @@ function computeSignedRequest() {
 
   result=${signMd5: 0: $length}
 
-  signedURL="http://${ngxwayAddr}/?sign=${result}&timestamp=${timeStamp}"
+  signedURL="http://${ngxwayAddr}/"
   signedAPI="http://${ngxwayAddr}/api/test?sign=${result}&timestamp=${timeStamp}"
 }
 

@@ -30,14 +30,14 @@ chmod a+x $ngxwayPath/bin/ngxway_benchmark
 
 # Export to the global PATH.
 if [ $whichSystem == "Linux" ];then
-  echo "# Here is the configurations of ngxway" >> ~/.bashrc
-  echo "export NGXWAY_PATH=${ngxwayPath}" >> ~/.bashrc
-  echo "export PATH=\$PATH:\$NGXWAY_PATH/bin/" >> ~/.bashrc
+  echo $exportPathTemplate1 >> ~/.bashrc
+  echo $exportPathTemplate2 >> ~/.bashrc
+  echo $exportPathTemplate3 >> ~/.bashrc
   source ~/.bashrc
 else
-  echo "# Here is the configurations of ngxway" >> ~/.bash_profile
-  echo "export NGXWAY_PATH=${ngxwayPath}" >> ~/.bash_profile
-  echo "export PATH=\$PATH:\$NGXWAY_PATH/bin/" >> ~/.bash_profile
+  echo $exportPathTemplate1 >> ~/.bash_profile
+  echo $exportPathTemplate2 >> ~/.bash_profile
+  echo $exportPathTemplate3 >> ~/.bash_profile
   source ~/.bash_profile
 fi
 

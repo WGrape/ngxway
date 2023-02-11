@@ -9,10 +9,10 @@
     <!-- <img src="https://github.com/wgrape/ngxway/actions/workflows/build.yml/badge.svg"> -->
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/wgrape/ngxway">
     <img src="https://img.shields.io/badge/Document-中文/English-orange.svg">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg">   
+    <img src="https://img.shields.io/badge/License-MIT-green.svg">
 </div>
 
-<div align="center">    
+<div align="center">
     <p>A high-performance and lightweight Nginx gateway service based on Openresty.</p>
     <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
 </div>
@@ -51,7 +51,7 @@ bash install.sh
 
 ## 4. Configuration
 
-Some common functions of ngxway are defined in the [bin/common.sh](./bin/common.sh) file, which includes these configuration options.
+Some common functions of ngxway are defined in the [conf/ngxway.conf](./conf/ngxway.conf) file, which includes these configuration options.
 
 - ```local_volume_logs_dir```: The local log directory mapped by ngxway
 - ```ngxway_addr```: ngxway startup address and port number
@@ -64,7 +64,7 @@ Some common functions of ngxway are defined in the [bin/common.sh](./bin/common.
 Execute the following command to start the ngxway service. In development mode, the ngxway page will be automatically opened in Chrome after success.
 
 ```bash
-bash start.sh
+ngxway start
 ```
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760566-7cd85e99-5089-4055-909a-8253dd366d95.png">
@@ -73,14 +73,21 @@ bash start.sh
 Execute the following command to safely stop the ngxway service.
 
 ```bash
-bash stop.sh
+ngxway stop
+```
+
+### (3) Stop service
+Execute the following command to safely stop the ngxway service.
+
+```bash
+ngxway restart
 ```
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760481-1eb24c24-58af-4260-afb3-96ea74dcdaca.png">
 
-### (3) Service log
+### (4) Service log
 
-The logs of ngxway during operation will be recorded in the ```local_volume_logs_dir``` log directory defined in the [bin/common.sh](./bin/common.sh) file, the default is ```/tmp /logs``` directory.
+The logs of ngxway during operation will be recorded in the ```local_volume_logs_dir``` log directory defined in the [conf/ngxway.conf](./conf/ngxway.conf) file, the default is ```/tmp /logs``` directory.
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760443-6c53d04a-f09d-4cbd-ae71-c29f8f566ba2.png">
 

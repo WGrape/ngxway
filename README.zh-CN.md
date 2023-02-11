@@ -9,10 +9,10 @@
     <!-- <img src="https://github.com/wgrape/ngxway/actions/workflows/build.yml/badge.svg"> -->
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/wgrape/ngxway">
     <img src="https://img.shields.io/badge/Document-中文/English-orange.svg">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg">   
+    <img src="https://img.shields.io/badge/License-MIT-green.svg">
 </div>
 
-<div align="center">    
+<div align="center">
     <p>基于Openresty的高性能轻量级Nginx网关服务</p>
     <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
 </div>
@@ -45,7 +45,7 @@ bash install.sh
 
 ## 四、配置
 
-在 [bin/common.sh](./bin/common.sh) 文件中定义了ngxway通用的一些功能，其中就包括了这些配置选项。
+在 [conf/ngxway.conf](./conf/ngxway.conf) 文件中定义了ngxway通用的一些功能，其中就包括了这些配置选项。
 
 - ```local_volume_logs_dir```: ngxway映射在本地的日志目录
 - ```ngxway_addr```: ngxway启动地址和端口号
@@ -58,7 +58,7 @@ bash install.sh
 执行以下命令以启动ngxway服务。在开发模式下，成功后会自动在Chrome中打开ngxway页面。
 
 ```bash
-bash start.sh
+ngxway start
 ```
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760566-7cd85e99-5089-4055-909a-8253dd366d95.png">
@@ -67,14 +67,21 @@ bash start.sh
 执行以下命令即可安全停止 ngxway 服务。
 
 ```bash
-bash stop.sh
+ngxway stop
+```
+
+### 3、重启服务
+执行以下命令即可自动重启 ngxway 服务。
+
+```bash
+ngxway restart
 ```
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760481-1eb24c24-58af-4260-afb3-96ea74dcdaca.png">
 
-### 3、服务日志
+### 4、服务日志
 
-ngxway在运行过程中的日志会记录到您在 [bin/common.sh](./bin/common.sh) 文件中定义的 ```local_volume_logs_dir``` 日志目录中，默认为 ```/tmp/logs``` 目录。
+ngxway在运行过程中的日志会记录到您在 [conf/ngxway.conf](./conf/ngxway.conf) 文件中定义的 ```local_volume_logs_dir``` 日志目录中，默认为 ```/tmp/logs``` 目录。
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760443-6c53d04a-f09d-4cbd-ae71-c29f8f566ba2.png">
 

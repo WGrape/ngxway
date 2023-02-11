@@ -24,8 +24,9 @@ fi
 
 # Check the image
 
-# Chmod the files.
+# Chmod the executable files.
 chmod a+x $ngxwayPath/bin/ngxway
+chmod a+x $ngxwayPath/bin/ngxway_benchmark
 
 # Export to the global PATH.
 if [ $whichSystem == "Linux" ];then

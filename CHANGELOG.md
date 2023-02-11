@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.2](https://github.com/WGrape/ngxway/compare/v0.7.1...v0.7.2) (2023-02-11)
+
+
+### Bug Fixes
+
+* fix the keepalive of upstream ([909501d](https://github.com/WGrape/ngxway/commit/909501d06ea74cbf16b18450589ead6fae04dc4d))
+
+
+### Code Refactoring
+
+* refactor the project directory structure ([61cb636](https://github.com/WGrape/ngxway/commit/61cb6369a82d18e5e5adf6400cd29b5e7174de8f))
+
 ## [0.7.1](https://github.com/WGrape/ngxway/compare/v0.7.0...v0.7.1) (2023-02-09)
 
 

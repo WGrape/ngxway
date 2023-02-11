@@ -15,7 +15,6 @@ exportPathTemplate2="export NGXWAY_PATH=${ngxwayPath}"
 exportPathTemplate3="export PATH=\$PATH:\$NGXWAY_PATH/bin/"
 
 systemParamTemplate1="ulimit -n 1024000"
-systemParamTemplate2="sysctl -w net.ipv4.ip_local_port_range=32768 65535"
 # ================================
 
 # The common functions is here.

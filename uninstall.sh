@@ -13,10 +13,10 @@ whichSystem=$(printWhichSystem)
 # Export to the global PATH.
 if [ "${whichSystem}" == "Linux" ] ; then
   sed -i "/${exportPathTemplate1}/,+2d" ~/.bashrc > /dev/null 2>&1
-  source ~/.bashrc
+  source ~/.bashrc > /dev/null 2>&1
 else
   sed -i "" "/${exportPathTemplate1}/,+2d" ~/.bash_profile > /dev/null 2>&1
-  source ~/.bash_profile
+  source ~/.bash_profile > /dev/null 2>&1
 fi
 $exportPathTemplate3 # It takes effect temporarily, and it will take effect automatically when you open a new terminal.
 if [ $? -ne 0 ]; then

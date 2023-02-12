@@ -42,16 +42,13 @@ function start(){
   mkdir -p $localVolumeLogsDir && chmod -R 777 $localVolumeLogsDir
 
   # Run container.
-  docker run --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
+  docker run --ulimit nofile=1048576:1048576 \
+             --sysctl net.ipv4.ip_local_port_range="1024 65535" \
+             --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
   if [ $? -ne 0 ]; then
     echo -e ">>>>>>>>Start failure: failed to run<<<<<<<<"
     exit 1
   fi
-
-  # Exec command: adjust the system parameters.
-  # docker run --sysctl net.ipv4.ip_local_port_range="32768 65535" \
-  #            --ulimit nofile=1024000:1024000
-  # docker run -d --ulimit nofile=1024000:1024000 ngxway
 
   # Exec command: start the go server.
   docker exec -d ngxwayContainer /dist/bin/goserver

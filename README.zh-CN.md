@@ -39,8 +39,7 @@ ngxway```[Nginx Way]```是一个基于Openresty的高性能轻量级Nginx网关�
 执行以下命令即可快速完成安装
 
 ```bash
-git clone https://github.com/WGrape/ngxway.git
-bash install.sh
+git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
 ```
 
 ## 四、配置

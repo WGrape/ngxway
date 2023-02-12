@@ -45,8 +45,7 @@ The whole project is simple and lightweight, you can change various configuratio
 Execute the following command to quickly complete the installation
 
 ```bash
-git clone https://github.com/WGrape/ngxway.git
-bash install.sh
+git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
 ```
 
 ## 4. Configuration

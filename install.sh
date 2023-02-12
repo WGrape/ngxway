@@ -33,12 +33,15 @@ if [ "${whichSystem}" == "Linux" ]; then
   echo $exportPathTemplate1 >> ~/.bashrc
   echo $exportPathTemplate2 >> ~/.bashrc
   echo $exportPathTemplate3 >> ~/.bashrc
-  source ~/.bashrc
+  source ~/.bashrc && . ~/.bashrc
 else
   echo $exportPathTemplate1 >> ~/.bash_profile
   echo $exportPathTemplate2 >> ~/.bash_profile
   echo $exportPathTemplate3 >> ~/.bash_profile
   source ~/.bash_profile
+fi
+if [ $? -ne 0 ]; then
+  echo -e "Warning: failed to update your ngxway command, you may need run this command : source ~/.bashrc or source ~/.bash_profile"
 fi
 
 # Print message about how to launch

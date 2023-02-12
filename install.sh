@@ -44,5 +44,4 @@ fi
 # Print message about how to launch
 # open -a "/Applications/Google Chrome.app" https://github.com/WGrape/ngxway
 echo -e "install successfully !"
-echo -e "Now, you just run start.sh and will launch it"
-
+echo -e "Now, you just run ==> ngxway start <== and will launch it"

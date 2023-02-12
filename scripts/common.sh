@@ -27,7 +27,12 @@ function computeSignedRequest() {
   secret="ngxway"
   sign="${timeStamp}_${secret}_${timeStamp}"
 
-  signMd5=`md5 -s ${sign} | awk '{ print $4 }'`
+  whichSystem=$(printWhichSystem)
+  if [ $whichSystem == "Linux" ] ; then
+    signMd5=`echo -n ${sign} | md5sum | cut -d ' ' -f1`
+  else
+    signMd5=`md5 -s ${sign} | awk '{ print $4 }'`
+  fi
 
   result=${signMd5: 0: $length}
 

@@ -18,7 +18,9 @@ else
   sed -i "" "/${exportPathTemplate1}/,+2d" ~/.bash_profile > /dev/null 2>&1
   source ~/.bash_profile > /dev/null 2>&1
 fi
-$exportPathTemplate3 # It takes effect temporarily, and it will take effect automatically when you open a new terminal.
+# It takes effect temporarily, and it will take effect automatically when you open a new terminal.
+$exportPathTemplate2
+$exportPathTemplate3
 if [ $? -ne 0 ]; then
   echo -e "Warning: failed to update your ngxway command, you may need run this command : source ~/.bashrc or source ~/.bash_profile"
 fi

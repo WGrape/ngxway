@@ -7,6 +7,9 @@ cd $ngxwayPath
 # Require the common shell scripts.
 . $ngxwayPath/scripts/common.sh
 
+# Run uninstall.sh first.
+bash uninstall.sh
+
 # Check the system, only available for Linux and Unix series.
 whichSystem=$(printWhichSystem)
 if [ $whichSystem == "Windows" ] || [ $whichSystem == "Unknown" ]; then
@@ -14,7 +17,7 @@ if [ $whichSystem == "Windows" ] || [ $whichSystem == "Unknown" ]; then
   exit 1
 fi
 
-# Check if docker is installed
+# Check if docker is installed.
 docker info  > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo -e ">>>>>>>>Install failure: please install or start docker first<<<<<<<<"
@@ -22,7 +25,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Check the image
+# Check the image.
 
 # Chmod the executable files.
 chmod a+x $ngxwayPath/bin/ngxway
@@ -40,11 +43,12 @@ else
   echo $exportPathTemplate3 >> ~/.bash_profile
   source ~/.bash_profile
 fi
+$exportPathTemplate3 # It takes effect temporarily, and it will take effect automatically when you open a new terminal.
 if [ $? -ne 0 ]; then
   echo -e "Warning: failed to update your ngxway command, you may need run this command : source ~/.bashrc or source ~/.bash_profile"
 fi
 
-# Print message about how to launch
+# Print message about how to launch.
 # open -a "/Applications/Google Chrome.app" https://github.com/WGrape/ngxway
 echo -e "install successfully !"
 echo -e "Now, you just run ==> ngxway start <== and will launch it"

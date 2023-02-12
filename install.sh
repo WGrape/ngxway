@@ -8,7 +8,7 @@ cd $ngxwayPath
 . $ngxwayPath/scripts/common.sh
 
 # Run uninstall.sh first.
-bash uninstall.sh
+bash $ngxwayPath/uninstall.sh
 
 # Check the system, only available for Linux and Unix series.
 whichSystem=$(printWhichSystem)

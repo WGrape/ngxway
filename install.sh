@@ -44,10 +44,9 @@ else
   source ~/.bash_profile
 fi
 # It takes effect temporarily, and it will take effect automatically when you open a new terminal.
-$exportPathTemplate2
-$exportPathTemplate3
+$exportPathTemplate2 && $exportPathTemplate3 && /bin/ln -s $ngxwayPath/bin/ngxway /usr/local/bin/ngxway
 if [ $? -ne 0 ]; then
-  echo -e "Warning: failed to update your ngxway command, you may need run this command : source ~/.bashrc or source ~/.bash_profile"
+  echo -e "Warning: failed to create ngxway global command, You need to create manually"
 fi
 
 # Print message about how to launch.

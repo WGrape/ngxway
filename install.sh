@@ -36,18 +36,14 @@ if [ "${whichSystem}" == "Linux" ]; then
   echo $exportPathTemplate1 >> ~/.bashrc
   echo $exportPathTemplate2 >> ~/.bashrc
   echo $exportPathTemplate3 >> ~/.bashrc
-  source ~/.bashrc && . ~/.bashrc
+  source ~/.bashrc
 else
   echo $exportPathTemplate1 >> ~/.bash_profile
   echo $exportPathTemplate2 >> ~/.bash_profile
   echo $exportPathTemplate3 >> ~/.bash_profile
   source ~/.bash_profile
 fi
-# It takes effect temporarily, and it will take effect automatically when you open a new terminal.
-$exportPathTemplate2 && $exportPathTemplate3 && /bin/ln -s $ngxwayPath/bin/ngxway /usr/local/bin/ngxway
-if [ $? -ne 0 ]; then
-  echo -e "Warning: failed to create ngxway global command, You need to create manually"
-fi
+echo -e "Tips: if your system cannot find the ngxway and ngxway_benchmark commands, manually add the executable files of ngxway and ngxway_benchmark in the bin directory of this project to the global environment variable."
 
 # Print message about how to launch.
 # open -a "/Applications/Google Chrome.app" https://github.com/WGrape/ngxway

@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.9.0](https://github.com/WGrape/ngxway/compare/v0.8.0...v0.9.0) (2023-02-15)
+
+
+### Features
+
+* add information redirect of sed command in uninstall.sh script ([b47b759](https://github.com/WGrape/ngxway/commit/b47b7597db30a7a10184195dc263023a51d5b837))
+* add information redirect of sed command in uninstall.sh script ([271f434](https://github.com/WGrape/ngxway/commit/271f4349a165de3e1274d6597ef51a4bed978812))
+* add system parameters of net.core.somaxconn ([c989c10](https://github.com/WGrape/ngxway/commit/c989c104edb1ccf839429bc041031e1b83d76d05))
+* ngxway cannot guarantee that the command will take effect in the global environment during installation ([baa48ce](https://github.com/WGrape/ngxway/commit/baa48ce3e39a0f129ce878c178c51c2cf6d59912))
+
+
+### Bug Fixes
+
+* fix failed to create ngxway lobal command ([89fa561](https://github.com/WGrape/ngxway/commit/89fa56118f090f5342fc334a395f9893ae96cadb))
+* fix the bug No such file or directory: uninstall.sh ([c7b92e0](https://github.com/WGrape/ngxway/commit/c7b92e0ce964dd37c7c1e14849c269f463f68f02))
+* fix the bug of adjusting system parameters ([d9bba20](https://github.com/WGrape/ngxway/commit/d9bba20cf19fc0a0dcfd760ec7ba056c1b4322ab))
+* fix the bug of adjusting system parameters ([17f72e3](https://github.com/WGrape/ngxway/commit/17f72e3b4471d2325605a0bcc64cbb42d48c00db))
+* fix the install.sh source not work ([48164d2](https://github.com/WGrape/ngxway/commit/48164d279fabaa1e5c3435e12f31b37931069240))
+* fix the install.sh source not work ([45d16a2](https://github.com/WGrape/ngxway/commit/45d16a200e78b151a1f436c4e8e7ffc122d1f704))
+* fix the install.sh source not work ([8a0cb15](https://github.com/WGrape/ngxway/commit/8a0cb159a8a0ba3d659fb678608fe1610fe07b16))
+* fix the md5 command not found ([f37d3eb](https://github.com/WGrape/ngxway/commit/f37d3eb67c1ef4d694c1430a825ff2a5b58f6cf7))
+
 ## [0.8.0](https://github.com/WGrape/ngxway/compare/v0.7.2...v0.8.0) (2023-02-11)
 
 

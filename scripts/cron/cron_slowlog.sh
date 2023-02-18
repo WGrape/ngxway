@@ -8,3 +8,4 @@ cd $ngxwayPath
 cd $localVolumeLogsDir
 
 # cat ngxway.access.log | awk '{print $6}' | sort | tail -n 10
+cat ngxway.access.log | awk '$6>'$slowTime'{print $0}' > ngxway.slow.log

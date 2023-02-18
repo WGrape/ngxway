@@ -5,6 +5,7 @@ ngxwayConfigFile="${ngxwayPath}/conf/ngxway.conf"
 env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
 ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
 localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
+slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
 
 # The common variables s here.
 # ================================

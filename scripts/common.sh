@@ -5,6 +5,7 @@ ngxwayConfigFile="${ngxwayPath}/conf/ngxway.conf"
 env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
 ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
 localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
+slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
 
 # The common variables s here.
 # ================================
@@ -14,7 +15,7 @@ exportPathTemplate1="# Here is the configurations of ngxway"
 exportPathTemplate2="export NGXWAY_PATH=${ngxwayPath}"
 exportPathTemplate3="export PATH=\$PATH:\$NGXWAY_PATH/bin/"
 
-systemParamTemplate1="ulimit -n 1024000"
+systemParamTemplate1="ulimit -n 1048576"
 # ================================
 
 # The common functions is here.

@@ -4,8 +4,8 @@ local limit_req = require "resty.limit.req"
 -- limit the requests under 200 req/sec with a burst of 100 req/sec,
 -- that is, we delay requests under 300 req/sec and above 200
 -- req/sec, and reject any requests exceeding 300 req/sec.
--- You can set limit_req.new("my_limit_req_store", 2, 1) to test.
-local lim, err = limit_req.new("my_limit_req_store", 200, 100)
+-- You can set limit_req.new("ngxway_limiter_store", 2, 1) to test.
+local lim, err = limit_req.new("ngxway_limiter_store", 200, 100)
 if not lim then
     ngx.log(ngx.ERR, "failed to instantiate a resty.limit.req object: ", err)
     return ngx.exit(500)

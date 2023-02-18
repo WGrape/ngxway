@@ -17,7 +17,7 @@ fi
 # bash test/benchmark.sh
 # bash test/benchmark.sh url
 # bash test/benchmark.sh api
-command="ab -r -n 100000 -c 512 -k ${addrUrl}"
+command="ab -r -n 100000 -c 1024 -k ${addrUrl}"
 echo -e $command
 echo -e
 ${command}

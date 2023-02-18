@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.10.0](https://github.com/WGrape/ngxway/compare/v0.9.0...v0.10.0) (2023-02-18)
+
+
+### Features
+
+* add logrotate support ([bb65787](https://github.com/WGrape/ngxway/commit/bb65787dd4dd958d9eaeaf505a08dc509f7c0585))
+* add logrotate support ([a01b372](https://github.com/WGrape/ngxway/commit/a01b3723330573239ec14d3da2190bc235620cae))
+* add slow log ([e90174a](https://github.com/WGrape/ngxway/commit/e90174aa6b19b7a5f38923f790e0ec0d26abb842))
+* remove log script files ([8388d92](https://github.com/WGrape/ngxway/commit/8388d92d1ab2715ffe2df59a4ec998a2a6aba1af))
+
+
+### Bug Fixes
+
+* access_log flush rollback ([8b71fdb](https://github.com/WGrape/ngxway/commit/8b71fdb25d254324865464e1aaea337b27dd5fbd))
+
+
+### Performance Improvements
+
+* compress html ([0f5b2a6](https://github.com/WGrape/ngxway/commit/0f5b2a6864b4fbc5ddcb4acf50b24b55a3f9cedf))
+* modify the lua module structure to optimize system performance ([98cbeab](https://github.com/WGrape/ngxway/commit/98cbeab0ae80eba77b9e3ea0abbb3fec4f95f88b))
+
+
+### Code Refactoring
+
+* adjust the structure of scripts ([2800539](https://github.com/WGrape/ngxway/commit/28005395a98e1a980227b3857559ca5a61dce903))
+
+
+### Tests
+
+* modify benchmark test options ([e241653](https://github.com/WGrape/ngxway/commit/e24165379a5122b0749f186f90f572724790b40f))
+
 ## [0.9.0](https://github.com/WGrape/ngxway/compare/v0.8.0...v0.9.0) (2023-02-15)
 
 

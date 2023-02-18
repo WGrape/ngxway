@@ -14,7 +14,7 @@ exportPathTemplate1="# Here is the configurations of ngxway"
 exportPathTemplate2="export NGXWAY_PATH=${ngxwayPath}"
 exportPathTemplate3="export PATH=\$PATH:\$NGXWAY_PATH/bin/"
 
-systemParamTemplate1="ulimit -n 1024000"
+systemParamTemplate1="ulimit -n 1048576"
 # ================================
 
 # The common functions is here.

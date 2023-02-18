@@ -6,4 +6,5 @@ cd $ngxwayPath
 . $ngxwayPath/scripts/common.sh
 
 cd $localVolumeLogsDir
-tail -f ngxway.error.log
+
+# Show real-time slow logs.

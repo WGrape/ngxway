@@ -16,13 +16,7 @@ RUN wget https://mirrors.163.com/.help/CentOS7-Base-163.repo \
 
 # install the crontab and logrotate for log rotating.
 RUN yum -y install logrotate crontabs
-
-# add logrotate to crontab
 COPY ./conf/logrotate/logrotate.conf /etc/logrotate.d
-RUN echo "0 0 * * * /etc/cron.daily/logrotate" >> mycrontab \
-    && crontab mycrontab \
-    && rm mycrontab
-
 
 WORKDIR /dist
 COPY . /dist/

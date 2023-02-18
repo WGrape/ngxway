@@ -58,6 +58,13 @@ function start(){
     exit 1
   fi
 
+  # Exec command: init cron.
+  docker exec -d ngxwayContainer bash /dist/scripts/cron/init.sh
+  if [ $? -ne 0 ]; then
+    echo -e ">>>>>>>>Start failure: failed to exec cron/init.sh<<<<<<<<"
+    exit 1
+  fi
+
   # Exec command: reload the nginx.
   docker exec -d ngxwayContainer bash /dist/scripts/nginx/nginx_reload.sh
   if [ $? -ne 0 ]; then

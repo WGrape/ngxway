@@ -44,7 +44,7 @@ git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
 
 ## 四、配置
 
-在 [conf/ngxway.conf](./conf/ngxway.conf) 文件中定义了ngxway通用的一些功能，其中就包括了这些配置选项。
+在 [./ngxway.conf](./ngxway.conf) 文件中定义了ngxway通用的一些功能，其中就包括了这些配置选项。
 
 - ```local_volume_logs_dir```: ngxway映射在本地的日志目录
 - ```ngxway_addr```: ngxway启动地址和端口号
@@ -80,7 +80,7 @@ ngxway restart
 
 ### 4、服务日志
 
-ngxway在运行过程中的日志会记录到您在 [conf/ngxway.conf](./conf/ngxway.conf) 文件中定义的 ```local_volume_logs_dir``` 日志目录中，默认为 ```/tmp/logs``` 目录。
+ngxway在运行过程中的日志会记录到您在 [./ngxway.conf](./ngxway.conf) 文件中定义的 ```local_volume_logs_dir``` 日志目录中，默认为 ```/tmp/logs``` 目录。
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760443-6c53d04a-f09d-4cbd-ae71-c29f8f566ba2.png">
 

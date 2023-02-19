@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Parse the config files.
-ngxwayConfigFile="${ngxwayPath}/conf/ngxway.conf"
+ngxwayConfigFile="${ngxwayPath}/ngxway.conf"
 env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
 ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
 localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`

@@ -50,7 +50,7 @@ git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
 
 ## 4. Configuration
 
-Some common functions of ngxway are defined in the [conf/ngxway.conf](./conf/ngxway.conf) file, which includes these configuration options.
+Some common functions of ngxway are defined in the [./ngxway.conf](./ngxway.conf) file, which includes these configuration options.
 
 - ```local_volume_logs_dir```: The local log directory mapped by ngxway
 - ```ngxway_addr```: ngxway startup address and port number
@@ -86,7 +86,7 @@ ngxway restart
 
 ### (4) Service log
 
-The logs of ngxway during operation will be recorded in the ```local_volume_logs_dir``` log directory defined in the [conf/ngxway.conf](./conf/ngxway.conf) file, the default is ```/tmp /logs``` directory.
+The logs of ngxway during operation will be recorded in the ```local_volume_logs_dir``` log directory defined in the [./ngxway.conf](./ngxway.conf) file, the default is ```/tmp /logs``` directory.
 
 <img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760443-6c53d04a-f09d-4cbd-ae71-c29f8f566ba2.png">
 

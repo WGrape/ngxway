@@ -1,4 +1,4 @@
-module = {}
+local module = {}
 
 -- Check the timestamp is valid.
 -- The params passed by the user.
@@ -37,5 +37,75 @@ function module:check_timestamp(now_timestamp, timestamp_number)
   -- If the timestamp difference is within 1 hour, it is considered a normal request, otherwise it is considered a malicious request.
   return now_timestamp - timestamp_number < 3600
 end
+
+-- Provide the split function.
+function module:split(str, sep)
+  local result = {}
+  for token in string.gmatch(str, "([^" .. sep .. "]+)") do
+    table.insert(result, token)
+  end
+  return result
+end
+
+-- Read the rules of waf.
+function module:read_waf_rule(name)
+  local path = "/dist/conf/waf/" .. name .. ".conf"
+  local file = io.open(path, "r")
+  if file == nil then
+    return
+  end
+
+  local t = {}
+  for line in file:lines() do
+    table.insert(t, line)
+  end
+
+  file:close()
+  return t
+end
+
+-- Read the options of waf.
+function module:read_waf_option(key)
+  local path = "/dist/conf/waf/waf.conf"
+  local file = io.open(path, "r")
+  if file == nil then
+    return
+  end
+
+  for line in file:lines() do
+    local result = module:split(line, "=")
+    if result[1] == key then
+      return result[2]
+    end
+  end
+
+  file:close()
+  return ""
+end
+
+-- Check the url of waf.
+function module:waf_check_url(uri)
+  if module.waf_url_option ~= "on" then
+    return true
+  end
+
+  local ngx_match = ngx.re.match
+  for _, rule in pairs(module.waf_url_rule) do
+    if rule ~= "" and ngx_match(uri, rule, "isjo") then
+      return false
+    end
+  end
+  return true
+end
+
+module.waf_cookie_rule = module:read_waf_rule("cookie")
+module.waf_post_rule = module:read_waf_rule("post")
+module.waf_url_rule = module:read_waf_rule("url")
+module.waf_useragent_rule = module:read_waf_rule("useragent")
+
+module.waf_cookie_option = module:read_waf_option("waf_check_cookie")
+module.waf_post_option = module:read_waf_option("waf_check_post")
+module.waf_url_option = module:read_waf_option("waf_check_url")
+module.waf_useragent_option = module:read_waf_option("waf_check_useragent")
 
 return module

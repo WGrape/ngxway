@@ -12,7 +12,7 @@ function start(){
   # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console
   docker images > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo ">>>>>>>>Start failure: please start docker first<<<<<<<<"
+    printError "error: please start docker first"
     exit 1
   fi
 
@@ -23,7 +23,7 @@ function start(){
       ((containerCount++))
   done
   if [ $containerCount -ne 0 ]; then
-    echo -e ">>>>>>>>Start failure: please run stop.sh first<<<<<<<<"
+    printError "error: please run stop.sh first"
     exit 1
   fi
 
@@ -34,7 +34,7 @@ function start(){
   # Build image.
   docker build -t ngxway .
   if [ $? -ne 0 ]; then
-    echo -e ">>>>>>>>Start failure: failed to build<<<<<<<<"
+    printError "error: failed to build"
     exit 1
   fi
 
@@ -47,21 +47,21 @@ function start(){
              --sysctl net.core.somaxconn="32768" \
              --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
   if [ $? -ne 0 ]; then
-    echo -e ">>>>>>>>Start failure: failed to run<<<<<<<<"
+    printError "error: failed to run"
     exit 1
   fi
 
   # Exec command: start the go server.
   docker exec -d ngxwayContainer /dist/bin/goserver
   if [ $? -ne 0 ]; then
-    echo -e ">>>>>>>>Start failure: failed to exec goserver<<<<<<<<"
+    printError "error: failed to exec goserver"
     exit 1
   fi
 
   # Exec command: reload the nginx.
   docker exec -d ngxwayContainer bash /dist/scripts/nginx/nginx_reload.sh
   if [ $? -ne 0 ]; then
-    echo -e ">>>>>>>>Start failure: failed to exec nginx_reload.sh<<<<<<<<"
+    printError "error: failed to exec nginx_reload.sh"
     exit 1
   fi
 
@@ -76,8 +76,8 @@ function start(){
     echo $dockerResultMsg >> $localVolumeLogsDir/ngxway.start.log
 
     # Output to console.
-    echo -e $log
-    echo -e $dockerResultMsg
+    printError "error: failed to reload nginx"
+    printError "error: $dockerResultMsg"
     exit 1
   else
     # Write success log.
@@ -85,13 +85,12 @@ function start(){
     echo $log >> $localVolumeLogsDir/ngxway.start.log
 
     # Output to console.
-    echo -e "========Start success========"
+    printLogo
+    printSuccess "Welcome to ngxway ! It's listening on ${ngxwayAddr} ..."
   fi
 
   # Try to open it in your chrome if ngxway working in dev mode.
   computeSignedRequest
-  echo -e ""
-  echo -e "Now, you can visit the url to test : " $signedURL
   if [ $env == "dev" ]; then
     open -a "/Applications/Google Chrome.app" $signedURL > /dev/null 2>&1
   fi
@@ -102,7 +101,7 @@ function stop(){
   # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console.
   docker images > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo ">>>>>>>>Stop failure: please start docker first<<<<<<<<"
+    printError "error: please start docker first"
     exit 1
   fi
 
@@ -116,7 +115,7 @@ function stop(){
   # Remove local volume logs.
   rm -rf $localVolumeLogsDir
 
-  echo -e "========Stop success========"
+  printSuccess "stop success"
 }
 
 # Restart the server.

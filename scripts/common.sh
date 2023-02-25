@@ -10,12 +10,18 @@ slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
 # The common variables s here.
 # ================================
 time=$(date "+%Y-%m-%d %H:%M:%S")
-
-exportPathTemplate1="# Here is the configurations of ngxway"
-exportPathTemplate2="export NGXWAY_PATH=${ngxwayPath}"
-exportPathTemplate3="export PATH=\$PATH:\$NGXWAY_PATH/bin/"
-
-systemParamTemplate1="ulimit -n 1048576"
+logoText='
+ _______    ______   __    __  __   __   __   ______   __    __
+/       \  /      \ /  \  /  |/  | /  | /  | /      \ /  |  /  |
+$$$$$$$  |/$$$$$$  |$$  \/$$/ $$ | $$ | $$ | $$$$$$  |$$ |  $$ |
+$$ |  $$ |$$ |  $$ | $$  $$<  $$ | $$ | $$ | /    $$ |$$ |  $$ |
+$$ |  $$ |$$ \__$$ | /$$$$  \ $$ \_$$ \_$$ |/$$$$$$$ |$$ \__$$ |
+$$ |  $$ |$$    $$ |/$$/ $$  |$$   $$   $$/ $$    $$ |$$    $$ |
+$$/   $$/  $$$$$$$ |$$/   $$/  $$$$$/$$$$/   $$$$$$$/  $$$$$$$ |
+          /  \__$$ |                                  /  \__$$ |
+          $$    $$/                                   $$    $$/
+           $$$$$$/                                     $$$$$$/
+'
 # ================================
 
 # The common functions is here.
@@ -65,5 +71,51 @@ function printWhichSystem(){
     whichSystem="Unknown"
   fi
   echo $whichSystem
+}
+
+function printSuccess(){
+  if [ "$1" == "" ]; then
+    echo $1
+    return
+  fi
+
+  whichSystem=$(printWhichSystem)
+  if [ $whichSystem == "Linux" ] ; then
+    echo -e "\e[82m$1\e[0m"
+  else
+    echo -e "\033[32m$1\033[0m"
+  fi
+}
+
+function printError(){
+  if [ "$1" == "" ]; then
+    echo $1
+    return
+  fi
+
+  whichSystem=$(printWhichSystem)
+  if [ $whichSystem == "Linux" ] ; then
+    echo -e "\e[31m>>>>>>>> $1 <<<<<<<<\e[0m"
+  else
+    echo -e "\033[31m>>>>>>>> $1 <<<<<<<<\033[0m"
+  fi
+}
+
+function printInfo(){
+  if [ "$1" == "" ]; then
+    echo $1
+    return
+  fi
+
+  whichSystem=$(printWhichSystem)
+  if [ $whichSystem == "Linux" ] ; then
+    echo -e "\e[33m======== $1 ========\e[0m"
+  else
+    echo -e "\033[33m======== $1 ========\033[0m"
+  fi
+}
+
+function printLogo(){
+  echo -e "$logoText"
 }
 # ================================

@@ -7,45 +7,25 @@ cd $ngxwayPath
 # Require the common shell scripts.
 . $ngxwayPath/scripts/common.sh
 
-# Run uninstall.sh first.
-bash $ngxwayPath/uninstall.sh
-
 # Check the system, only available for Linux and Unix series.
 whichSystem=$(printWhichSystem)
 if [ $whichSystem == "Windows" ] || [ $whichSystem == "Unknown" ]; then
-  echo "Sorry, you can't install ngxway in your system, ngxway is only available for Linux and Unix series."
+  printError "error: you can't install ngxway in your system, ngxway is only available for Linux and Unix series."
   exit 1
 fi
 
 # Check if docker is installed.
 docker info  > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-  echo -e ">>>>>>>>Install failure: please install or start docker first<<<<<<<<"
-  echo -e "see more detail about ngxway(https://github.com/WGrape/ngxway) and docker document(https://docs.docker.com/engine/install/)"
+  printError "error: please install or start docker first"
+  printInfo "see more detail about exceptions: https://github.com/WGrape/ngxway"
   exit 1
 fi
-
-# Check the image.
 
 # Chmod the executable files.
 chmod a+x $ngxwayPath/bin/ngxway
 chmod a+x $ngxwayPath/bin/ngxway_benchmark
 
-# Export to the global PATH.
-if [ "${whichSystem}" == "Linux" ]; then
-  echo $exportPathTemplate1 >> ~/.bashrc
-  echo $exportPathTemplate2 >> ~/.bashrc
-  echo $exportPathTemplate3 >> ~/.bashrc
-  source ~/.bashrc
-else
-  echo $exportPathTemplate1 >> ~/.bash_profile
-  echo $exportPathTemplate2 >> ~/.bash_profile
-  echo $exportPathTemplate3 >> ~/.bash_profile
-  source ~/.bash_profile
-fi
-echo -e "Tips: if your system cannot find the ngxway and ngxway_benchmark commands, manually add the executable files of ngxway and ngxway_benchmark in the bin directory of this project to the global environment variable."
-
-# Print message about how to launch.
-# open -a "/Applications/Google Chrome.app" https://github.com/WGrape/ngxway
-echo -e "install successfully !"
-echo -e "Now, you just run ==> ngxway start <== and will launch it"
+# Print success message.
+printSuccess "install successfully !"
+printInfo "let's start it with command: bash bin/ngxway restart"

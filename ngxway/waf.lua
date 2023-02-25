@@ -46,12 +46,36 @@ function waf:read_waf_option(key)
   return ""
 end
 
--- Check the url of waf.
+-- Check the url is valid.
 function waf:waf_check_url(uri, rule_list)
   local ngx_match = ngx.re.match
   for _, rule in pairs(rule_list) do
-    if rule ~= "" and ngx_match(uri, rule, "isjo") then
-      ngx.log(ngx.ERR, "forbidden: waf_check_url")
+    if rule ~= "" and ngx_match(uri, rule, common.reg_match_mode) then
+      ngx.log(ngx.ERR, "forbidden: waf_check_url = ", uri)
+      return false
+    end
+  end
+  return true
+end
+
+-- Check the cookie is valid.
+function waf:waf_check_cookie(cookie, rule_list)
+  local ngx_match = ngx.re.match
+  for _, rule in pairs(rule_list) do
+    if rule ~= "" and ngx_match(cookie, rule, common.reg_match_mode) then
+      ngx.log(ngx.ERR, "forbidden: waf_check_cookie = ", cookie)
+      return false
+    end
+  end
+  return true
+end
+
+-- Check the useragent is valid.
+function waf:waf_check_useragent(useragent, rule_list)
+  local ngx_match = ngx.re.match
+  for _, rule in pairs(rule_list) do
+    if rule ~= "" and ngx_match(useragent, rule, common.reg_match_mode) then
+      ngx.log(ngx.ERR, "forbidden: waf_check_useragent = ", useragent)
       return false
     end
   end

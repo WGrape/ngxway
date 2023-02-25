@@ -81,7 +81,7 @@ function printSuccess(){
 
   whichSystem=$(printWhichSystem)
   if [ $whichSystem == "Linux" ] ; then
-    echo -e "\e[82m$1\e[0m"
+    echo -e "\e[32m$1\e[0m"
   else
     echo -e "\033[32m$1\033[0m"
   fi

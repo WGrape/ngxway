@@ -9,6 +9,7 @@ Description: This lua script provide some common functions.
 local common = {}
 
 common.waf_config_path = "/dist/conf/waf/waf.conf"
+common.reg_match_mode = "isjo"
 
 -- Provide the split function.
 function common:split(str, sep)

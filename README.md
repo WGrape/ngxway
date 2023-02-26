@@ -24,7 +24,7 @@ ngxway```[Nginx Way]```is a high-performance lightweight Nginx gateway service b
 
 ### (1) High performance and low time consumption
 
-Based on Openresty and Lua extensions, the Nginx layer gateway service with high performance and low time consumption is realized. For performance, you can check the detailed [benchmark test report](./doc/benchmark.md).
+Based on Openresty and Lua extensions, the Nginx layer gateway service with high performance and low time consumption is realized. For performance, you can check the detailed [benchmark test report](https://wgrape.github.io/ngxway/html/benchmark.html).
 
 <img width="900" alt="image" src="https://user-images.githubusercontent.com/35942268/221419143-616c35b8-fd43-4c42-8ede-8a752125a6db.png">
 

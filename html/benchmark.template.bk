@@ -189,6 +189,7 @@
         <td>{{12th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
     </tr>
 </table>
+<p>Edit it on <a href="https://github.com/WGrape/ngxway/blob/main/bin/ngxway_benchmark">github</a></p>
 <script>
 </script>
 </body>

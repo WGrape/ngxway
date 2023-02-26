@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The performance report of ngxway</title>
+    <style>
+        body {
+            width: 90%;
+            margin:0 auto;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>The performance report of ngxway</h1>
+<p>Machine/{{cpuMemory}} MaxQPS/{{maxQPS}}</p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Command</th>
+        <th>Concurrency</th>
+        <th>QPS</th>
+        <th>Complete requests</th>
+        <th>Failed requests</th>
+        <th>Keep-Alive requests</th>
+        <th>Total transferred</th>
+        <th>HTML transferred</th>
+        <th>P90/P95/P99</th>
+    </tr>
+    <tr>
+        <td>{{1th_Id}}</td>
+        <td>{{1th_Command}}</td>
+        <td>{{1th_Concurrency}}</td>
+        <td>{{1th_QPS}}/s</td>
+        <td>{{1th_Complete_requests}}</td>
+        <td>{{1th_Failed_requests}}</td>
+        <td>{{1th_Keep-Alive_requests}}</td>
+        <td>{{1th_Total_transferred}} bytes</td>
+        <td>{{1th_HTML_transferred}} bytes</td>
+        <td>{{1th_P90}}ms/{{1th_P95}}ms/{{1th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{2th_Id}}</td>
+        <td>{{2th_Command}}</td>
+        <td>{{2th_Concurrency}}</td>
+        <td>{{2th_QPS}}/s</td>
+        <td>{{2th_Complete_requests}}</td>
+        <td>{{2th_Failed_requests}}</td>
+        <td>{{2th_Keep-Alive_requests}}</td>
+        <td>{{2th_Total_transferred}} bytes</td>
+        <td>{{2th_HTML_transferred}} bytes</td>
+        <td>{{2th_P90}}ms/{{2th_P95}}ms/{{2th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{3th_Id}}</td>
+        <td>{{3th_Command}}</td>
+        <td>{{3th_Concurrency}}</td>
+        <td>{{3th_QPS}}/s</td>
+        <td>{{3th_Complete_requests}}</td>
+        <td>{{3th_Failed_requests}}</td>
+        <td>{{3th_Keep-Alive_requests}}</td>
+        <td>{{3th_Total_transferred}} bytes</td>
+        <td>{{3th_HTML_transferred}} bytes</td>
+        <td>{{3th_P90}}ms/{{3th_P95}}ms/{{3th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{4th_Id}}</td>
+        <td>{{4th_Command}}</td>
+        <td>{{4th_Concurrency}}</td>
+        <td>{{4th_QPS}}/s</td>
+        <td>{{4th_Complete_requests}}</td>
+        <td>{{4th_Failed_requests}}</td>
+        <td>{{4th_Keep-Alive_requests}}</td>
+        <td>{{4th_Total_transferred}} bytes</td>
+        <td>{{4th_HTML_transferred}} bytes</td>
+        <td>{{4th_P90}}ms/{{4th_P95}}ms/{{4th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{5th_Id}}</td>
+        <td>{{5th_Command}}</td>
+        <td>{{5th_Concurrency}}</td>
+        <td>{{5th_QPS}}/s</td>
+        <td>{{5th_Complete_requests}}</td>
+        <td>{{5th_Failed_requests}}</td>
+        <td>{{5th_Keep-Alive_requests}}</td>
+        <td>{{5th_Total_transferred}} bytes</td>
+        <td>{{5th_HTML_transferred}} bytes</td>
+        <td>{{5th_P90}}ms/{{5th_P95}}ms/{{5th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{6th_Id}}</td>
+        <td>{{6th_Command}}</td>
+        <td>{{6th_Concurrency}}</td>
+        <td>{{6th_QPS}}/s</td>
+        <td>{{6th_Complete_requests}}</td>
+        <td>{{6th_Failed_requests}}</td>
+        <td>{{6th_Keep-Alive_requests}}</td>
+        <td>{{6th_Total_transferred}} bytes</td>
+        <td>{{6th_HTML_transferred}} bytes</td>
+        <td>{{6th_P90}}ms/{{6th_P95}}ms/{{6th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{7th_Id}}</td>
+        <td>{{7th_Command}}</td>
+        <td>{{7th_Concurrency}}</td>
+        <td>{{7th_QPS}}/s</td>
+        <td>{{7th_Complete_requests}}</td>
+        <td>{{7th_Failed_requests}}</td>
+        <td>{{7th_Keep-Alive_requests}}</td>
+        <td>{{7th_Total_transferred}} bytes</td>
+        <td>{{7th_HTML_transferred}} bytes</td>
+        <td>{{7th_P90}}ms/{{7th_P95}}ms/{{7th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{8th_Id}}</td>
+        <td>{{8th_Command}}</td>
+        <td>{{8th_Concurrency}}</td>
+        <td>{{8th_QPS}}/s</td>
+        <td>{{8th_Complete_requests}}</td>
+        <td>{{8th_Failed_requests}}</td>
+        <td>{{8th_Keep-Alive_requests}}</td>
+        <td>{{8th_Total_transferred}} bytes</td>
+        <td>{{8th_HTML_transferred}} bytes</td>
+        <td>{{8th_P90}}ms/{{8th_P95}}ms/{{8th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{9th_Id}}</td>
+        <td>{{9th_Command}}</td>
+        <td>{{9th_Concurrency}}</td>
+        <td>{{9th_QPS}}/s</td>
+        <td>{{9th_Complete_requests}}</td>
+        <td>{{9th_Failed_requests}}</td>
+        <td>{{9th_Keep-Alive_requests}}</td>
+        <td>{{9th_Total_transferred}} bytes</td>
+        <td>{{9th_HTML_transferred}} bytes</td>
+        <td>{{9th_P90}}ms/{{9th_P95}}ms/{{9th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{10th_Id}}</td>
+        <td>{{10th_Command}}</td>
+        <td>{{10th_Concurrency}}</td>
+        <td>{{10th_QPS}}/s</td>
+        <td>{{10th_Complete_requests}}</td>
+        <td>{{10th_Failed_requests}}</td>
+        <td>{{10th_Keep-Alive_requests}}</td>
+        <td>{{10th_Total_transferred}} bytes</td>
+        <td>{{10th_HTML_transferred}} bytes</td>
+        <td>{{10th_P90}}ms/{{10th_P95}}ms/{{10th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{11th_Id}}</td>
+        <td>{{11th_Command}}</td>
+        <td>{{11th_Concurrency}}</td>
+        <td>{{11th_QPS}}/s</td>
+        <td>{{11th_Complete_requests}}</td>
+        <td>{{11th_Failed_requests}}</td>
+        <td>{{11th_Keep-Alive_requests}}</td>
+        <td>{{11th_Total_transferred}} bytes</td>
+        <td>{{11th_HTML_transferred}} bytes</td>
+        <td>{{11th_P90}}ms/{{11th_P95}}ms/{{11th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{12th_Id}}</td>
+        <td>{{12th_Command}}</td>
+        <td>{{12th_Concurrency}}</td>
+        <td>{{12th_QPS}}/s</td>
+        <td>{{12th_Complete_requests}}</td>
+        <td>{{12th_Failed_requests}}</td>
+        <td>{{12th_Keep-Alive_requests}}</td>
+        <td>{{12th_Total_transferred}} bytes</td>
+        <td>{{12th_HTML_transferred}} bytes</td>
+        <td>{{12th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
+    </tr>
+</table>
+<script>
+</script>
+</body>
+</html>

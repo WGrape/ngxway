@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# start time
+start=$(date +%s)
+
 # Go back to the root directory of ngxway.
 ngxwayPath=$(cd `dirname $0`; cd ..; pwd)
 cd $ngxwayPath
@@ -7,23 +10,135 @@ cd $ngxwayPath
 # Require the common shell scripts.
 . $ngxwayPath/scripts/common.sh
 
+# Check the ngxway is running
 isRunning=$(isNgxwayRunning)
 if [ $isRunning == "no" ]; then
   printError "error: please start ngxway first"
   exit 1
 fi
 
+# Generate the urls.
 computeSignedRequest
 addrUrl=${signedURL}
 if [ -n "$1" ] && [ "$1" == "api" ]; then
   addrUrl=${signedAPI}
 fi
 
-# You can use the following commands to test the QPS of ngxway.
-# bash test/benchmark.sh
-# bash test/benchmark.sh url
-# bash test/benchmark.sh api
-command="ab -r -n 100000 -c 1024 -k ${addrUrl}"
-echo -e $command
-echo -e
-${command}
+# Get information about cpu and memory
+cpuMemory=$(printCPUMemory)
+
+# Initial
+cat $benchmarkTemplateBkFile > $benchmarkTemplateFile
+
+# Declare the testcases.
+caseList=(
+  "-n 10000 -c 32"
+  "-n 10000 -c 64"
+  "-n 10000 -c 128"
+  "-n 10000 -c 256"
+  "-n 10000 -c 512"
+  "-n 10000 -c 1024"
+
+  "-n 100000 -c 32"
+  "-n 100000 -c 64"
+  "-n 100000 -c 128"
+  "-n 100000 -c 256"
+  "-n 100000 -c 512"
+  "-n 100000 -c 1024"
+)
+maxQPS=0
+maxTestIndex=0
+maxTestArray=()
+
+# Run the caseList.
+for i in "${!caseList[@]}"; do
+  number=$((i+1))
+  printInfo "The test no.${number} start"
+
+  runBenchmarkTest "${caseList[$i]}" "${addrUrl}"
+  if [ $? -ne 0 ]; then
+    printError "The test no.${number} end"
+  else
+    concurrency=`cat ${benchmarkTempFile} | grep 'Concurrency Level' | awk '{print $3}'`
+
+    command="ab -r ${caseList[$i]} -k ${addrUrl}"
+    command=$(echo $command | sed 's/[\/&]/\\&/g')
+
+    completeRequests=`cat ${benchmarkTempFile} | grep 'Complete requests' | awk '{print $3}'`
+    failedRequests=`cat ${benchmarkTempFile} | grep 'Failed requests' | awk '{print $3}'`
+    keepaliveRequests=`cat ${benchmarkTempFile} | grep 'Keep-Alive requests' | awk '{print $3}'`
+
+    totalTransferred=`cat ${benchmarkTempFile} | grep 'Total transferred' | awk '{print $3}'`
+    htmlTransferred=`cat ${benchmarkTempFile} | grep 'HTML transferred' | awk '{print $3}'`
+
+    qps=`cat ${benchmarkTempFile} | grep 'Requests per second' | awk '{print int($4)}'`
+
+    p90=`cat ${benchmarkTempFile} | grep '90%' | awk '{print int($2)}'`
+    p95=`cat ${benchmarkTempFile} | grep '95%' | awk '{print int($2)}'`
+    p99=`cat ${benchmarkTempFile} | grep '99%' | awk '{print int($2)}'`
+
+    echo -e "++++++++++++Test Report++++++++++++"
+    echo -e "Concurrency = " $concurrency
+    echo -e "Complete requests =" $completeRequests
+    echo -e "Failed requests =" $failedRequests
+    echo -e "Keep-Alive requests =" $keepaliveRequests
+    echo -e "Total transferred =" $totalTransferred "bytes"
+    echo -e "HTML transferred =" $htmlTransferred "bytes"
+    echo -e "QPS = " $qps "/s"
+    echo -e "P90 = " $p90 "ms"
+    echo -e "P95 = " $p95 "ms"
+    echo -e "P99 = " $p99 "ms"
+    echo -e "++++++++++++Test Report++++++++++++"
+
+    sed -e "s/{{${number}th_Id}}/${number}/g" \
+        -e "s/{{${number}th_Command}}/${command}/g" \
+        -e "s/{{${number}th_Concurrency}}/${concurrency}/g" \
+        -e "s/{{${number}th_QPS}}/${qps}/g" \
+        -e "s/{{${number}th_Complete_requests}}/${completeRequests}/g" \
+        -e "s/{{${number}th_Failed_requests}}/${failedRequests}/g" \
+        -e "s/{{${number}th_Keep-Alive_requests}}/${keepaliveRequests}/g" \
+        -e "s/{{${number}th_Total_transferred}}/${totalTransferred}/g" \
+        -e "s/{{${number}th_HTML_transferred}}/${htmlTransferred}/g" \
+        -e "s/{{${number}th_P90}}/${p90}/g" \
+        -e "s/{{${number}th_P95}}/${p95}/g" \
+        -e "s/{{${number}th_P99}}/${p99}/g" \
+        $benchmarkTemplateFile > $benchmarkHTMLFile
+    cat $benchmarkHTMLFile > $benchmarkTemplateFile
+
+    if [ $qps -gt $maxQPS ]; then
+      maxQPS=$qps
+      maxTestIndex=$i
+      maxTestArray=()
+      maxTestArray+=("Concurrency=$concurrency")
+      maxTestArray+=("Complete requests=$completeRequests")
+      maxTestArray+=("Failed requests=$failedRequests")
+      maxTestArray+=("Keep-Alive requests=$keepaliveRequests")
+      maxTestArray+=("Total transferred=$totalTransferred")
+      maxTestArray+=("HTML transferred=$htmlTransferred")
+      maxTestArray+=("QPS=$qps")
+      maxTestArray+=("P90=$p90")
+      maxTestArray+=("P95=$p95")
+      maxTestArray+=("P99=$p99")
+    fi
+  fi
+done
+
+sed -e "s/{{cpuMemory}}/$cpuMemory/g" -e "s/{{maxQPS}}/$maxQPS/g" $benchmarkTemplateFile > $benchmarkHTMLFile
+cat $benchmarkHTMLFile > $benchmarkTemplateFile
+
+# end time
+end=$(date +%s)
+
+cat $benchmarkTemplateBkFile > $benchmarkTemplateFile
+
+echo -e "\n------------------------------------------------------------------"
+echo "The benchmark testing of ngxway is end, total cost $((end-start)) seconds."
+echo -e "------------------------------------------------------------------\n"
+
+printSuccess "The benchmark test is end, max QPS = ${maxQPS}\n"
+
+printSuccess "++++++++++++The Performance Report++++++++++++"
+for field in "${!maxTestArray[@]}"; do
+  printSuccess "${field} = ${maxTestArray[$field]}"
+done
+printSuccess "++++++++++++The Performance Report++++++++++++"

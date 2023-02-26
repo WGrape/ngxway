@@ -22,6 +22,10 @@ $$/   $$/  $$$$$$$ |$$/   $$/  $$$$$/$$$$/   $$$$$$$/  $$$$$$$ |
           $$    $$/                                   $$    $$/
            $$$$$$/                                     $$$$$$/
 '
+benchmarkTempFile="${ngxwayPath}/logs/benchmark.temp"
+benchmarkTemplateFile="${ngxwayPath}/html/benchmark.template"
+benchmarkTemplateBkFile="${ngxwayPath}/html/benchmark.template.bk"
+benchmarkHTMLFile="${ngxwayPath}/html/benchmark.html"
 # ================================
 
 # The common functions is here.
@@ -55,6 +59,50 @@ function isNgxwayRunning(){
   else
     echo "no"
   fi
+}
+
+function runBenchmarkTest(){
+  if [ "$1" == "" ] ||  [ "$2" == "" ] ; then
+    return
+  fi
+
+  count=0
+  while [ $count -lt 10 ]
+  do
+    count=$((count+1))
+
+    # You can use the following commands to test the QPS of ngxway.
+    # bash test/benchmark.sh
+    # bash test/benchmark.sh url
+    # bash test/benchmark.sh api
+    command="ab -r $1 -k $2"
+    echo -e $command
+    $command > $benchmarkTempFile
+    if [ $? -ne 0 ]; then
+      printError "error: failed / count=${count}"
+      sleep 1
+    else
+      printSuccess "complete / count=${count}"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+function printCPUMemory() {
+  cpu_cores=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
+
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+      # Mac
+      mem_size_gb=$(sysctl -a | grep 'hw.memsize' | awk '{print $2}')
+      mem_size_gb=$((mem_size_gb/1024/1024/1024))
+  else
+      # Linux
+      mem_size_gb=$(free -m | awk '/Mem/{print $2}')
+  fi
+
+  echo "${cpu_cores}C${mem_size_gb}G"
 }
 
 function printSignedRequest() {

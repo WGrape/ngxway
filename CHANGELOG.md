@@ -1,5 +1,40 @@
 # Changelog
 
+## [0.11.0](https://github.com/WGrape/ngxway/compare/v0.10.0...v0.11.0) (2023-02-26)
+
+
+### Features
+
+* add post.conf ([9f46fd8](https://github.com/WGrape/ngxway/commit/9f46fd8025b641a22716e55866a6ca006f953477))
+* add waf support ([eb8908b](https://github.com/WGrape/ngxway/commit/eb8908bfc3e9fd15c64eb181ce78176f323d9c05))
+* adjust the waf config and modify lua ([5858c26](https://github.com/WGrape/ngxway/commit/5858c26a2ea767c95a1c99cde2e561884a0a6b99))
+* import changes to benchmark ([a5d6417](https://github.com/WGrape/ngxway/commit/a5d6417f5229744933f489b66baabd4998903066))
+* ngxway_bechmark check ngxway is running ([cd6b11e](https://github.com/WGrape/ngxway/commit/cd6b11ed3b92711c3898dd9d1432418ac81a5bab))
+* transfer all extra features to the new repo : ngxzoo ([6358f9a](https://github.com/WGrape/ngxway/commit/6358f9a01735c7b15966dcd4cc67ee260b2bf418))
+
+
+### Bug Fixes
+
+* fix the green color not work on linux ([04dfd8d](https://github.com/WGrape/ngxway/commit/04dfd8d1a2cdc1d90b8ece32addc0bc30f433d0a))
+* fix the wrong spelling of proxy_cache_key config ([26a75c8](https://github.com/WGrape/ngxway/commit/26a75c867d860c15b325f4158cf46f15f90f2673))
+
+
+### Performance Improvements
+
+* turn on the cache of upstream proxy ([9ac005c](https://github.com/WGrape/ngxway/commit/9ac005c3b62b39e9e050b4b9dab4e25a8cd827c6))
+
+
+### Code Refactoring
+
+* delete unnecessary and refactor the user interface logic ([a5c50d0](https://github.com/WGrape/ngxway/commit/a5c50d06467cddedf027836e7e5c755bfab326e8))
+* redesign the waf ([4a7c1a8](https://github.com/WGrape/ngxway/commit/4a7c1a8841d6f150477b7cb56f7b65210a360b1e))
+
+
+### Docs
+
+* make doc better ([062c594](https://github.com/WGrape/ngxway/commit/062c594114c6976d8e692aef19ebced376e12b6d))
+* make doc better ([cce353e](https://github.com/WGrape/ngxway/commit/cce353ece095f08b7a3b66ef314b379d2ed4ebe1))
+
 ## [0.10.0](https://github.com/WGrape/ngxway/compare/v0.9.0...v0.10.0) (2023-02-18)
 
 

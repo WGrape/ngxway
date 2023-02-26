@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The performance report of ngxway</title>
+    <style>
+        body {
+            width: 90%;
+            margin:0 auto;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>The performance report of ngxway</h1>
+<p>Machine/10C16G MaxQPS/25806</p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Command</th>
+        <th>Concurrency</th>
+        <th>QPS</th>
+        <th>Complete requests</th>
+        <th>Failed requests</th>
+        <th>Keep-Alive requests</th>
+        <th>Total transferred</th>
+        <th>HTML transferred</th>
+        <th>P90/P95/P99</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>ab -r -n 10000 -c 32 -k http://127.0.0.1:8090/</td>
+        <td>32</td>
+        <td>11927/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>7970000 bytes</td>
+        <td>5380000 bytes</td>
+        <td>4ms/4ms/6ms</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>ab -r -n 10000 -c 64 -k http://127.0.0.1:8090/</td>
+        <td>64</td>
+        <td>17633/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>7970000 bytes</td>
+        <td>5380000 bytes</td>
+        <td>5ms/6ms/9ms</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>ab -r -n 10000 -c 128 -k http://127.0.0.1:8090/</td>
+        <td>128</td>
+        <td>18029/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>7970000 bytes</td>
+        <td>5380000 bytes</td>
+        <td>12ms/15ms/21ms</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>ab -r -n 10000 -c 256 -k http://127.0.0.1:8090/</td>
+        <td>256</td>
+        <td>18312/s</td>
+        <td>10000</td>
+        <td>9999</td>
+        <td>9892</td>
+        <td>7883924 bytes</td>
+        <td>5321896 bytes</td>
+        <td>21ms/30ms/49ms</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>ab -r -n 10000 -c 512 -k http://127.0.0.1:8090/</td>
+        <td>512</td>
+        <td>22411/s</td>
+        <td>10000</td>
+        <td>9999</td>
+        <td>9355</td>
+        <td>7455935 bytes</td>
+        <td>5032990 bytes</td>
+        <td>35ms/44ms/78ms</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>ab -r -n 10000 -c 1024 -k http://127.0.0.1:8090/</td>
+        <td>1024</td>
+        <td>22087/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>7970000 bytes</td>
+        <td>5380000 bytes</td>
+        <td>54ms/157ms/414ms</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>ab -r -n 100000 -c 32 -k http://127.0.0.1:8090/</td>
+        <td>32</td>
+        <td>11692/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>79700000 bytes</td>
+        <td>53800000 bytes</td>
+        <td>4ms/5ms/8ms</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>ab -r -n 100000 -c 64 -k http://127.0.0.1:8090/</td>
+        <td>64</td>
+        <td>16839/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>79700000 bytes</td>
+        <td>53800000 bytes</td>
+        <td>5ms/6ms/10ms</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>ab -r -n 100000 -c 128 -k http://127.0.0.1:8090/</td>
+        <td>128</td>
+        <td>22823/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>79700000 bytes</td>
+        <td>53800000 bytes</td>
+        <td>8ms/10ms/13ms</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>ab -r -n 100000 -c 256 -k http://127.0.0.1:8090/</td>
+        <td>256</td>
+        <td>25806/s</td>
+        <td>100000</td>
+        <td>99999</td>
+        <td>99904</td>
+        <td>79623488 bytes</td>
+        <td>53748352 bytes</td>
+        <td>14ms/16ms/20ms</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>ab -r -n 100000 -c 512 -k http://127.0.0.1:8090/</td>
+        <td>512</td>
+        <td>25804/s</td>
+        <td>100000</td>
+        <td>99999</td>
+        <td>99393</td>
+        <td>79216221 bytes</td>
+        <td>53473434 bytes</td>
+        <td>31ms/35ms/51ms</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>ab -r -n 100000 -c 1024 -k http://127.0.0.1:8090/</td>
+        <td>1024</td>
+        <td>24676/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>79700000 bytes</td>
+        <td>53800000 bytes</td>
+        <td>57ms/65ms/86ms</td>
+    </tr>
+</table>
+<script>
+</script>
+</body>
+</html>

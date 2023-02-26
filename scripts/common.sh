@@ -47,6 +47,16 @@ function computeSignedRequest() {
   signedAPI="http://${ngxwayAddr}/api/test?sign=${result}&timestamp=${timeStamp}"
 }
 
+function isNgxwayRunning(){
+  computeSignedRequest
+  httpCode=$(curl -I -m 10 -o /dev/null -s -w %{http_code} $signedURL)
+  if [ $httpCode == "200" ]; then
+    echo "yes"
+  else
+    echo "no"
+  fi
+}
+
 function printSignedRequest() {
   computeSignedRequest
   echo "timeStamp=$timeStamp"

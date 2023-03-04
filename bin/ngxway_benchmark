@@ -10,6 +10,13 @@ cd $ngxwayPath
 # Require the common shell scripts.
 . $ngxwayPath/scripts/common.sh
 
+# Check the ab is installed.
+if ! command -v ab &> /dev/null; then
+  printError "error: please install ab first"
+  echo -e "for help: https://github.com/WGrape/ngxway/issues/75"
+  exit 1
+fi
+
 # Check the ngxway is running
 isRunning=$(isNgxwayRunning)
 if [ $isRunning == "no" ]; then
@@ -142,3 +149,6 @@ for field in "${!maxTestArray[@]}"; do
   printSuccess "${field} = ${maxTestArray[$field]}"
 done
 printSuccess "++++++++++++The Performance Report++++++++++++"
+
+# Try to open it on the chrome.
+open -a "/Applications/Google Chrome.app" $benchmarkHTMLFile > /dev/null 2>&1

@@ -26,6 +26,11 @@ fi
 chmod a+x $ngxwayPath/bin/ngxway
 chmod a+x $ngxwayPath/bin/ngxway_benchmark
 
+# Check the ab is installed.
+if ! command -v ab &> /dev/null; then
+  echo -e "Warning: You don't have ab installed on your current machine. If you need to run the bin/ngxway_benchmark script on this machine, please remember to install it."
+fi
+
 # Print success message.
 printSuccess "install successfully !"
 printInfo "let's start it with command: bash bin/ngxway restart"

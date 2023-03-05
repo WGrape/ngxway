@@ -6,8 +6,17 @@ License: MIT License
 Description: This lua script is worked for access_by_lua_file directive.
 --]]
 
+local cache_key = ngx.var.scheme .. ngx.var.request_method .. ngx.var.host .. ngx.var.request_uri
+local cache_status = ngx.shared.ngxway_main_store:get(cache_key)
+if cache_status == "HIT" then
+  return
+end
+
 local auth = require("auth")
 local waf = require("waf")
+
+-- Debug
+-- ngx.log(ngx.ERR, 'main.lua init')
 
 if global_var_container.waf_url_option == "on" then
   local uri = ngx.var.uri
@@ -33,3 +42,5 @@ end
 if auth:check_auth() == false then
   return ngx.say('{"dm_error":4031,"error_msg":"check auth failed"}')
 end
+
+ngx.shared.ngxway_main_store:set(cache_key, "HIT", 60)

@@ -49,17 +49,34 @@ function start(){
              --sysctl net.ipv4.tcp_max_tw_buckets="700" \
              --sysctl net.ipv4.tcp_syncookies="0" \
              --cpus=8 \
-             --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
+             --name ngxwayContainer -d -p $ngxwayAddr:8090 -p 8000:8000 -v $localVolumeLogsDir:/dist/logs/ ngxway
   if [ $? -ne 0 ]; then
     printError "error: failed to run"
     exit 1
   fi
 
   # Exec command: start the go server.
-  docker exec -d ngxwayContainer /dist/bin/goserver
-  if [ $? -ne 0 ]; then
-    printError "error: failed to exec goserver"
-    exit 1
+  if [ $env == "dev" ]; then
+      printInfo "DEV ONLY START"
+
+      # install httpd-tools to use ab test,
+      docker exec -it ngxwayContainer /bin/bash -c 'yum install -y httpd-tools'
+
+      # build go server
+      docker exec -it ngxwayContainer /bin/bash -c 'cd /dist/example/goserver/ && bash build.sh && cd /'
+      if [ $? -ne 0 ]; then
+        printError "error: failed to build goserver"
+        exit 1
+      fi
+
+      # run go server
+      docker exec -d ngxwayContainer /dist/example/goserver/goserver
+      if [ $? -ne 0 ]; then
+        printError "error: failed to exec goserver"
+        exit 1
+      fi
+
+      printInfo "DEV ONLY END"
   fi
 
   # Exec command: reload the nginx.

@@ -42,17 +42,27 @@ function start(){
   mkdir -p $localVolumeLogsDir && chmod -R 777 $localVolumeLogsDir
 
   # Adjust system parameters and run container.
-  docker run --ulimit nofile=1048576:1048576 \
-             --sysctl net.ipv4.ip_local_port_range="1024 65535" \
-             --sysctl net.core.somaxconn="262155" \
-             --sysctl net.ipv4.tcp_tw_reuse="1" \
-             --sysctl net.ipv4.tcp_max_tw_buckets="700" \
-             --sysctl net.ipv4.tcp_syncookies="0" \
-             --cpus=8 \
-             --name ngxwayContainer -d -p $ngxwayAddr:8090 -p 8000:8000 -v $localVolumeLogsDir:/dist/logs/ ngxway
-  if [ $? -ne 0 ]; then
-    printError "error: failed to run"
-    exit 1
+  if [ $dockerNetwork == "bridge" ]; then
+      docker run --ulimit nofile=$softNoFile:$hardNoFile \
+                 --sysctl net.ipv4.ip_local_port_range="$ipLocalPortRange" \
+                 --sysctl net.core.somaxconn="$soMaxConn" \
+                 --sysctl net.ipv4.tcp_tw_reuse="$tcpTWReuse" \
+                 --sysctl net.ipv4.tcp_max_tw_buckets="$tcpMaxTWBuckets" \
+                 --sysctl net.ipv4.tcp_syncookies="$tcpSyncookies" \
+                 --cpus=$maxNCPU \
+                 --name ngxwayContainer -d -p $ngxwayAddr:8090 -p 8000:8000 -v $localVolumeLogsDir:/dist/logs/ ngxway
+      if [ $? -ne 0 ]; then
+        printError "error: failed to run"
+        exit 1
+      fi
+  elif [ $dockerNetwork == "host" ]; then
+      docker run --ulimit nofile=$softNoFile:$hardNoFile \
+                 --cpus=$maxNCPU \
+                 --name ngxwayContainer -d --net=host -v $localVolumeLogsDir:/dist/logs/ ngxway
+      if [ $? -ne 0 ]; then
+        printError "error: failed to run"
+        exit 1
+      fi
   fi
 
   # Exec command: start the go server.

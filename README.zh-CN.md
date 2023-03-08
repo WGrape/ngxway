@@ -18,29 +18,44 @@
 </div>
 
 ## 一、介绍
-ngxway```[Nginx Way]```是一个基于Openresty的高性能轻量级Nginx网关服务。
+ngxway是一个基于Openresty的高性能、容器化、轻量化的Nginx网关。
 
 ## 二、特点
 
-### 1、高性能低耗时
+### 1、高性能
 
-基于Openresty和Lua扩展实现高性能低耗时的Nginx层网关服务，关于性能您可以查看详细的[性能测试报告](./doc/benchmark.md)。
+基于Openresty对Lua模块的支持，ngxway通过编写Lua模块和对Linux参数调优，在实现Nginx网关的同时，也达到平均```10w QPS / 8c16G```的高性能。关于性能您可以查看详细的[性能测试报告](./doc/benchmark.md)。
 
-### 2、容器化易部署
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/35942268/221419143-616c35b8-fd43-4c42-8ede-8a752125a6db.png">
 
-基于Docker构建，与Nginx底层配置解耦，省去所有的搭建流程，一个命令即可自动搭建起自己的Nginx网关服务。
+### 2、容器化
 
-### 3、轻量化可扩展
+基于Docker构建，与Nginx底层配置解耦，省去99%的搭建流程，1个命令即可自动搭建起自己的Nginx网关。
 
-整个项目简单轻量化，您可以随意更改项目的各种配置，甚至修改和增加各种脚本以增强ngxway在您业务下的表现。
+### 3、轻量化
 
-## 三、安装
+比起复杂的网关实现，整个项目轻量化了许多。您可以随意更改项目的各种配置，甚至修改和增加各种Lua脚本以提高ngxway在您业务下的综合表现。
 
-执行以下命令即可快速完成安装
+## 三、获取
+
+### 1、如何安装
+
+为了降低安装成本方便您的快速上手，本项目提供了```install.sh```集成脚本，执行以下命令即可完成安装。
 
 ```bash
 git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
 ```
+
+### 2、如何卸载
+
+在本项目下也提供了用于卸载的```uninstall.sh```集成脚本，执行以下命令即可完成安装。
+
+```bash
+cd ngxway && bash uninstall.sh
+```
+
+### 3、注意事项
+注意ngxway只支持运行在有Docker环境的Unix系统上，如Linux、MacOS等。如果只是为了尝鲜体验，强烈建议使用 [在线Docker](https://labs.play-with-docker.com/) 测试使用。
 
 ## 四、配置
 

@@ -16,10 +16,11 @@ local auth = require("auth")
 local waf = require("waf")
 
 -- Debug
--- ngx.log(ngx.ERR, 'main.lua init')
+-- ngx.log(ngx.ERR, 'main.lua init ', cache_key, " ", global_var_container.waf_url_option, " ",  global_var_container.waf_cookie_option)
 
 if global_var_container.waf_url_option == "on" then
-  local uri = ngx.var.uri
+  -- local uri = ngx.var.uri
+  local uri = ngx.var.request_uri
   if waf:waf_check_url(uri, global_var_container.waf_url_rule) == false then
     return ngx.say('{"dm_error":4032,"error_msg":"check waf failed"}')
   end

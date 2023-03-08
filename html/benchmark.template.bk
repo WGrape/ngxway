@@ -11,6 +11,7 @@
         table {
             border-collapse: collapse;
             text-align: center;
+            margin: 0 auto;
         }
         th, td {
             border: 1px solid black;
@@ -187,6 +188,30 @@
         <td>{{12th_Total_transferred}} bytes</td>
         <td>{{12th_HTML_transferred}} bytes</td>
         <td>{{12th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{13th_Id}}</td>
+        <td>{{13th_Command}}</td>
+        <td>{{13th_Concurrency}}</td>
+        <td>{{13th_QPS}}/s</td>
+        <td>{{13th_Complete_requests}}</td>
+        <td>{{13th_Failed_requests}}</td>
+        <td>{{13th_Keep-Alive_requests}}</td>
+        <td>{{13th_Total_transferred}} bytes</td>
+        <td>{{13th_HTML_transferred}} bytes</td>
+        <td>{{13th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
+    </tr>
+    <tr>
+        <td>{{14th_Id}}</td>
+        <td>{{14th_Command}}</td>
+        <td>{{14th_Concurrency}}</td>
+        <td>{{14th_QPS}}/s</td>
+        <td>{{14th_Complete_requests}}</td>
+        <td>{{14th_Failed_requests}}</td>
+        <td>{{14th_Keep-Alive_requests}}</td>
+        <td>{{14th_Total_transferred}} bytes</td>
+        <td>{{14th_HTML_transferred}} bytes</td>
+        <td>{{14th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
     </tr>
 </table>
 <p>Edit it on <a href="https://github.com/WGrape/ngxway/blob/main/bin/ngxway_benchmark">github</a></p>

@@ -69,6 +69,9 @@ function start(){
   if [ $env == "dev" ]; then
       printInfo "DEV ONLY START"
 
+      # install httpd-tools to use ab test,
+      docker exec -it ngxwayContainer /bin/bash -c 'yum install -y httpd-tools'
+
       # build go server
       docker exec -it ngxwayContainer /bin/bash -c 'cd /dist/example/goserver/ && bash build.sh && cd /'
       if [ $? -ne 0 ]; then

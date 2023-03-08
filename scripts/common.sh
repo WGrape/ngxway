@@ -6,6 +6,15 @@ env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
 ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
 localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
 slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
+maxNCPU=`sed '/^max_ncpu=/!d;s/.*=//' ${ngxwayConfigFile}`
+dockerNetwork=`sed '/^docker_network=/!d;s/.*=//' ${ngxwayConfigFile}`
+tcpSyncookies=`sed '/^tcp_syncookies=/!d;s/.*=//' ${ngxwayConfigFile}`
+tcpMaxTWBuckets=`sed '/^tcp_max_tw_buckets=/!d;s/.*=//' ${ngxwayConfigFile}`
+tcpTWReuse=`sed '/^tcp_tw_reuse=/!d;s/.*=//' ${ngxwayConfigFile}`
+soMaxConn=`sed '/^somaxconn=/!d;s/.*=//' ${ngxwayConfigFile}`
+ipLocalPortRange=`sed '/^ip_local_port_range=/!d;s/.*=//' ${ngxwayConfigFile}`
+softNoFile=`sed '/^soft_nofile=/!d;s/.*=//' ${ngxwayConfigFile}`
+hardNoFile=`sed '/^hard_nofile=/!d;s/.*=//' ${ngxwayConfigFile}`
 
 # The common variables s here.
 # ================================
@@ -30,6 +39,15 @@ benchmarkHTMLFile="${ngxwayPath}/html/benchmark.html"
 
 # The common functions is here.
 # ================================
+function checkNgxwayConfig() {
+  if [ "$dockerNetwork" == "bridge" ] || [ "$dockerNetwork" == "host" ] ;then
+    echo "ok"
+    return
+  fi
+
+  echo "failed"
+}
+
 function computeSignedRequest() {
   timeStamp=`date +%s`
 

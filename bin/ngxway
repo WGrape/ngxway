@@ -56,7 +56,6 @@ function start(){
       fi
   elif [ $dockerNetwork == "host" ]; then
       docker run --ulimit nofile=$softNoFile:$hardNoFile \
-                 --sysctl net.ipv4.ip_local_port_range="$ipLocalPortRange" \
                  --cpus=$maxNCPU \
                  --name ngxwayContainer -d --net=host -v $localVolumeLogsDir:/dist/logs/ ngxway
       if [ $? -ne 0 ]; then

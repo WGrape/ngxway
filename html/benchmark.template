@@ -46,16 +46,16 @@
         <th>P90/P95/P99</th>
     </tr>
     <tr>
-        <td id="1th_Id">{{1th_Id}}</td>
-        <td id="1th_Command">{{1th_Command}}</td>
-        <td id="1th_Concurrency">{{1th_Concurrency}}</td>
-        <td id="1th_QPS">{{1th_QPS}}/s</td>
-        <td id="1th_Complete_requests">{{1th_Complete_requests}}</td>
-        <td id="1th_Failed_requests">{{1th_Failed_requests}}</td>
-        <td id="1th_Keep-Alive_requests">{{1th_Keep-Alive_requests}}</td>
-        <td id="1th_Total_transferred">{{1th_Total_transferred}} bytes</td>
-        <td id="1th_HTML_transferred">{{1th_HTML_transferred}} bytes</td>
-        <td id="1th_PPP">{{1th_P90}}ms/{{1th_P95}}ms/{{1th_P99}}ms</td>
+        <td>{{1th_Id}}</td>
+        <td>{{1th_Command}}</td>
+        <td>{{1th_Concurrency}}</td>
+        <td>{{1th_QPS}}/s</td>
+        <td>{{1th_Complete_requests}}</td>
+        <td>{{1th_Failed_requests}}</td>
+        <td>{{1th_Keep-Alive_requests}}</td>
+        <td>{{1th_Total_transferred}} bytes</td>
+        <td>{{1th_HTML_transferred}} bytes</td>
+        <td>{{1th_P90}}ms/{{1th_P95}}ms/{{1th_P99}}ms</td>
     </tr>
     <tr>
         <td>{{2th_Id}}</td>

@@ -31,7 +31,7 @@
 </head>
 <body>
 <h1>The performance report of ngxway</h1>
-<p>Machine/{{cpuMemory}} MaxQPS/{{maxQPS}}</p>
+<p>Machine/10C16G MaxQPS/26105</p>
 <table>
     <tr>
         <th>Id</th>
@@ -46,172 +46,172 @@
         <th>P90/P95/P99</th>
     </tr>
     <tr>
-        <td id="1th_Id">1</td>
-        <td id="1th_Command">ab -r -n 10000 -c 32 -k http://127.0.0.1:8090/api/test?sign=e6ca8e0b22c00551bc96&timestamp=1678533194</td>
-        <td id="1th_Concurrency">32</td>
-        <td id="1th_QPS">9011/s</td>
-        <td id="1th_Complete_requests">10000</td>
-        <td id="1th_Failed_requests">0</td>
-        <td id="1th_Keep-Alive_requests">10000</td>
-        <td id="1th_Total_transferred">1560001 bytes</td>
-        <td id="1th_HTML_transferred">20000 bytes</td>
-        <td id="1th_PPP">5ms/5ms/8ms</td>
+        <td>1</td>
+        <td>ab -r -n 10000 -c 32 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>32</td>
+        <td>9797/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560001 bytes</td>
+        <td>20000 bytes</td>
+        <td>4ms/5ms/6ms</td>
     </tr>
     <tr>
-        <td>{{2th_Id}}</td>
-        <td>{{2th_Command}}</td>
-        <td>{{2th_Concurrency}}</td>
-        <td>{{2th_QPS}}/s</td>
-        <td>{{2th_Complete_requests}}</td>
-        <td>{{2th_Failed_requests}}</td>
-        <td>{{2th_Keep-Alive_requests}}</td>
-        <td>{{2th_Total_transferred}} bytes</td>
-        <td>{{2th_HTML_transferred}} bytes</td>
-        <td>{{2th_P90}}ms/{{2th_P95}}ms/{{2th_P99}}ms</td>
+        <td>2</td>
+        <td>ab -r -n 10000 -c 64 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>64</td>
+        <td>13221/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560000 bytes</td>
+        <td>20000 bytes</td>
+        <td>7ms/8ms/11ms</td>
     </tr>
     <tr>
-        <td>{{3th_Id}}</td>
-        <td>{{3th_Command}}</td>
-        <td>{{3th_Concurrency}}</td>
-        <td>{{3th_QPS}}/s</td>
-        <td>{{3th_Complete_requests}}</td>
-        <td>{{3th_Failed_requests}}</td>
-        <td>{{3th_Keep-Alive_requests}}</td>
-        <td>{{3th_Total_transferred}} bytes</td>
-        <td>{{3th_HTML_transferred}} bytes</td>
-        <td>{{3th_P90}}ms/{{3th_P95}}ms/{{3th_P99}}ms</td>
+        <td>3</td>
+        <td>ab -r -n 10000 -c 128 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>128</td>
+        <td>18182/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560000 bytes</td>
+        <td>20000 bytes</td>
+        <td>10ms/11ms/21ms</td>
     </tr>
     <tr>
-        <td>{{4th_Id}}</td>
-        <td>{{4th_Command}}</td>
-        <td>{{4th_Concurrency}}</td>
-        <td>{{4th_QPS}}/s</td>
-        <td>{{4th_Complete_requests}}</td>
-        <td>{{4th_Failed_requests}}</td>
-        <td>{{4th_Keep-Alive_requests}}</td>
-        <td>{{4th_Total_transferred}} bytes</td>
-        <td>{{4th_HTML_transferred}} bytes</td>
-        <td>{{4th_P90}}ms/{{4th_P95}}ms/{{4th_P99}}ms</td>
+        <td>4</td>
+        <td>ab -r -n 10000 -c 256 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>256</td>
+        <td>20390/s</td>
+        <td>10000</td>
+        <td>9999</td>
+        <td>9902</td>
+        <td>1544712 bytes</td>
+        <td>19804 bytes</td>
+        <td>17ms/21ms/42ms</td>
     </tr>
     <tr>
-        <td>{{5th_Id}}</td>
-        <td>{{5th_Command}}</td>
-        <td>{{5th_Concurrency}}</td>
-        <td>{{5th_QPS}}/s</td>
-        <td>{{5th_Complete_requests}}</td>
-        <td>{{5th_Failed_requests}}</td>
-        <td>{{5th_Keep-Alive_requests}}</td>
-        <td>{{5th_Total_transferred}} bytes</td>
-        <td>{{5th_HTML_transferred}} bytes</td>
-        <td>{{5th_P90}}ms/{{5th_P95}}ms/{{5th_P99}}ms</td>
+        <td>5</td>
+        <td>ab -r -n 10000 -c 512 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>512</td>
+        <td>19865/s</td>
+        <td>10000</td>
+        <td>9999</td>
+        <td>9458</td>
+        <td>1475448 bytes</td>
+        <td>18916 bytes</td>
+        <td>38ms/51ms/85ms</td>
     </tr>
     <tr>
-        <td>{{6th_Id}}</td>
-        <td>{{6th_Command}}</td>
-        <td>{{6th_Concurrency}}</td>
-        <td>{{6th_QPS}}/s</td>
-        <td>{{6th_Complete_requests}}</td>
-        <td>{{6th_Failed_requests}}</td>
-        <td>{{6th_Keep-Alive_requests}}</td>
-        <td>{{6th_Total_transferred}} bytes</td>
-        <td>{{6th_HTML_transferred}} bytes</td>
-        <td>{{6th_P90}}ms/{{6th_P95}}ms/{{6th_P99}}ms</td>
+        <td>6</td>
+        <td>ab -r -n 10000 -c 1024 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>1024</td>
+        <td>20891/s</td>
+        <td>10000</td>
+        <td>10000</td>
+        <td>9943</td>
+        <td>1551108 bytes</td>
+        <td>19886 bytes</td>
+        <td>78ms/86ms/110ms</td>
     </tr>
     <tr>
-        <td>{{7th_Id}}</td>
-        <td>{{7th_Command}}</td>
-        <td>{{7th_Concurrency}}</td>
-        <td>{{7th_QPS}}/s</td>
-        <td>{{7th_Complete_requests}}</td>
-        <td>{{7th_Failed_requests}}</td>
-        <td>{{7th_Keep-Alive_requests}}</td>
-        <td>{{7th_Total_transferred}} bytes</td>
-        <td>{{7th_HTML_transferred}} bytes</td>
-        <td>{{7th_P90}}ms/{{7th_P95}}ms/{{7th_P99}}ms</td>
+        <td>7</td>
+        <td>ab -r -n 10000 -c 1200 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>1200</td>
+        <td>19774/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560000 bytes</td>
+        <td>20000 bytes</td>
+        <td>89ms/111ms/194ms</td>
     </tr>
     <tr>
-        <td>{{8th_Id}}</td>
-        <td>{{8th_Command}}</td>
-        <td>{{8th_Concurrency}}</td>
-        <td>{{8th_QPS}}/s</td>
-        <td>{{8th_Complete_requests}}</td>
-        <td>{{8th_Failed_requests}}</td>
-        <td>{{8th_Keep-Alive_requests}}</td>
-        <td>{{8th_Total_transferred}} bytes</td>
-        <td>{{8th_HTML_transferred}} bytes</td>
-        <td>{{8th_P90}}ms/{{8th_P95}}ms/{{8th_P99}}ms</td>
+        <td>8</td>
+        <td>ab -r -n 100000 -c 32 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>32</td>
+        <td>7830/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>5ms/6ms/8ms</td>
     </tr>
     <tr>
-        <td>{{9th_Id}}</td>
-        <td>{{9th_Command}}</td>
-        <td>{{9th_Concurrency}}</td>
-        <td>{{9th_QPS}}/s</td>
-        <td>{{9th_Complete_requests}}</td>
-        <td>{{9th_Failed_requests}}</td>
-        <td>{{9th_Keep-Alive_requests}}</td>
-        <td>{{9th_Total_transferred}} bytes</td>
-        <td>{{9th_HTML_transferred}} bytes</td>
-        <td>{{9th_P90}}ms/{{9th_P95}}ms/{{9th_P99}}ms</td>
+        <td>9</td>
+        <td>ab -r -n 100000 -c 64 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>64</td>
+        <td>14506/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>6ms/7ms/9ms</td>
     </tr>
     <tr>
-        <td>{{10th_Id}}</td>
-        <td>{{10th_Command}}</td>
-        <td>{{10th_Concurrency}}</td>
-        <td>{{10th_QPS}}/s</td>
-        <td>{{10th_Complete_requests}}</td>
-        <td>{{10th_Failed_requests}}</td>
-        <td>{{10th_Keep-Alive_requests}}</td>
-        <td>{{10th_Total_transferred}} bytes</td>
-        <td>{{10th_HTML_transferred}} bytes</td>
-        <td>{{10th_P90}}ms/{{10th_P95}}ms/{{10th_P99}}ms</td>
+        <td>10</td>
+        <td>ab -r -n 100000 -c 128 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>128</td>
+        <td>19661/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>9ms/10ms/13ms</td>
     </tr>
     <tr>
-        <td>{{11th_Id}}</td>
-        <td>{{11th_Command}}</td>
-        <td>{{11th_Concurrency}}</td>
-        <td>{{11th_QPS}}/s</td>
-        <td>{{11th_Complete_requests}}</td>
-        <td>{{11th_Failed_requests}}</td>
-        <td>{{11th_Keep-Alive_requests}}</td>
-        <td>{{11th_Total_transferred}} bytes</td>
-        <td>{{11th_HTML_transferred}} bytes</td>
-        <td>{{11th_P90}}ms/{{11th_P95}}ms/{{11th_P99}}ms</td>
+        <td>11</td>
+        <td>ab -r -n 100000 -c 256 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>256</td>
+        <td>23817/s</td>
+        <td>100000</td>
+        <td>99999</td>
+        <td>99901</td>
+        <td>15584556 bytes</td>
+        <td>199802 bytes</td>
+        <td>15ms/17ms/23ms</td>
     </tr>
     <tr>
-        <td>{{12th_Id}}</td>
-        <td>{{12th_Command}}</td>
-        <td>{{12th_Concurrency}}</td>
-        <td>{{12th_QPS}}/s</td>
-        <td>{{12th_Complete_requests}}</td>
-        <td>{{12th_Failed_requests}}</td>
-        <td>{{12th_Keep-Alive_requests}}</td>
-        <td>{{12th_Total_transferred}} bytes</td>
-        <td>{{12th_HTML_transferred}} bytes</td>
-        <td>{{12th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
+        <td>12</td>
+        <td>ab -r -n 100000 -c 512 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>512</td>
+        <td>24677/s</td>
+        <td>100000</td>
+        <td>99999</td>
+        <td>99422</td>
+        <td>15509832 bytes</td>
+        <td>198844 bytes</td>
+        <td>32ms/39ms/56ms</td>
     </tr>
     <tr>
-        <td>{{13th_Id}}</td>
-        <td>{{13th_Command}}</td>
-        <td>{{13th_Concurrency}}</td>
-        <td>{{13th_QPS}}/s</td>
-        <td>{{13th_Complete_requests}}</td>
-        <td>{{13th_Failed_requests}}</td>
-        <td>{{13th_Keep-Alive_requests}}</td>
-        <td>{{13th_Total_transferred}} bytes</td>
-        <td>{{13th_HTML_transferred}} bytes</td>
-        <td>{{13th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
+        <td>13</td>
+        <td>ab -r -n 100000 -c 1024 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>1024</td>
+        <td>25448/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>59ms/39ms/56ms</td>
     </tr>
     <tr>
-        <td>{{14th_Id}}</td>
-        <td>{{14th_Command}}</td>
-        <td>{{14th_Concurrency}}</td>
-        <td>{{14th_QPS}}/s</td>
-        <td>{{14th_Complete_requests}}</td>
-        <td>{{14th_Failed_requests}}</td>
-        <td>{{14th_Keep-Alive_requests}}</td>
-        <td>{{14th_Total_transferred}} bytes</td>
-        <td>{{14th_HTML_transferred}} bytes</td>
-        <td>{{14th_P90}}ms/{{12th_P95}}ms/{{12th_P99}}ms</td>
+        <td>14</td>
+        <td>ab -r -n 100000 -c 1200 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>1200</td>
+        <td>26105/s</td>
+        <td>100000</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>64ms/39ms/56ms</td>
     </tr>
 </table>
 <p>Edit it on <a href="https://github.com/WGrape/ngxway/blob/main/bin/ngxway_benchmark">github</a></p>

@@ -95,9 +95,16 @@ function start(){
     exit 1
   fi
 
-  # The result of command exec in docker.
-  # wait the log of docker sync to local disk.
+  # Wait for the container's logs to be synced to the local disk.
   sleep 1
+
+  # Check the volume mount is success or not.
+  if [ ! -f "$localVolumeLogsDir/nginx.reload.log" ]; then
+    printError "error: volume mount error"
+    exit 1
+  fi
+
+  # The result of command exec in docker.
   dockerResultMsg=$(cat $localVolumeLogsDir/nginx.reload.log)
   if [ "${dockerResultMsg}" != "success" ] ; then
     # Write failure log.
@@ -107,7 +114,9 @@ function start(){
 
     # Output to console.
     printError "error: failed to reload nginx"
-    printError "error: $dockerResultMsg"
+    if [ "$dockerResultMsg" != "" ]; then
+      printError "error: $dockerResultMsg"
+    fi
     exit 1
   else
     # Write success log.

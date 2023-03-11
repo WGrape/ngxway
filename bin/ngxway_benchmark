@@ -35,7 +35,7 @@ fi
 cpuMemory=$(printCPUMemory)
 
 # Initial
-cat $benchmarkTemplateBkFile > $benchmarkTemplateFile
+cat $benchmarkTemplateFile > $benchmarkTempHTMLFile
 
 # Declare the testcases.
 caseList=(
@@ -68,23 +68,23 @@ for i in "${!caseList[@]}"; do
   if [ $? -ne 0 ]; then
     printError "The test no.${number} end"
   else
-    concurrency=`cat ${benchmarkTempFile} | grep 'Concurrency Level' | awk '{print $3}'`
+    concurrency=`cat ${apacheBenchTempFile} | grep 'Concurrency Level' | awk '{print $3}'`
 
     command="ab -r ${caseList[$i]} -k ${addrUrl}"
     command=$(echo $command | sed 's/[\/&]/\\&/g')
 
-    completeRequests=`cat ${benchmarkTempFile} | grep 'Complete requests' | awk '{print $3}'`
-    failedRequests=`cat ${benchmarkTempFile} | grep 'Failed requests' | awk '{print $3}'`
-    keepaliveRequests=`cat ${benchmarkTempFile} | grep 'Keep-Alive requests' | awk '{print $3}'`
+    completeRequests=`cat ${apacheBenchTempFile} | grep 'Complete requests' | awk '{print $3}'`
+    failedRequests=`cat ${apacheBenchTempFile} | grep 'Failed requests' | awk '{print $3}'`
+    keepaliveRequests=`cat ${apacheBenchTempFile} | grep 'Keep-Alive requests' | awk '{print $3}'`
 
-    totalTransferred=`cat ${benchmarkTempFile} | grep 'Total transferred' | awk '{print $3}'`
-    htmlTransferred=`cat ${benchmarkTempFile} | grep 'HTML transferred' | awk '{print $3}'`
+    totalTransferred=`cat ${apacheBenchTempFile} | grep 'Total transferred' | awk '{print $3}'`
+    htmlTransferred=`cat ${apacheBenchTempFile} | grep 'HTML transferred' | awk '{print $3}'`
 
-    qps=`cat ${benchmarkTempFile} | grep 'Requests per second' | awk '{print int($4)}'`
+    qps=`cat ${apacheBenchTempFile} | grep 'Requests per second' | awk '{print int($4)}'`
 
-    p90=`cat ${benchmarkTempFile} | grep '90%' | awk '{print int($2)}'`
-    p95=`cat ${benchmarkTempFile} | grep '95%' | awk '{print int($2)}'`
-    p99=`cat ${benchmarkTempFile} | grep '99%' | awk '{print int($2)}'`
+    p90=`cat ${apacheBenchTempFile} | grep '90%' | awk '{print int($2)}'`
+    p95=`cat ${apacheBenchTempFile} | grep '95%' | awk '{print int($2)}'`
+    p99=`cat ${apacheBenchTempFile} | grep '99%' | awk '{print int($2)}'`
 
     echo -e "++++++++++++Test Report++++++++++++"
     echo -e "Concurrency = " $concurrency
@@ -111,8 +111,8 @@ for i in "${!caseList[@]}"; do
         -e "s/{{${number}th_P90}}/${p90}/g" \
         -e "s/{{${number}th_P95}}/${p95}/g" \
         -e "s/{{${number}th_P99}}/${p99}/g" \
-        $benchmarkTemplateFile > $benchmarkHTMLFile
-    cat $benchmarkHTMLFile > $benchmarkTemplateFile
+        $benchmarkTempHTMLFile > $benchmarkHTMLFile
+    cat $benchmarkHTMLFile > $benchmarkTempHTMLFile
 
     if [ $qps -gt $maxQPS ]; then
       maxQPS=$qps
@@ -132,13 +132,13 @@ for i in "${!caseList[@]}"; do
   fi
 done
 
-sed -e "s/{{cpuMemory}}/$cpuMemory/g" -e "s/{{maxQPS}}/$maxQPS/g" $benchmarkTemplateFile > $benchmarkHTMLFile
-cat $benchmarkHTMLFile > $benchmarkTemplateFile
+sed -e "s/{{cpuMemory}}/$cpuMemory/g" -e "s/{{maxQPS}}/$maxQPS/g" $benchmarkTempHTMLFile > $benchmarkHTMLFile
+cat $benchmarkHTMLFile > $benchmarkTempHTMLFile
 
 # end time
 end=$(date +%s)
 
-cat $benchmarkTemplateBkFile > $benchmarkTemplateFile
+cat $benchmarkTemplateFile > $benchmarkTempHTMLFile
 
 echo -e "\n------------------------------------------------------------------"
 echo "The benchmark testing of ngxway is end, total cost $((end-start)) seconds."

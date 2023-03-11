@@ -5,6 +5,7 @@ ngxwayConfigFile="${ngxwayPath}/ngxway.conf"
 env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
 ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
 localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
+extEnable=`sed '/^ext_enable=/!d;s/.*=//' ${ngxwayConfigFile}`
 slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
 maxNCPU=`sed '/^max_ncpu=/!d;s/.*=//' ${ngxwayConfigFile}`
 dockerNetwork=`sed '/^docker_network=/!d;s/.*=//' ${ngxwayConfigFile}`
@@ -15,6 +16,13 @@ soMaxConn=`sed '/^somaxconn=/!d;s/.*=//' ${ngxwayConfigFile}`
 ipLocalPortRange=`sed '/^ip_local_port_range=/!d;s/.*=//' ${ngxwayConfigFile}`
 softNoFile=`sed '/^soft_nofile=/!d;s/.*=//' ${ngxwayConfigFile}`
 hardNoFile=`sed '/^hard_nofile=/!d;s/.*=//' ${ngxwayConfigFile}`
+
+if [ "$localVolumeLogsDir" == "" ] || [ "$localVolumeLogsDir" == "\"\"" ] ; then
+  localVolumeLogsDir="${ngxwayPath}/logs"
+fi
+if [ "$dockerNetwork" == "" ]; then
+  dockerNetwork="bridge"
+fi
 
 # The common variables s here.
 # ================================
@@ -31,9 +39,9 @@ $$/   $$/  $$$$$$$ |$$/   $$/  $$$$$/$$$$/   $$$$$$$/  $$$$$$$ |
           $$    $$/                                   $$    $$/
            $$$$$$/                                     $$$$$$/
 '
-benchmarkTempFile="${ngxwayPath}/logs/benchmark.temp"
+apacheBenchTempFile="${ngxwayPath}/logs/apachebench.temp"
+benchmarkTempHTMLFile="${ngxwayPath}/html/benchmark.temp.html"
 benchmarkTemplateFile="${ngxwayPath}/html/benchmark.template"
-benchmarkTemplateBkFile="${ngxwayPath}/html/benchmark.template.bk"
 benchmarkHTMLFile="${ngxwayPath}/html/benchmark.html"
 # ================================
 
@@ -95,7 +103,7 @@ function runBenchmarkTest(){
     # bash test/benchmark.sh api
     command="ab -r $1 -k $2"
     echo -e $command
-    $command > $benchmarkTempFile
+    $command > $apacheBenchTempFile
     if [ $? -ne 0 ]; then
       printError "error: failed / count=${count}"
       sleep 1

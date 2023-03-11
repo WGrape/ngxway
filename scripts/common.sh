@@ -5,6 +5,7 @@ ngxwayConfigFile="${ngxwayPath}/ngxway.conf"
 env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
 ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
 localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
+extEnable=`sed '/^ext_enable=/!d;s/.*=//' ${ngxwayConfigFile}`
 slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
 maxNCPU=`sed '/^max_ncpu=/!d;s/.*=//' ${ngxwayConfigFile}`
 dockerNetwork=`sed '/^docker_network=/!d;s/.*=//' ${ngxwayConfigFile}`

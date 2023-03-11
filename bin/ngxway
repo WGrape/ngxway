@@ -64,28 +64,18 @@ function start(){
       fi
   fi
 
-  # Exec command: start the go server.
+  # Exec development operations
   if [ $env == "dev" ]; then
       printInfo "DEV ONLY START"
-
-      # install httpd-tools to use ab test,
-      docker exec -it ngxwayContainer /bin/bash -c 'yum install -y httpd-tools'
-
-      # build go server
-      docker exec -it ngxwayContainer /bin/bash -c 'cd /dist/example/goserver/ && bash build.sh && cd /'
-      if [ $? -ne 0 ]; then
-        printError "error: failed to build goserver"
-        exit 1
-      fi
-
-      # run go server
-      docker exec -d ngxwayContainer /dist/example/goserver/goserver
-      if [ $? -ne 0 ]; then
-        printError "error: failed to exec goserver"
-        exit 1
-      fi
-
+      bash $ngxwayPath/scripts/devkit.sh
       printInfo "DEV ONLY END"
+  fi
+
+  # Exec extension operations
+  if [ $extEnable == "1" ]; then
+      printInfo "EXTENSION START"
+      bash $ngxwayPath/scripts/extkit.sh
+      printInfo "EXTENSION END"
   fi
 
   # Exec command: reload the nginx.

@@ -31,7 +31,7 @@
 </head>
 <body>
 <h1>The performance report of ngxway</h1>
-<p>Machine/10C16G MaxQPS/26105</p>
+<p>Machine/8C16G MaxQPS/51023</p>
 <table>
     <tr>
         <th>Id</th>
@@ -47,171 +47,171 @@
     </tr>
     <tr>
         <td>1</td>
-        <td>ab -r -n 10000 -c 32 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 10000 -c 32 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>32</td>
-        <td>9797/s</td>
+        <td>23901/s</td>
         <td>10000</td>
         <td>0</td>
         <td>10000</td>
         <td>1560001 bytes</td>
         <td>20000 bytes</td>
-        <td>4ms/5ms/6ms</td>
+        <td>2ms/2ms/3ms</td>
     </tr>
     <tr>
         <td>2</td>
-        <td>ab -r -n 10000 -c 64 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 10000 -c 64 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>64</td>
-        <td>13221/s</td>
+        <td>28231/s</td>
         <td>10000</td>
         <td>0</td>
         <td>10000</td>
         <td>1560000 bytes</td>
         <td>20000 bytes</td>
-        <td>7ms/8ms/11ms</td>
+        <td>4ms/4ms/5ms</td>
     </tr>
     <tr>
         <td>3</td>
-        <td>ab -r -n 10000 -c 128 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 10000 -c 128 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>128</td>
-        <td>18182/s</td>
+        <td>29690/s</td>
         <td>10000</td>
         <td>0</td>
         <td>10000</td>
         <td>1560000 bytes</td>
         <td>20000 bytes</td>
-        <td>10ms/11ms/21ms</td>
+        <td>7ms/8ms/14ms</td>
     </tr>
     <tr>
         <td>4</td>
-        <td>ab -r -n 10000 -c 256 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 10000 -c 256 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>256</td>
-        <td>20390/s</td>
-        <td>10000</td>
-        <td>9999</td>
-        <td>9902</td>
-        <td>1544712 bytes</td>
-        <td>19804 bytes</td>
-        <td>17ms/21ms/42ms</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>ab -r -n 10000 -c 512 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
-        <td>512</td>
-        <td>19865/s</td>
-        <td>10000</td>
-        <td>9999</td>
-        <td>9458</td>
-        <td>1475448 bytes</td>
-        <td>18916 bytes</td>
-        <td>38ms/51ms/85ms</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>ab -r -n 10000 -c 1024 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
-        <td>1024</td>
-        <td>20891/s</td>
-        <td>10000</td>
-        <td>10000</td>
-        <td>9943</td>
-        <td>1551108 bytes</td>
-        <td>19886 bytes</td>
-        <td>78ms/86ms/110ms</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>ab -r -n 10000 -c 1200 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
-        <td>1200</td>
-        <td>19774/s</td>
+        <td>30770/s</td>
         <td>10000</td>
         <td>0</td>
         <td>10000</td>
         <td>1560000 bytes</td>
         <td>20000 bytes</td>
-        <td>89ms/111ms/194ms</td>
+        <td>14ms/15ms/44ms</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>ab -r -n 10000 -c 512 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
+        <td>512</td>
+        <td>24686/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560000 bytes</td>
+        <td>20000 bytes</td>
+        <td>29ms/49ms/93ms</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>ab -r -n 10000 -c 1024 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
+        <td>1024</td>
+        <td>19730/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560000 bytes</td>
+        <td>20000 bytes</td>
+        <td>67ms/123ms/187ms</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>ab -r -n 10000 -c 1200 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
+        <td>1200</td>
+        <td>20059/s</td>
+        <td>10000</td>
+        <td>0</td>
+        <td>10000</td>
+        <td>1560000 bytes</td>
+        <td>20000 bytes</td>
+        <td>80ms/158ms/192ms</td>
     </tr>
     <tr>
         <td>8</td>
-        <td>ab -r -n 100000 -c 32 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 32 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>32</td>
-        <td>7830/s</td>
+        <td>30471/s</td>
         <td>100000</td>
         <td>0</td>
-        <td>100000</td>
-        <td>15600000 bytes</td>
+        <td>99998</td>
+        <td>15599990 bytes</td>
         <td>200000 bytes</td>
-        <td>5ms/6ms/8ms</td>
+        <td>2ms/2ms/2ms</td>
     </tr>
     <tr>
         <td>9</td>
-        <td>ab -r -n 100000 -c 64 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 64 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>64</td>
-        <td>14506/s</td>
+        <td>37456/s</td>
         <td>100000</td>
         <td>0</td>
         <td>100000</td>
         <td>15600000 bytes</td>
         <td>200000 bytes</td>
-        <td>6ms/7ms/9ms</td>
+        <td>4ms/4ms/5ms</td>
     </tr>
     <tr>
         <td>10</td>
-        <td>ab -r -n 100000 -c 128 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 128 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>128</td>
-        <td>19661/s</td>
+        <td>51023/s</td>
         <td>100000</td>
         <td>0</td>
         <td>100000</td>
         <td>15600000 bytes</td>
         <td>200000 bytes</td>
-        <td>9ms/10ms/13ms</td>
+        <td>3ms/3ms/5ms</td>
     </tr>
     <tr>
         <td>11</td>
-        <td>ab -r -n 100000 -c 256 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 256 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>256</td>
-        <td>23817/s</td>
+        <td>37405/s</td>
         <td>100000</td>
-        <td>99999</td>
-        <td>99901</td>
-        <td>15584556 bytes</td>
-        <td>199802 bytes</td>
-        <td>15ms/17ms/23ms</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>12ms/14ms/18ms</td>
     </tr>
     <tr>
         <td>12</td>
-        <td>ab -r -n 100000 -c 512 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 512 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>512</td>
-        <td>24677/s</td>
+        <td>37225/s</td>
         <td>100000</td>
-        <td>99999</td>
-        <td>99422</td>
-        <td>15509832 bytes</td>
-        <td>198844 bytes</td>
-        <td>32ms/39ms/56ms</td>
+        <td>0</td>
+        <td>100000</td>
+        <td>15600000 bytes</td>
+        <td>200000 bytes</td>
+        <td>24ms/28ms/33ms</td>
     </tr>
     <tr>
         <td>13</td>
-        <td>ab -r -n 100000 -c 1024 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 1024 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>1024</td>
-        <td>25448/s</td>
+        <td>38133/s</td>
         <td>100000</td>
         <td>0</td>
         <td>100000</td>
         <td>15600000 bytes</td>
         <td>200000 bytes</td>
-        <td>59ms/39ms/56ms</td>
+        <td>46ms/28ms/33ms</td>
     </tr>
     <tr>
         <td>14</td>
-        <td>ab -r -n 100000 -c 1200 -k http://127.0.0.1:8090/api/test?sign=5d35206ebd09acf3ae&timestamp=1678534776</td>
+        <td>ab -r -n 100000 -c 1200 -k http://127.0.0.1:8090/api/test?sign=4b7c610717ffe1318c58b&timestamp=1678556459</td>
         <td>1200</td>
-        <td>26105/s</td>
+        <td>35028/s</td>
         <td>100000</td>
         <td>0</td>
         <td>100000</td>
         <td>15600000 bytes</td>
         <td>200000 bytes</td>
-        <td>64ms/39ms/56ms</td>
+        <td>53ms/28ms/33ms</td>
     </tr>
 </table>
 <p>Edit it on <a href="https://github.com/WGrape/ngxway/blob/main/bin/ngxway_benchmark">github</a></p>

@@ -13,93 +13,76 @@
 </div>
 
 <div align="center">
-    <p>基于Openresty的高性能轻量级Nginx网关服务</p>
-    <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
+    <p>高性能轻量级的Nginx网关服务</p>
+    <p>README ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
+    <p>Wiki ：<a href="/README.zh-CN.md">English</a></p>
 </div>
 
-## 一、介绍
-ngxway是一个基于Openresty的高性能、容器化、轻量化的Nginx网关。
+## 一、项目介绍
+ngxway是一款高性能、容器化、轻量化的Nginx网关服务。
 
-## 二、特点
+## 二、项目特点
 
 ### 1、高性能
 
-基于Openresty对Lua模块的支持，ngxway通过编写Lua模块和对Linux参数调优，在实现Nginx网关的同时，也达到平均```10w QPS / 8c16G```的高性能。关于性能您可以查看详细的[性能测试报告](./doc/benchmark.md)。
+本网关服务主要基于Lua实现，在内置的Nginx配置和Linux参数优化下，默认当您下载启动此服务后，即使不进行任何调优，在```8c16G```机器下也有平均```5w QPS```的表现。
 
-<img width="900" alt="image" src="https://user-images.githubusercontent.com/35942268/221419143-616c35b8-fd43-4c42-8ede-8a752125a6db.png">
+关于性能您可以查看详细的 [性能测试报告](https://wgrape.github.io/ngxway/html/benchmark.html) ，它是如何生成的呢？如果需要请查看 [如何压测](./doc/benchmark.zh-CN.md) 文档。
+
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/35942268/224526169-3ca6cd09-380d-4acf-b184-b972db85685b.png">
 
 ### 2、容器化
 
-基于Docker构建，与Nginx底层配置解耦，省去99%的搭建流程，1个命令即可自动搭建起自己的Nginx网关。
+基于Docker构建，与Nginx底层配置解耦，省去90%的搭建流程，1个命令即可自动搭建起自己的Nginx网关。
 
 ### 3、轻量化
 
-比起复杂的网关实现，整个项目轻量化了许多。您可以随意更改项目的各种配置，甚至修改和增加各种Lua脚本以提高ngxway在您业务下的综合表现。
+比起复杂的网关实现，整个项目轻量化了许多。您可以随意更改项目的各种配置，也可以修改和增加各种Lua脚本以提高ngxway在您业务下的综合表现。
 
-## 三、获取
+## 三、项目安装
 
-### 1、如何安装
-
-为了降低安装成本方便您的快速上手，本项目提供了```install.sh```集成脚本，执行以下命令即可完成安装。
+为了降低安装成本方便您的快速上手，执行以下命令即可。
 
 ```bash
+# 安装
 git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
-```
 
-### 2、如何卸载
-
-在本项目下也提供了用于卸载的```uninstall.sh```集成脚本，执行以下命令即可完成安装。
-
-```bash
+# 卸载
 cd ngxway && bash uninstall.sh
 ```
 
-### 3、注意事项
 注意ngxway只支持运行在有Docker环境的Unix系统上，如Linux、MacOS等。如果只是为了尝鲜体验，强烈建议使用 [在线Docker](https://labs.play-with-docker.com/) 测试使用。
 
-## 四、配置
+## 四、快速开始
 
-在 [./ngxway.conf](./ngxway.conf) 文件中定义了ngxway通用的一些功能，其中就包括了这些配置选项。
-
-- ```local_volume_logs_dir```: ngxway映射在本地的日志目录
-- ```ngxway_addr```: ngxway启动地址和端口号
-- ```env```: ngxway的运行环境, 只允许 dev/test/gray/prod 4种环境
-
-
-## 五、使用
-
-### 1、启动服务
-执行以下命令以启动ngxway服务。在开发模式下，成功后会自动在Chrome中打开ngxway页面。
+### 1. 启动服务
+执行以下命令以启动ngxway服务，如果可以成功打开```127.0.0.1:8090```页面，则说明启动成功。
 
 ```bash
-ngxway start
+bash bin/ngxway start
 ```
 
-<img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760566-7cd85e99-5089-4055-909a-8253dd366d95.png">
-
-### 2、停止服务
+### 2. 停止服务
 执行以下命令即可安全停止 ngxway 服务。
 
 ```bash
-ngxway stop
+bash bin/ngxway stop
 ```
 
-### 3、重启服务
+### 3. 重启服务
 执行以下命令即可自动重启 ngxway 服务。
 
 ```bash
-ngxway restart
+bash bin/ngxway restart
 ```
 
-<img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760481-1eb24c24-58af-4260-afb3-96ea74dcdaca.png">
-
-### 4、服务日志
-
+### 4. 服务日志
 ngxway在运行过程中的日志会记录到您在 [./ngxway.conf](./ngxway.conf) 文件中定义的 ```local_volume_logs_dir``` 日志目录中，默认为 ```/tmp/logs``` 目录。
 
-<img width="650" alt="image" src="https://user-images.githubusercontent.com/35942268/216760443-6c53d04a-f09d-4cbd-ae71-c29f8f566ba2.png">
+### 5. 业务接入
+恭喜您至此已安装并成功启动服务，不过在您未对项目做任何修改前，它还未能真正为你提供网关服务。如果您需要业务接入，请查看阅读 [Wiki](https://github.com/WGrape/ngxway/wiki/) 。
 
-## 六、贡献
-在使用本项目的过程中，如遇到任何问题或有更好的项目，欢迎您的 [Issue](https://github.com/WGrape/ngxway/issues/new) 和 [Pull Request](https://github.com/WGrape/ngxway/pulls)
+## 五、贡献
+在使用本项目的过程中，如遇到任何问题可以参考 [Q&A](https://github.com/WGrape/ngxway/wiki/Q&A) ，也欢迎您的 [Issue](https://github.com/WGrape/ngxway/issues/new) 和 [Pull Request](https://github.com/WGrape/ngxway/pulls)
 
 <img src="https://contrib.rocks/image?repo=wgrape/ngxway" >

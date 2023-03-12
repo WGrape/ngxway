@@ -14,8 +14,7 @@
 
 <div align="center">
     <p>A high-performance and lightweight Nginx gateway service.</p>
-    <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
-    <p>Wiki ：<a href="/README.zh-CN.md">English</a></p>
+    <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a> &nbsp; Wiki ：<a href="/README.zh-CN.md">English</a> </p>
 </div>
 
 ## 1. Introduction
@@ -56,29 +55,32 @@ cd ngxway && bash uninstall.sh
 
 ## 4、Usage
 
-### (1) Start the service
-Execute the following command to start the ngxway service. If you can successfully open the ```127.0.0.1:8090``` page, it means that the service has started successfully.
+### (1) Start the server
+Execute the following command to start the ngxway server. If you can successfully open the ```127.0.0.1:8090``` page, it means that the server has started successfully.
 
 ```bash
 bash bin/ngxway start
 ```
 
-### (2) Stop service
-Execute the following command to stop the ngxway service.
+### (2) Stop server
+Execute the following command to stop the ngxway server.
 
 ```bash
 bash bin/ngxway stop
 ```
 
-### (3) Restart service
-Execute the following command to restart the ngxway service.
+### (3) Restart server
+Execute the following command to restart the ngxway server.
 
 ```bash
 bash bin/ngxway restart
 ```
 
-### (4) Service log
+### (4) Server log
 The logs of ngxway will be recorded in the ```local_volume_logs_dir``` log directory defined in the [./ngxway.conf](./ngxway.conf) file, the default is ```/tmp /logs``` directory.
+
+### (5) To Integrate
+Congratulations on successfully installing and starting the ngxway server! However, before you make any modifications to the project, it is not yet ready to provide gateway services for you. If you need to integrate, please refer to the [Wiki](https://github.com/WGrape/ngxway/wiki/).
 
 ## 6. Contribution
 In the process of using this project, if you encounter any problems, please refer to [Q&A](https://github.com/WGrape/ngxway/wiki/Q&A) document.

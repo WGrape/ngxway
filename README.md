@@ -15,6 +15,7 @@
 <div align="center">
     <p>A high-performance and lightweight Nginx gateway service.</p>
     <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
+    <p>Wiki ：<a href="/README.zh-CN.md">English</a></p>
 </div>
 
 ## 1. Introduction
@@ -27,7 +28,7 @@ This gateway service is mainly implemented in Lua and, with built-in Nginx confi
 
 For more information on performance, you can refer to the detailed [performance report](https://wgrape.github.io/ngxway/html/benchmark.html). How was it generated? Please refer to the [benchmark document](./doc/benchmark.md) if necessary.
 
-<img width="900" alt="image" src="https://user-images.githubusercontent.com/35942268/221419143-616c35b8-fd43-4c42-8ede-8a752125a6db.png">
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/35942268/224526169-3ca6cd09-380d-4acf-b184-b972db85685b.png">
 
 ### (2) Containerized
 
@@ -80,6 +81,8 @@ bash bin/ngxway restart
 The logs of ngxway will be recorded in the ```local_volume_logs_dir``` log directory defined in the [./ngxway.conf](./ngxway.conf) file, the default is ```/tmp /logs``` directory.
 
 ## 6. Contribution
-In the process of using this project, if you encounter any problems, please refer to [Q&A](https://github.com/WGrape/ngxway/wiki/Q&A) document. Welcome your [Issue](https://github.com/WGrape/ngxway/issues/new) and [Pull Request](https ://github.com/WGrape/ngxway/pulls).
+In the process of using this project, if you encounter any problems, please refer to [Q&A](https://github.com/WGrape/ngxway/wiki/Q&A) document.
+
+Welcome your [Issues](https://github.com/WGrape/ngxway/issues/new) and [Pull Requests](https://github.com/WGrape/ngxway/pulls).
 
 <img src="https://contrib.rocks/image?repo=wgrape/ngxway">

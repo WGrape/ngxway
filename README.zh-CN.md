@@ -14,8 +14,7 @@
 
 <div align="center">
     <p>高性能轻量级的Nginx网关服务</p>
-    <p>README ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a></p>
-    <p>Wiki ：<a href="/README.zh-CN.md">English</a></p>
+    <p>Document ：<a href="/README.zh-CN.md">中文</a> / <a href="/README.md">English</a> &nbsp; Wiki ：<a href="/README.zh-CN.md">English</a> </p>
 </div>
 
 ## 一、项目介绍

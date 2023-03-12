@@ -40,9 +40,9 @@ $$/   $$/  $$$$$$$ |$$/   $$/  $$$$$/$$$$/   $$$$$$$/  $$$$$$$ |
            $$$$$$/                                     $$$$$$/
 '
 apacheBenchTempFile="${ngxwayPath}/logs/apachebench.temp"
-benchmarkTempHTMLFile="${ngxwayPath}/html/benchmark.temp.html"
-benchmarkTemplateFile="${ngxwayPath}/html/benchmark.template"
-benchmarkHTMLFile="${ngxwayPath}/html/benchmark.html"
+benchmarkTempHTMLFile="${ngxwayPath}/logs/benchmark.temp.html"
+benchmarkTemplateFile="${ngxwayPath}/logs/benchmark.template"
+benchmarkHTMLFile="${ngxwayPath}/logs/benchmark.html"
 # ================================
 
 # The common functions is here.
@@ -126,6 +126,7 @@ function printCPUMemory() {
   else
       # Linux
       mem_size_gb=$(free -m | awk '/Mem/{print $2}')
+      mem_size_gb=$((mem_size_gb/1024))
   fi
 
   echo "${cpu_cores}C${mem_size_gb}G"

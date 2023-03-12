@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.12.0](https://github.com/WGrape/ngxway/compare/v0.11.0...v0.12.0) (2023-03-12)
+
+
+### Features
+
+* add devkit and extkit support ([1f3f85f](https://github.com/WGrape/ngxway/commit/1f3f85fdaefd00c47e58034eb14208c12c4225d7))
+* add example module and support the out of box goserver upstream ([7a9ac67](https://github.com/WGrape/ngxway/commit/7a9ac672e45ee8eb3d9913520fb0269b409f2ecc))
+* add new test case of benchmark ([58f4d38](https://github.com/WGrape/ngxway/commit/58f4d3872a7cdcf0197b30a8a3f188e07f8de1aa))
+* add system parameters when ngxway start ([b5a03ee](https://github.com/WGrape/ngxway/commit/b5a03eea61b904b466e11dbd91cf33041f947983))
+* check ab is installed ([96f6ebf](https://github.com/WGrape/ngxway/commit/96f6ebfab2ed39088008e4a26c92e2d023e00129))
+* document upgrade ([c700305](https://github.com/WGrape/ngxway/commit/c700305465119d06cfa1f41cbe76eb46753c3d69))
+* try to do more something when start ([f885664](https://github.com/WGrape/ngxway/commit/f8856647a10117fde5db261fb06ada82fa77cd5c))
+
+
+### Bug Fixes
+
+* deprecated some linux params ([42bcf8e](https://github.com/WGrape/ngxway/commit/42bcf8e1f668cbb8f06f3c541c1eaf98446d7f6d))
+* expose more config options to ngxway.conf ([6565f16](https://github.com/WGrape/ngxway/commit/6565f16283df0df362741062df51e9f27dddbc0e))
+* fix lua module not working when requesting ([8904e5a](https://github.com/WGrape/ngxway/commit/8904e5a570f5f03d6bce0a24e1cc3e562b75dd8f))
+* install apachebench in dev environment ([21183f5](https://github.com/WGrape/ngxway/commit/21183f5343be38ed0fd880492637e3e46f744cd5))
+* ip_local_port_range not support when docker_network is host ([e89798c](https://github.com/WGrape/ngxway/commit/e89798c9e1936cd7c83a875c46c75a8238ceca5e))
+* remove and retest ([34566c9](https://github.com/WGrape/ngxway/commit/34566c9b6130a0dc0bab8d3ba44057c973ebc8ca))
+* somaxconn not support when docker_network is host ([2cf8c88](https://github.com/WGrape/ngxway/commit/2cf8c88c6992d91bb2031116deedc4fd5a5d453d))
+
+
+### Performance Improvements
+
+* make the QPS greater ([6980975](https://github.com/WGrape/ngxway/commit/6980975ae0c8dd98231925983d334e964cbccecb))
+
 ## [0.11.0](https://github.com/WGrape/ngxway/compare/v0.10.0...v0.11.0) (2023-02-26)
 
 

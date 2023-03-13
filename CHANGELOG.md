@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.12.1](https://github.com/WGrape/ngxway/compare/v0.12.0...v0.12.1) (2023-03-13)
+
+
+### Bug Fixes
+
+* fix ngxway.conf parse bug ([5ec97bf](https://github.com/WGrape/ngxway/commit/5ec97bfe6e722c31962f94de7e31764ad88359d0))
+* remove --cpu option in ngxway file ([4da6d5b](https://github.com/WGrape/ngxway/commit/4da6d5bcf64dde80cd4c1a26d447c6821d31258b))
+
+
+### Docs
+
+* add more example and the comparison of different service's QPS ([e5c5cef](https://github.com/WGrape/ngxway/commit/e5c5cefb2e4abd98c6deb39b5f3197cd6f99de37))
+
 ## [0.12.0](https://github.com/WGrape/ngxway/compare/v0.11.0...v0.12.0) (2023-03-12)
 
 

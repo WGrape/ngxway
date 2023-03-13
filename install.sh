@@ -9,7 +9,7 @@ cd $ngxwayPath
 
 # Check the system, only available for Linux and Unix series.
 whichSystem=$(printWhichSystem)
-if [ $whichSystem == "Windows" ] || [ $whichSystem == "Unknown" ]; then
+if [ "$whichSystem" == "Windows" ] || [ "$whichSystem" == "Unknown" ]; then
   printError "error: you can't install ngxway in your system, ngxway is only available for Linux and Unix series."
   exit 1
 fi

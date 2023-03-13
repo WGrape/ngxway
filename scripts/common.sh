@@ -2,20 +2,20 @@
 
 # Parse the config files.
 ngxwayConfigFile="${ngxwayPath}/ngxway.conf"
-env=`sed '/^env=/!d;s/.*=//' ${ngxwayConfigFile}`
-ngxwayAddr=`sed '/^ngxway_addr=/!d;s/.*=//' ${ngxwayConfigFile}`
-localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/.*=//' ${ngxwayConfigFile}`
-extEnable=`sed '/^ext_enable=/!d;s/.*=//' ${ngxwayConfigFile}`
-slowTime=`sed '/^slow_time=/!d;s/.*=//' ${ngxwayConfigFile}`
-maxNCPU=`sed '/^max_ncpu=/!d;s/.*=//' ${ngxwayConfigFile}`
-dockerNetwork=`sed '/^docker_network=/!d;s/.*=//' ${ngxwayConfigFile}`
-tcpSyncookies=`sed '/^tcp_syncookies=/!d;s/.*=//' ${ngxwayConfigFile}`
-tcpMaxTWBuckets=`sed '/^tcp_max_tw_buckets=/!d;s/.*=//' ${ngxwayConfigFile}`
-tcpTWReuse=`sed '/^tcp_tw_reuse=/!d;s/.*=//' ${ngxwayConfigFile}`
-soMaxConn=`sed '/^somaxconn=/!d;s/.*=//' ${ngxwayConfigFile}`
-ipLocalPortRange=`sed '/^ip_local_port_range=/!d;s/.*=//' ${ngxwayConfigFile}`
-softNoFile=`sed '/^soft_nofile=/!d;s/.*=//' ${ngxwayConfigFile}`
-hardNoFile=`sed '/^hard_nofile=/!d;s/.*=//' ${ngxwayConfigFile}`
+env=`sed '/^env=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+ngxwayAddr=`sed '/^ngxway_addr=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+extEnable=`sed '/^ext_enable=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+slowTime=`sed '/^slow_time=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+maxNCPU=`sed '/^max_ncpu=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+dockerNetwork=`sed '/^docker_network=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+tcpSyncookies=`sed '/^tcp_syncookies=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+tcpMaxTWBuckets=`sed '/^tcp_max_tw_buckets=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+tcpTWReuse=`sed '/^tcp_tw_reuse=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+soMaxConn=`sed '/^somaxconn=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+ipLocalPortRange=`sed '/^ip_local_port_range=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+softNoFile=`sed '/^soft_nofile=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+hardNoFile=`sed '/^hard_nofile=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
 
 if [ "$localVolumeLogsDir" == "" ] || [ "$localVolumeLogsDir" == "\"\"" ] ; then
   localVolumeLogsDir="${ngxwayPath}/logs"

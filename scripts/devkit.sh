@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+
+# Go back to the root directory of ngxway.
+ngxwayPath=$(cd `dirname $0`; cd ..; pwd)
+cd $ngxwayPath
+
+# Require the common shell scripts.
+. $ngxwayPath/scripts/common.sh
+
 # install httpd-tools to use ab test,
 # docker exec -it ngxwayContainer /bin/bash -c 'mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup && wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && yum clean all && yum install -y httpd-tools'
 docker exec -it ngxwayContainer /bin/bash -c "sed -e 's|^mirrorlist=|#mirrorlist=|g' \

@@ -50,7 +50,7 @@ git clone https://github.com/WGrape/ngxway.git && cd ngxway && bash install.sh
 cd ngxway && bash uninstall.sh
 ```
 
-注意ngxway只支持运行在有Docker环境的Unix系统上，如Linux、MacOS等。如果只是为了尝鲜体验，强烈建议使用 [在线Docker](https://labs.play-with-docker.com/) 测试使用。
+注意ngxway只支持运行在有Docker环境的Unix系统上，如Linux、MacOS等。如果只是为了尝鲜体验，强烈建议使用 [在线Docker](https://labs.play-with-docker.com/) 测试使用（但性能不好）。
 
 ## 四、快速开始
 

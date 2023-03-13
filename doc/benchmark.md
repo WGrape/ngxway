@@ -44,7 +44,10 @@ On an ```8C16G``` machine, without any additional optimizations, the QPS of the 
 
 ## 5、Comparison
 In addition to testing the performance of ngxway, several performance comparisons were also conducted, with the following conclusions:
+In addition to testing the performance of ngxway, multiple performance comparisons were conducted on three different clean versions (without any modifications or optimizations) of the "goserver", "nginx", and "openresty" services under the "/example/" directory. The following conclusions were mainly drawn.
 
-- The ```bridge``` network mode of Docker results in an additional performance loss of around ```30%``` for the service. Therefore, if you aim for higher performance, please set ```docker_network``` to ```host``` mode in the ```ngxway.conf``` configuration file.
+- Under the same testing conditions, the ratio of QPS measured for ngxway, nginx, and openresty was "1:0.6:0.3".
 
 - Under the same testing conditions, ngxway's performance is approximately ```50%~70%``` of the [go test API](https://github.com/WGrape/ngxway/blob/d11c8a10bbd1c1cf382e5564515907875a75d56e/example/goserver/main.go#L16) performance. This means that if the QPS of the [go test API](https://github.com/WGrape/ngxway/blob/d11c8a10bbd1c1cf382e5564515907875a75d56e/example/goserver/main.go#L16) on your machine can reach ```100,000```, then ngxway can reach a QPS of ```50,000~70,000```.
+
+- The ```bridge``` network mode of Docker results in an additional performance loss of around ```30%``` for the service. Therefore, if you aim for higher performance, please set ```docker_network``` to ```host``` mode in the ```ngxway.conf``` configuration file. Please note that the "host" mode cannot be used on Mac systems.

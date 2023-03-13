@@ -44,10 +44,10 @@ bash bin/ngxway_benchmark api
 在```8C16G```机器下，不进行额外的优化，ngxway网关服务的QPS浮动在```3w~6w```之间，平均```5W```。
 
 ## 5、性能对比
-除了测试ngxway性能外，也进行了多次不同的性能对比，主要有以下结论。
+除了测试ngxway性能外，还对```/example/```目录下的```goserver```/```nginx```/```openresty```三个不同的纯净版（无任何修改优化）服务进行了多次不同的性能对比，主要有以下结论。
 
-- Docker的```bridge```网络模式对服务性能有```30%```左右的额外损耗，所以如果追求更高性能，请在```ngxway.conf```配置文件中设置```docker_network```为```host```模式
+- 在等同的测试条件下，ngxway、nginx、openresty测出来的QPS比例为```1 : 0.6 : 0.3```
 
 - 在等同的测试条件下，ngxway的性能约占 [go test](https://github.com/WGrape/ngxway/blob/d11c8a10bbd1c1cf382e5564515907875a75d56e/example/goserver/main.go#L16) 接口性能的```50%~70%```左右，也就是说如果在您的机器上 [go test](https://github.com/WGrape/ngxway/blob/d11c8a10bbd1c1cf382e5564515907875a75d56e/example/goserver/main.go#L16) 接口的压测可以达到10W的QPS，那么ngxway可以达到```5w~7w```的QPS
 
-
+- Docker的```bridge```网络模式对服务性能有```30%```左右的额外损耗，所以如果追求更高性能，请在```ngxway.conf```配置文件中设置```docker_network```为```host```模式，注意```host```模式在Mac系统上无法使用。

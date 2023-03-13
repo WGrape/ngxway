@@ -44,12 +44,12 @@ function start(){
   mkdir -p $localVolumeLogsDir && chmod -R 777 $localVolumeLogsDir
 
   # Adjust system parameters and run container.
-  if [ $dockerNetwork == "bridge" ] || [ $whichSystem != "Linux" ]; then
+  if [ "$dockerNetwork" == "bridge" ] || [ "$whichSystem" != "Linux" ]; then
       docker run --ulimit nofile=$softNoFile:$hardNoFile \
                  --sysctl net.ipv4.ip_local_port_range="$ipLocalPortRange" \
                  --sysctl net.core.somaxconn="$soMaxConn" \
                  --cpus=$maxNCPU \
-                 --name ngxwayContainer -d -p $ngxwayAddr:8090 -p 8000:8000 -v $localVolumeLogsDir:/dist/logs/ ngxway
+                 --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
       if [ $? -ne 0 ]; then
         printError "error: failed to run"
         exit 1

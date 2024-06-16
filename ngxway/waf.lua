@@ -10,7 +10,7 @@ waf = {}
 
 local common = require("common")
 
--- Read the rules of waf.
+-- read the rules of waf.
 function waf:read_waf_rule(name)
   local path = "/dist/conf/waf/" .. name .. ".conf"
   local file = io.open(path, "r")
@@ -27,7 +27,7 @@ function waf:read_waf_rule(name)
   return t
 end
 
--- Read the options of waf.
+-- read the options of waf.
 function waf:read_waf_option(key)
   local path = common.waf_config_path
   local file = io.open(path, "r")
@@ -46,7 +46,7 @@ function waf:read_waf_option(key)
   return ""
 end
 
--- Check the url is valid.
+-- check the url is valid.
 function waf:waf_check_url(uri, rule_list)
   local ngx_match = ngx.re.match
   for _, rule in pairs(rule_list) do
@@ -58,7 +58,7 @@ function waf:waf_check_url(uri, rule_list)
   return true
 end
 
--- Check the cookie is valid.
+-- check the cookie is valid.
 function waf:waf_check_cookie(cookie, rule_list)
   local ngx_match = ngx.re.match
   for _, rule in pairs(rule_list) do
@@ -70,7 +70,7 @@ function waf:waf_check_cookie(cookie, rule_list)
   return true
 end
 
--- Check the useragent is valid.
+-- check the useragent is valid.
 function waf:waf_check_useragent(useragent, rule_list)
   local ngx_match = ngx.re.match
   for _, rule in pairs(rule_list) do

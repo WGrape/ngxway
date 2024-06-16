@@ -3,41 +3,41 @@
 # start time
 start=$(date +%s)
 
-# Go back to the root directory of ngxway.
-ngxwayPath=$(cd `dirname $0`; cd ..; pwd)
-cd $ngxwayPath
+# go to the root directory of ngxway.
+NGXWAY_BASE_PATH=$(cd `dirname $0`; cd ..; pwd)
+cd $NGXWAY_BASE_PATH
 
-# Require the common shell scripts.
-. $ngxwayPath/scripts/common.sh
+# require the common shell scripts.
+. $NGXWAY_BASE_PATH/scripts/common.sh
 
-# Check the ab is installed.
+# check the ab is installed.
 if ! command -v ab &> /dev/null; then
-  printError "error: please install ab first"
+  print_error "error: please install ab first"
   echo -e "for help: https://github.com/WGrape/ngxway/issues/75"
   exit 1
 fi
 
-# Check the ngxway is running
-isRunning=$(isNgxwayRunning)
+# check the ngxway is running
+isRunning=$(is_ngxway_running)
 if [ $isRunning == "no" ]; then
-  printError "error: please start ngxway first"
+  print_error "error: please start ngxway first"
   exit 1
 fi
 
-# Generate the urls.
-computeSignedRequest
+# generate the urls.
+compute_signed_request
 addrUrl=${signedURL}
 if [ -n "$1" ] && [ "$1" == "api" ]; then
   addrUrl=${signedAPI}
 fi
 
-# Get information about cpu and memory
-cpuMemory=$(printCPUMemory)
+# get information about cpu and memory
+cpuMemory=$(print_cpu_memory)
 
-# Initial
-cat $benchmarkTemplateFile > $benchmarkTempHTMLFile
+# initial
+cat $benchmark_template_file > $benchmark_temp_html_file
 
-# Declare the testcases.
+# declare the testcases.
 caseList=(
   "-n 10000 -c 32"
   "-n 10000 -c 64"
@@ -59,32 +59,32 @@ maxQPS=0
 maxTestIndex=0
 maxTestArray=()
 
-# Run the caseList.
+# run the caseList.
 for i in "${!caseList[@]}"; do
   number=$((i+1))
-  printInfo "The test no.${number} start"
+  print_info "The test no.${number} start"
 
-  runBenchmarkTest "${caseList[$i]}" "${addrUrl}"
+  run_benchmark_test "${caseList[$i]}" "${addrUrl}"
   if [ $? -ne 0 ]; then
-    printError "The test no.${number} end"
+    print_error "The test no.${number} end"
   else
-    concurrency=`cat ${apacheBenchTempFile} | grep 'Concurrency Level' | awk '{print $3}'`
+    concurrency=`cat ${apache_bench_temp_file} | grep 'Concurrency Level' | awk '{print $3}'`
 
     command="ab -r ${caseList[$i]} -k ${addrUrl}"
     command=$(echo $command | sed 's/[\/&]/\\&/g')
 
-    completeRequests=`cat ${apacheBenchTempFile} | grep 'Complete requests' | awk '{print $3}'`
-    failedRequests=`cat ${apacheBenchTempFile} | grep 'Failed requests' | awk '{print $3}'`
-    keepaliveRequests=`cat ${apacheBenchTempFile} | grep 'Keep-Alive requests' | awk '{print $3}'`
+    completeRequests=`cat ${apache_bench_temp_file} | grep 'Complete requests' | awk '{print $3}'`
+    failedRequests=`cat ${apache_bench_temp_file} | grep 'Failed requests' | awk '{print $3}'`
+    keepaliveRequests=`cat ${apache_bench_temp_file} | grep 'Keep-Alive requests' | awk '{print $3}'`
 
-    totalTransferred=`cat ${apacheBenchTempFile} | grep 'Total transferred' | awk '{print $3}'`
-    htmlTransferred=`cat ${apacheBenchTempFile} | grep 'HTML transferred' | awk '{print $3}'`
+    totalTransferred=`cat ${apache_bench_temp_file} | grep 'Total transferred' | awk '{print $3}'`
+    htmlTransferred=`cat ${apache_bench_temp_file} | grep 'HTML transferred' | awk '{print $3}'`
 
-    qps=`cat ${apacheBenchTempFile} | grep 'Requests per second' | awk '{print int($4)}'`
+    qps=`cat ${apache_bench_temp_file} | grep 'Requests per second' | awk '{print int($4)}'`
 
-    p90=`cat ${apacheBenchTempFile} | grep '90%' | awk '{print int($2)}'`
-    p95=`cat ${apacheBenchTempFile} | grep '95%' | awk '{print int($2)}'`
-    p99=`cat ${apacheBenchTempFile} | grep '99%' | awk '{print int($2)}'`
+    p90=`cat ${apache_bench_temp_file} | grep '90%' | awk '{print int($2)}'`
+    p95=`cat ${apache_bench_temp_file} | grep '95%' | awk '{print int($2)}'`
+    p99=`cat ${apache_bench_temp_file} | grep '99%' | awk '{print int($2)}'`
 
     echo -e "++++++++++++Test Report++++++++++++"
     echo -e "Concurrency = " $concurrency
@@ -111,8 +111,8 @@ for i in "${!caseList[@]}"; do
         -e "s/{{${number}th_P90}}/${p90}/g" \
         -e "s/{{${number}th_P95}}/${p95}/g" \
         -e "s/{{${number}th_P99}}/${p99}/g" \
-        $benchmarkTempHTMLFile > $benchmarkHTMLFile
-    cat $benchmarkHTMLFile > $benchmarkTempHTMLFile
+        $benchmark_temp_html_file > $benchmark_html_file
+    cat $benchmark_html_file > $benchmark_temp_html_file
 
     if [ $qps -gt $maxQPS ]; then
       maxQPS=$qps
@@ -132,25 +132,25 @@ for i in "${!caseList[@]}"; do
   fi
 done
 
-sed -e "s/{{cpuMemory}}/$cpuMemory/g" -e "s/{{maxQPS}}/$maxQPS/g" $benchmarkTempHTMLFile > $benchmarkHTMLFile
-cat $benchmarkHTMLFile > $benchmarkTempHTMLFile
+sed -e "s/{{cpuMemory}}/$cpuMemory/g" -e "s/{{maxQPS}}/$maxQPS/g" $benchmark_temp_html_file > $benchmark_html_file
+cat $benchmark_html_file > $benchmark_temp_html_file
 
 # end time
 end=$(date +%s)
 
-cat $benchmarkTemplateFile > $benchmarkTempHTMLFile
+cat $benchmark_template_file > $benchmark_temp_html_file
 
 echo -e "\n------------------------------------------------------------------"
 echo "The benchmark testing of ngxway is end, total cost $((end-start)) seconds."
 echo -e "------------------------------------------------------------------\n"
 
-printSuccess "The benchmark test is end, max QPS = ${maxQPS}\n"
+print_success "The benchmark test is end, max QPS = ${maxQPS}\n"
 
-printSuccess "++++++++++++The Performance Report++++++++++++"
+print_success "++++++++++++The Performance Report++++++++++++"
 for field in "${!maxTestArray[@]}"; do
-  printSuccess "${field} = ${maxTestArray[$field]}"
+  print_success "${field} = ${maxTestArray[$field]}"
 done
-printSuccess "++++++++++++The Performance Report++++++++++++"
+print_success "++++++++++++The Performance Report++++++++++++"
 
-# Try to open it on the chrome.
-open -a "/Applications/Google Chrome.app" $benchmarkHTMLFile > /dev/null 2>&1
+# try to open it on the chrome.
+open -a "/Applications/Google Chrome.app" $benchmark_html_file > /dev/null 2>&1

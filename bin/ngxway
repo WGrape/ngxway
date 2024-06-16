@@ -1,156 +1,156 @@
 #!/usr/bin/env bash
 
-# Go back to the root directory of ngxway.
-ngxwayPath=$(cd `dirname $0`; cd ..; pwd)
-cd $ngxwayPath
+# go to the root directory of ngxway.
+NGXWAY_BASE_PATH=$(cd `dirname $0`; cd ..; pwd)
+cd $NGXWAY_BASE_PATH
 
-# Require the common shell scripts.
-. $ngxwayPath/scripts/common.sh
+# require the common shell scripts.
+. $NGXWAY_BASE_PATH/scripts/common.sh
 
-whichSystem=$(printWhichSystem)
+which_system=$(print_which_system)
 
-# Start the server.
+# start the server.
 function start(){
   # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console
   docker images > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    printError "error: please start docker first"
+    print_error "error: please start docker first"
     exit 1
   fi
 
-  # Handle container.
-  containerCount=0
-  for file in $(docker container ls -f name=ngxwayContainer -q)
+  # if there is a running container, an error is reported.
+  container_count=0
+  for file in $(docker container ls -f name=ngxway_container -q)
   do
-      ((containerCount++))
+      ((container_count++))
   done
-  if [ $containerCount -ne 0 ]; then
-    printError "error: please run stop.sh first"
+  if [ $container_count -ne 0 ]; then
+    print_error "error: please run stop.sh first"
     exit 1
   fi
 
-  # Pull without password.
+  # pull without password.
   git config --global credential.helper store
   git pull
 
-  # Build image.
+  # build image.
   docker build -t ngxway .
   if [ $? -ne 0 ]; then
-    printError "error: failed to build"
+    print_error "error: failed to build"
     exit 1
   fi
 
-  # Mapping to local disk storage.
-  mkdir -p $localVolumeLogsDir && chmod -R 777 $localVolumeLogsDir
+  # mapping to local disk storage.
+  mkdir -p $local_volume_logs_dir && chmod -R 777 $local_volume_logs_dir
 
-  # Adjust system parameters and run container.
-  if [ "$dockerNetwork" == "bridge" ] || [ "$whichSystem" != "Linux" ]; then
-      docker run --ulimit nofile=$softNoFile:$hardNoFile \
-                 --sysctl net.ipv4.ip_local_port_range="$ipLocalPortRange" \
-                 --sysctl net.core.somaxconn="$soMaxConn" \
-                 --name ngxwayContainer -d -p $ngxwayAddr:8090 -v $localVolumeLogsDir:/dist/logs/ ngxway
+  # adjust system parameters and run container.
+  if [ "$docker_network" == "bridge" ] || [ "$which_system" != "Linux" ]; then
+      docker run --ulimit nofile=$soft_no_file:$hard_no_file \
+                 --sysctl net.ipv4.ip_local_port_range="$ip_local_port_range" \
+                 --sysctl net.core.somaxconn="$so_max_conn" \
+                 --name ngxway_container -d -p $ngxway_addr:8090 -v $local_volume_logs_dir:/dist/logs/ ngxway
       if [ $? -ne 0 ]; then
-        printError "error: failed to run"
+        print_error "error: failed to run"
         exit 1
       fi
-  elif [ $dockerNetwork == "host" ]; then
-      docker run --ulimit nofile=$softNoFile:$hardNoFile \
-                 --name ngxwayContainer -d --net=host -v $localVolumeLogsDir:/dist/logs/ ngxway
+  elif [ $docker_network == "host" ]; then
+      docker run --ulimit nofile=$soft_no_file:$hard_no_file \
+                 --name ngxway_container -d --net=host -v $local_volume_logs_dir:/dist/logs/ ngxway
       if [ $? -ne 0 ]; then
-        printError "error: failed to run"
+        print_error "error: failed to run"
         exit 1
       fi
   fi
 
-  # Exec development operations
+  # exec development operations
   if [ $env == "dev" ]; then
-      printInfo "DEV ONLY START"
-      bash $ngxwayPath/scripts/devkit.sh
-      printInfo "DEV ONLY END"
+      print_info "DEV ONLY START"
+      bash $NGXWAY_BASE_PATH/scripts/devkit.sh
+      print_info "DEV ONLY END"
   fi
 
-  # Exec extension operations
-  if [ $extEnable == "1" ]; then
-      printInfo "EXTENSION START"
-      bash $ngxwayPath/scripts/extkit.sh
-      printInfo "EXTENSION END"
+  # exec extension operations
+  if [ $ext_enable == "1" ]; then
+      print_info "EXTENSION START"
+      bash $NGXWAY_BASE_PATH/scripts/extkit.sh
+      print_info "EXTENSION END"
   fi
 
-  # Exec command: reload the nginx.
-  docker exec -d ngxwayContainer bash /dist/scripts/nginx/nginx_reload.sh
+  # exec command: reload the nginx.
+  docker exec -d ngxway_container bash /dist/scripts/nginx/nginx_reload.sh
   if [ $? -ne 0 ]; then
-    printError "error: failed to exec nginx_reload.sh"
+    print_error "error: failed to exec nginx_reload.sh"
     exit 1
   fi
 
-  # Wait for the container's logs to be synced to the local disk.
+  # wait for the container's logs to be synced to the local disk.
   sleep 1
 
-  # Check the volume mount is success or not.
-  if [ ! -f "$localVolumeLogsDir/nginx.reload.log" ]; then
-    printError "error: volume mount error"
+  # check the volume mount is success or not.
+  if [ ! -f "$local_volume_logs_dir/nginx.reload.log" ]; then
+    print_error "error: volume mount error"
     exit 1
   fi
 
-  # The result of command exec in docker.
-  dockerResultMsg=$(cat $localVolumeLogsDir/nginx.reload.log)
+  # the result of command exec in docker.
+  dockerResultMsg=$(cat $local_volume_logs_dir/nginx.reload.log)
   if [ "${dockerResultMsg}" != "success" ] ; then
-    # Write failure log.
+    # write failure log.
     log="[${time}] >>>>>>>>failed to reload nginx<<<<<<<<"
-    echo $log >> $localVolumeLogsDir/ngxway.start.log
-    echo $dockerResultMsg >> $localVolumeLogsDir/ngxway.start.log
+    echo $log >> $local_volume_logs_dir/ngxway.start.log
+    echo $dockerResultMsg >> $local_volume_logs_dir/ngxway.start.log
 
-    # Output to console.
-    printError "error: failed to reload nginx"
+    # output to console.
+    print_error "error: failed to reload nginx"
     if [ "$dockerResultMsg" != "" ]; then
-      printError "error: $dockerResultMsg"
+      print_error "error: $dockerResultMsg"
     fi
     exit 1
   else
-    # Write success log.
+    # write success log.
     log="[${time}] start ngxway success"
-    echo $log >> $localVolumeLogsDir/ngxway.start.log
+    echo $log >> $local_volume_logs_dir/ngxway.start.log
 
-    # Output to console.
-    printLogo
-    printSuccess "Welcome to ngxway ! It's listening on ${ngxwayAddr} ..."
+    # output to console.
+    print_logo
+    print_success "Welcome to ngxway ! It's listening on ${ngxway_addr} ..."
   fi
 
-  # Try to open it in your chrome if ngxway working in dev mode.
-  computeSignedRequest
+  # try to open it in your chrome if ngxway working in dev mode.
+  compute_signed_request
   if [ $env == "dev" ]; then
     open -a "/Applications/Google Chrome.app" $signedURL > /dev/null 2>&1
   fi
 }
 
-# Stop the server.
+# stop the server.
 function stop(){
-  # Detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console.
+  # detect whether docker is started by commands such as docker images, and redirect the output so that the content will not be output on the console.
   docker images > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    printError "error: please start docker first"
+    print_error "error: please start docker first"
     exit 1
   fi
 
-  # Stop and remove container.
-  docker stop ngxwayContainer
-  docker container rm ngxwayContainer
+  # stop and remove container.
+  docker stop ngxway_container
+  docker container rm ngxway_container
 
-  # Remove image.
+  # remove image.
   docker rmi ngxway
 
-  # Remove local volume logs.
-  rm -rf $localVolumeLogsDir
+  # remove local volume logs.
+  rm -rf $local_volume_logs_dir
 
-  printSuccess "stop success"
+  print_success "stop success"
 }
 
-# Restart the server.
+# restart the server.
 function restart(){
   stop && start
 }
 
-# Parse the arguments.
+# parse the sys arguments.
 if [ "$1" == "start" ] ; then
   start
 elif [ "$1" == "stop" ] ; then

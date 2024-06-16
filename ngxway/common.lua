@@ -11,7 +11,7 @@ local common = {}
 common.waf_config_path = "/dist/conf/waf/waf.conf"
 common.reg_match_mode = "isjo"
 
--- Provide the split function.
+-- provide the split function.
 function common:split(str, sep)
   local result = {}
   for token in string.gmatch(str, "([^" .. sep .. "]+)") do

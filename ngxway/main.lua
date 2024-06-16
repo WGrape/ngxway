@@ -15,7 +15,7 @@ end
 local auth = require("auth")
 local waf = require("waf")
 
--- Debug
+-- debug
 -- ngx.log(ngx.ERR, 'main.lua init ', cache_key, " ", global_var_container.waf_url_option, " ",  global_var_container.waf_cookie_option)
 
 if global_var_container.waf_url_option == "on" then

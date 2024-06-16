@@ -35,7 +35,7 @@
 * install apachebench in dev environment ([21183f5](https://github.com/WGrape/ngxway/commit/21183f5343be38ed0fd880492637e3e46f744cd5))
 * ip_local_port_range not support when docker_network is host ([e89798c](https://github.com/WGrape/ngxway/commit/e89798c9e1936cd7c83a875c46c75a8238ceca5e))
 * remove and retest ([34566c9](https://github.com/WGrape/ngxway/commit/34566c9b6130a0dc0bab8d3ba44057c973ebc8ca))
-* somaxconn not support when docker_network is host ([2cf8c88](https://github.com/WGrape/ngxway/commit/2cf8c88c6992d91bb2031116deedc4fd5a5d453d))
+* so_max_conn not support when docker_network is host ([2cf8c88](https://github.com/WGrape/ngxway/commit/2cf8c88c6992d91bb2031116deedc4fd5a5d453d))
 
 
 ### Performance Improvements
@@ -222,7 +222,7 @@
 
 ### Features
 
-* adjust computeSignedAPI to computeSignedRequest ([eeca00b](https://github.com/WGrape/ngxway/commit/eeca00be4cfe35b04e9d6b79ffd4e16d63c91d51))
+* adjust computeSignedAPI to compute_signed_request ([eeca00b](https://github.com/WGrape/ngxway/commit/eeca00be4cfe35b04e9d6b79ffd4e16d63c91d51))
 
 
 ### Bug Fixes

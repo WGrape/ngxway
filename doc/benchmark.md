@@ -33,7 +33,7 @@ During the process, the command will also display real-time stress test informat
 <img width="876" alt="image" src="https://user-images.githubusercontent.com/35942268/224525700-692df740-92f5-4ad6-8343-0ea7ebccd8ad.png">
 
 ## 3. Report
-After completing the test, the system will generate a test report file named ```{ngxwayPath}/logs/benchmark.html``` in the ```logs``` folder of the project root directory.
+After completing the test, the system will generate a test report file named ```{NGXWAY_BASE_PATH}/logs/benchmark.html``` in the ```logs``` folder of the project root directory.
 
 When you operate on a Mac system, the system automatically opens the test report in the Chrome browser. If your system is not a Mac or the test report fails to open normally, you can open it manually to view.
 

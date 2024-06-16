@@ -34,7 +34,7 @@ bash bin/ngxway_benchmark api
 <img width="876" alt="image" src="https://user-images.githubusercontent.com/35942268/224525700-692df740-92f5-4ad6-8343-0ea7ebccd8ad.png">
 
 ## 3. 测试报告
-在完成测试后，系统会在项目根目录的```logs```文件夹下生成```{ngxwayPath}/logs/benchmark.html```测试报告文件。
+在完成测试后，系统会在项目根目录的```logs```文件夹下生成```{NGXWAY_BASE_PATH}/logs/benchmark.html```测试报告文件。
 
 当您在Mac系统上操作时，系统自动在Chrome浏览器中打开测试报告。如果您的系统不是Mac或者未正常打开测试报告，手动打开查看即可。
 

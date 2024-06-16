@@ -6,7 +6,7 @@ if [ "${dockerenv}" != "/.dockerenv" ]; then
   exit 1
 fi
 
-# Write start info to ngxway.start.log and fix this bug : https://github.com/WGrape/ngxway/issues/4
+# write start info to ngxway.start.log and fix this bug : https://github.com/WGrape/ngxway/issues/4
 cp /dist/conf/nginx/nginx.conf /usr/local/openresty/nginx/conf/
 nginx -s reload
 if [ $? -ne 0 ]; then

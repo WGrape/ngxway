@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# Go back to the root directory of ngxway.
-ngxwayPath=$(cd `dirname $0`; pwd)
-cd $ngxwayPath
+# go to the root directory of ngxway.
+NGXWAY_BASE_PATH=$(cd `dirname $0`; pwd)
+cd $NGXWAY_BASE_PATH
 
-# Require the common shell scripts.
-. $ngxwayPath/scripts/common.sh
+# require the common shell scripts.
+. $NGXWAY_BASE_PATH/scripts/common.sh
 
-# Check the system, only available for Linux and Unix series.
-whichSystem=$(printWhichSystem)
+# check the system, only available for Linux and Unix series.
+which_system=$(print_which_system)
 
-printSuccess "remove success"
+print_success "remove success"

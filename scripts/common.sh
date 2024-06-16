@@ -1,33 +1,33 @@
 #!/usr/bin/env bash
 
-# Parse the config files.
-ngxwayConfigFile="${ngxwayPath}/ngxway.conf"
-env=`sed '/^env=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-ngxwayAddr=`sed '/^ngxway_addr=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-localVolumeLogsDir=`sed '/^local_volume_logs_dir=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-extEnable=`sed '/^ext_enable=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-slowTime=`sed '/^slow_time=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-maxNCPU=`sed '/^max_ncpu=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-dockerNetwork=`sed '/^docker_network=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-tcpSyncookies=`sed '/^tcp_syncookies=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-tcpMaxTWBuckets=`sed '/^tcp_max_tw_buckets=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-tcpTWReuse=`sed '/^tcp_tw_reuse=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-soMaxConn=`sed '/^somaxconn=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-ipLocalPortRange=`sed '/^ip_local_port_range=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-softNoFile=`sed '/^soft_nofile=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
-hardNoFile=`sed '/^hard_nofile=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxwayConfigFile}`
+# parse the config files.
+ngxway_config_file="${NGXWAY_BASE_PATH}/ngxway.conf"
+env=`sed '/^env=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+ngxway_addr=`sed '/^ngxway_addr=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+local_volume_logs_dir=`sed '/^local_volume_logs_dir=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+ext_enable=`sed '/^ext_enable=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+slow_time=`sed '/^slow_time=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+max_n_cpu=`sed '/^max_ncpu=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+docker_network=`sed '/^docker_network=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+tcp_syncookies=`sed '/^tcp_syncookies=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+tcp_max_tw_buckets=`sed '/^tcp_max_tw_buckets=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+tcp_tw_reuse=`sed '/^tcp_tw_reuse=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+so_max_conn=`sed '/^somaxconn=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+ip_local_port_range=`sed '/^ip_local_port_range=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+soft_no_file=`sed '/^soft_nofile=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
+hard_no_file=`sed '/^hard_nofile=/!d;s/\([^#]*\)#.*$/\1/;s/.*=//' ${ngxway_config_file}`
 
-if [ "$localVolumeLogsDir" == "" ] || [ "$localVolumeLogsDir" == "\"\"" ] ; then
-  localVolumeLogsDir="${ngxwayPath}/logs"
+if [ "$local_volume_logs_dir" == "" ] || [ "$local_volume_logs_dir" == "\"\"" ] ; then
+  local_volume_logs_dir="${NGXWAY_BASE_PATH}/logs"
 fi
-if [ "$dockerNetwork" == "" ]; then
-  dockerNetwork="bridge"
+if [ "$docker_network" == "" ]; then
+  docker_network="bridge"
 fi
 
-# The common variables s here.
+# the common variables s here.
 # ================================
 time=$(date "+%Y-%m-%d %H:%M:%S")
-logoText='
+logo_text='
  _______    ______   __    __  __   __   __   ______   __    __
 /       \  /      \ /  \  /  |/  | /  | /  | /      \ /  |  /  |
 $$$$$$$  |/$$$$$$  |$$  \/$$/ $$ | $$ | $$ | $$$$$$  |$$ |  $$ |
@@ -39,16 +39,16 @@ $$/   $$/  $$$$$$$ |$$/   $$/  $$$$$/$$$$/   $$$$$$$/  $$$$$$$ |
           $$    $$/                                   $$    $$/
            $$$$$$/                                     $$$$$$/
 '
-apacheBenchTempFile="${ngxwayPath}/logs/apachebench.temp"
-benchmarkTempHTMLFile="${ngxwayPath}/logs/benchmark.temp.html"
-benchmarkTemplateFile="${ngxwayPath}/logs/benchmark.template"
-benchmarkHTMLFile="${ngxwayPath}/logs/benchmark.html"
+apache_bench_temp_file="${NGXWAY_BASE_PATH}/logs/apachebench.temp"
+benchmark_temp_html_file="${NGXWAY_BASE_PATH}/logs/benchmark.temp.html"
+benchmark_template_file="${NGXWAY_BASE_PATH}/logs/benchmark.template"
+benchmark_html_file="${NGXWAY_BASE_PATH}/logs/benchmark.html"
 # ================================
 
-# The common functions is here.
+# the common functions is here.
 # ================================
-function checkNgxwayConfig() {
-  if [ "$dockerNetwork" == "bridge" ] || [ "$dockerNetwork" == "host" ] ;then
+function check_ngxway_config() {
+  if [ "$docker_network" == "bridge" ] || [ "$docker_network" == "host" ] ;then
     echo "ok"
     return
   fi
@@ -56,7 +56,7 @@ function checkNgxwayConfig() {
   echo "failed"
 }
 
-function computeSignedRequest() {
+function compute_signed_request() {
   timeStamp=`date +%s`
 
   (( length=timeStamp%16+10 ))
@@ -64,8 +64,8 @@ function computeSignedRequest() {
   secret="ngxway"
   sign="${timeStamp}_${secret}_${timeStamp}"
 
-  whichSystem=$(printWhichSystem)
-  if [ $whichSystem == "Linux" ] ; then
+  which_system=$(print_which_system)
+  if [ $which_system == "Linux" ] ; then
     signMd5=`echo -n ${sign} | md5sum | cut -d ' ' -f1`
   else
     signMd5=`md5 -s ${sign} | awk '{ print $4 }'`
@@ -73,21 +73,21 @@ function computeSignedRequest() {
 
   result=${signMd5: 0: $length}
 
-  signedURL="http://${ngxwayAddr}/"
-  signedAPI="http://${ngxwayAddr}/api/test?sign=${result}&timestamp=${timeStamp}"
+  signedURL="http://${ngxway_addr}/"
+  signedAPI="http://${ngxway_addr}/api/test?sign=${result}&timestamp=${timeStamp}"
 }
 
-function isNgxwayRunning(){
-  computeSignedRequest
-  httpCode=$(curl -I -m 10 -o /dev/null -s -w %{http_code} $signedURL)
-  if [ $httpCode == "200" ]; then
+function is_ngxway_running(){
+  compute_signed_request
+  http_code=$(curl -I -m 10 -o /dev/null -s -w %{http_code} $signedURL)
+  if [ $http_code == "200" ]; then
     echo "yes"
   else
     echo "no"
   fi
 }
 
-function runBenchmarkTest(){
+function run_benchmark_test(){
   if [ "$1" == "" ] ||  [ "$2" == "" ] ; then
     return
   fi
@@ -97,18 +97,18 @@ function runBenchmarkTest(){
   do
     count=$((count+1))
 
-    # You can use the following commands to test the QPS of ngxway.
+    # you can use the following commands to test the QPS of ngxway.
     # bash test/benchmark.sh
     # bash test/benchmark.sh url
     # bash test/benchmark.sh api
     command="ab -r $1 -k $2"
     echo -e $command
-    $command > $apacheBenchTempFile
+    $command > $apache_bench_temp_file
     if [ $? -ne 0 ]; then
-      printError "error: failed / count=${count}"
+      print_error "error: failed / count=${count}"
       sleep 1
     else
-      printSuccess "complete / count=${count}"
+      print_success "complete / count=${count}"
       return 0
     fi
   done
@@ -116,7 +116,7 @@ function runBenchmarkTest(){
   return 1
 }
 
-function printCPUMemory() {
+function print_cpu_memory() {
   cpu_cores=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
 
   if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -132,8 +132,8 @@ function printCPUMemory() {
   echo "${cpu_cores}C${mem_size_gb}G"
 }
 
-function printSignedRequest() {
-  computeSignedRequest
+function print_signed_request() {
+  compute_signed_request
   echo "timeStamp=$timeStamp"
   echo "length=$length"
   echo "sign=$sign"
@@ -143,64 +143,64 @@ function printSignedRequest() {
   echo "api = " $signedAPI
 }
 
-function printWhichSystem(){
+function print_which_system(){
   uNames=`uname -s`
   osName=${uNames: 0: 4}
   if [ "$osName" == "Darw" ] ; then # Darwin
-    whichSystem="MacOS"
+    which_system="MacOS"
   elif [ "$osName" == "Linu" ] ; then # Linux
-    whichSystem="Linux"
+    which_system="Linux"
   elif [ "$osName" == "MING" ] ; then # MINGW
-    whichSystem="Windows"
+    which_system="Windows"
   else
-    whichSystem="Unknown"
+    which_system="Unknown"
   fi
-  echo $whichSystem
+  echo $which_system
 }
 
-function printSuccess(){
+function print_success(){
   if [ "$1" == "" ]; then
     echo $1
     return
   fi
 
-  whichSystem=$(printWhichSystem)
-  if [ $whichSystem == "Linux" ] ; then
+  which_system=$(print_which_system)
+  if [ $which_system == "Linux" ] ; then
     echo -e "\e[32m$1\e[0m"
   else
     echo -e "\033[32m$1\033[0m"
   fi
 }
 
-function printError(){
+function print_error(){
   if [ "$1" == "" ]; then
     echo $1
     return
   fi
 
-  whichSystem=$(printWhichSystem)
-  if [ $whichSystem == "Linux" ] ; then
+  which_system=$(print_which_system)
+  if [ $which_system == "Linux" ] ; then
     echo -e "\e[31m>>>>>>>> $1 <<<<<<<<\e[0m"
   else
     echo -e "\033[31m>>>>>>>> $1 <<<<<<<<\033[0m"
   fi
 }
 
-function printInfo(){
+function print_info(){
   if [ "$1" == "" ]; then
     echo $1
     return
   fi
 
-  whichSystem=$(printWhichSystem)
-  if [ $whichSystem == "Linux" ] ; then
+  which_system=$(print_which_system)
+  if [ $which_system == "Linux" ] ; then
     echo -e "\e[33m======== $1 ========\e[0m"
   else
     echo -e "\033[33m======== $1 ========\033[0m"
   fi
 }
 
-function printLogo(){
-  echo -e "$logoText"
+function print_logo(){
+  echo -e "$logo_text"
 }
 # ================================
